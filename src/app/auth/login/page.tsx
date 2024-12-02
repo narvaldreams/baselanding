@@ -14,6 +14,7 @@ export default function Page() {
               <h5 className="my-6 text-xl font-semibold">Login</h5>
               {/* Formulario de login */}
               <LoginForm />
+              
             </div>
           </div>
         </div>
