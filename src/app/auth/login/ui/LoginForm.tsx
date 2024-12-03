@@ -45,10 +45,17 @@ export const LoginForm = () => {
           {/* <p className="text-slate-400 mb-0"><Link href="/auth-re-password" className="text-slate-400">Forgot password ?</Link></p> */ }
         </div>
 
-        { errorMessage && (
+        { errorMessage === 'Invalid credentials.' && (
           <div className="flex flex-row mb-2">
             <IoInformationOutline className="h-5 w-5 text-red-500" />
             <p className="text-sm text-red-500">Credenciales no son correctas</p>
+          </div>
+        ) }
+
+        { errorMessage === 'Something went wrong.' && (
+          <div className="flex flex-row mb-2">
+            <IoInformationOutline className="h-5 w-5 text-red-500" />
+            <p className="text-sm text-red-500">Por favor, intenta de nuevo</p>
           </div>
         ) }
 

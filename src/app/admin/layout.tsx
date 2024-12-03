@@ -1,7 +1,7 @@
+import '../globals.css';
+import "../assets/css/tailwind.css";
+import '../assets/css/materialdesignicons.min.css';
 import type { Metadata } from "next";
-import "../assets/scss/tailwind.scss";
-import '../assets/css/material.css';
-import { alex, eb_garamond, kaushan, nunito, work_sans } from '@/config/font';
 import { auth } from '@/auth.config';
 import { redirect } from 'next/navigation';
 import { Provider } from '@/components';
@@ -24,10 +24,8 @@ export default async function RootLayout( {
   }
 
   return (
-    <main className="flex justify-center">
-      <Provider>
-        { children }
-      </Provider>
-    </main>
+    <Provider>
+      { children }
+    </Provider>
   );
 }

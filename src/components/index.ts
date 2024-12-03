@@ -1,3 +1,7 @@
+export { default as Topnav } from './ui/admin/topnav/Topnav';
+
+export { default as Wrapper} from './ui/admin/wrapper/Wrapper';
+
 export { Provider } from './provider/Provider';
 
 export { default as Contact } from './ui/contact/Contact';
