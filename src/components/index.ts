@@ -1,3 +1,5 @@
+export { Provider } from './provider/Provider';
+
 export { default as Contact } from './ui/contact/Contact';
 export { default as Parallax } from './ui/parallax/Parallax';
 export { default as Footer } from './ui/footer/Footer';

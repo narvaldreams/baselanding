@@ -1,8 +1,11 @@
 'use client';
 
 import { authenticate } from '@/actions/auth/login';
+import clsx from 'clsx';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
+import { IoInformationOutline } from 'react-icons/io5';
 
 export const LoginForm = () => {
 
@@ -11,6 +14,14 @@ export const LoginForm = () => {
     authenticate,
     undefined,
   );
+
+  const router = useRouter();
+
+  useEffect( () => {
+    if ( errorMessage === 'Success' ) {
+      router.replace( '/admin' );
+    }
+  }, [ errorMessage ] );
 
 
   return (
@@ -34,8 +45,23 @@ export const LoginForm = () => {
           {/* <p className="text-slate-400 mb-0"><Link href="/auth-re-password" className="text-slate-400">Forgot password ?</Link></p> */ }
         </div>
 
+        { errorMessage && (
+          <div className="flex flex-row mb-2">
+            <IoInformationOutline className="h-5 w-5 text-red-500" />
+            <p className="text-sm text-red-500">Credenciales no son correctas</p>
+          </div>
+        ) }
+
         <div className="mb-4">
-          <button type="submit" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md w-full">Ingresar</button>
+          <button
+            disabled={ isPending }
+            type="submit"
+            className={
+              clsx( {
+                "py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md w-full": !isPending,
+                "py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-600 border-gray-600 text-white rounded-md w-full": isPending,
+              } )
+            }>Ingresar</button>
         </div>
 
         <div className="text-center">

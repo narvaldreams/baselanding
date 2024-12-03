@@ -60,8 +60,8 @@ interface InitialData {
 export const initialData: InitialData = {
   users: [
     {
-      email: "admin@base.com",
-      name: "Admin",
+      email: "gustavovasquez15@gmail.com",
+      name: "Andres Vasquez",
       password: bcryptjs.hashSync("Control.21"),
       role: "admin",
     },
