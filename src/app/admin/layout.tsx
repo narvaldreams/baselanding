@@ -18,6 +18,8 @@ export default async function RootLayout( {
 }> ) {
 
   const session = await auth();
+  console.log( session );
+
 
   if ( !session?.user ) {
     redirect( '/auth/login' ); // Si no existe la sesión, redirigir a la página de login

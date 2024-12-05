@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import * as Icon from "react-feather";
-
-
+import { FiMessageCircle } from 'react-icons/fi';
+import { IoBookOutline, IoMailOutline, IoPersonOutline } from 'react-icons/io5';
 
 
 export default function Contact() {
@@ -33,12 +32,12 @@ export default function Contact() {
                       Nombres:
                     </label>
                     <div className="form-icon relative mt-2">
-                      <Icon.User className="size-4 absolute top-3 start-4"></Icon.User>
+                      <IoPersonOutline className="size-4 absolute top-3 start-4"></IoPersonOutline>
                       <input
                         name="name"
                         id="name"
                         type="text"
-                        className="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                        className="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
                         placeholder="Ingresa sus nombres"
                       />
                     </div>
@@ -51,12 +50,12 @@ export default function Contact() {
                       Email:
                     </label>
                     <div className="form-icon relative mt-2">
-                      <Icon.Mail className="size-4 absolute top-3 start-4"></Icon.Mail>
+                      <IoMailOutline className="size-4 absolute top-3 start-4"></IoMailOutline>
                       <input
                         name="email"
                         id="email"
                         type="email"
-                        className="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent  dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                        className="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent  rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
                         placeholder="Ingresa su email"
                       />
                     </div>
@@ -71,11 +70,11 @@ export default function Contact() {
                       Asunto:
                     </label>
                     <div className="form-icon relative mt-2">
-                      <Icon.Book className="size-4 absolute top-3 start-4"></Icon.Book>
+                      <IoBookOutline className="size-4 absolute top-3 start-4"></IoBookOutline>
                       <input
                         name="subject"
                         id="subject"
-                        className="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent  dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                        className="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent  rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
                         placeholder="Ingresa el asunto"
 
                       />
@@ -89,13 +88,12 @@ export default function Contact() {
                       Comentario:
                     </label>
                     <div className="form-icon relative mt-2">
-                      <Icon.MessageCircle className="size-4 absolute top-3 start-4"></Icon.MessageCircle>
+                      <FiMessageCircle className="size-4 absolute top-3 start-4"></FiMessageCircle>
                       <textarea
                         name="comments"
                         id="comments"
-                        className="form-input ps-11 w-full py-2 px-3 h-28 bg-transparent  dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                        className="form-input ps-11 w-full py-2 px-3 h-28 bg-transparent  rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
                         placeholder="Ingresa tu comentario"
-
                       ></textarea>
                     </div>
                   </div>
