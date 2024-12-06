@@ -9,8 +9,8 @@ export default async function RootLayout( {
 
   const session = await auth();
 
-  if ( session ) {
-    return redirect( '/admin' );
+  if ( session?.user ) {
+    return redirect( '/' );
   }
 
 
