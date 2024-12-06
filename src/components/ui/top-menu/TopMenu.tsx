@@ -11,15 +11,12 @@ interface Props {
 export default function TopMenu({ logoUrl }: Props) {
 
 
-  const [ manu, setManu ] = useState( '' );
-
-
   return (
     <nav id="topnav" className="defaultscroll bg-slate-900 nav-sticky">
       <div className="container relative justify-center">
 
         <Link className="logo" href="/index">
-          <Image src={`/images/${logoUrl}`} width={ 138 } height={ 24 } className="hidden dark:inline-block" alt="" />
+          <Image src={`/uploads/${logoUrl}`} width={ 50 } height={ 50 } className="hidden dark:inline-block" alt="" />
         </Link>
 
         {/* <ul className="navigation-menu nav-light">

@@ -31,15 +31,35 @@ interface Props {
 export const FormSettings = ( { site }: Props ) => {
 
   const { register, handleSubmit, setValue, formState: { errors, isValid } } = useForm<FormInputs>();
-  const [message, setMessage] = useState<string>( '' );
+  const [ message, setMessage ] = useState<string>( '' );
 
   const onSubmit = async ( data: FormInputs ) => {
     setMessage( '' );
-    /* const { message } =  */await createUpdateSettings( data );
-    /* setMessage( message );
-    setTimeout(() => {
+
+    const formData = new FormData();
+    formData.append( 'file', data.siteLogoUrl[ 0 ] );
+
+    try {
+
+      const uploadResponse = await fetch( '/api/settings', {
+        method: 'POST',
+        body: formData
+      } );
+      const uploadResult = await uploadResponse.json();
+
+      const { message } = await createUpdateSettings( {
+        ...data,
+        siteLogoUrl: uploadResult.fileName
+      } );
+
+      setMessage( message );
+    } catch ( error ) {
+      setMessage( 'Error al subir el archivo' );
+    }
+
+    setTimeout( () => {
       setMessage( '' );
-    }, 3000); */
+    }, 3000 );
   };
 
   useEffect( () => {

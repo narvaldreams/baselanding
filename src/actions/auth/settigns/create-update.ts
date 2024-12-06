@@ -14,16 +14,14 @@ export const createUpdateSettings = async (data: FormInputs) => {
   try {
     const existingSiteSettings = await prisma.siteSettings.findFirst();
 
-    console.log(siteLogoUrl)
-
-    /* if (existingSiteSettings) {
+    if (existingSiteSettings) {
       await prisma.siteSettings.update({
         where: {
           id: existingSiteSettings.id,
         },
         data: {
           siteName,
-          siteLogoUrl: "hola.png",
+          siteLogoUrl,
           description,
           googleAnalyticsId,
           googleTagManagerId,
@@ -37,7 +35,7 @@ export const createUpdateSettings = async (data: FormInputs) => {
       await prisma.siteSettings.create({
         data: {
           siteName,
-          siteLogoUrl: "hola.png",
+          siteLogoUrl,
           description,
           googleAnalyticsId,
           googleTagManagerId,
@@ -47,7 +45,7 @@ export const createUpdateSettings = async (data: FormInputs) => {
         ok: true,
         message: "Configuración creada correctamente",
       };
-    } */
+    }
   } catch (error) {
     return {
       ok: false,
