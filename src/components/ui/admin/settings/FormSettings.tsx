@@ -142,7 +142,7 @@ export const FormSettings = ( { site }: Props ) => {
           </div>
 
 
-          <div className="w-full bg-gray-400 p-4 rounded-md flex justify-center items-center">
+          <div className="w-[250px] bg-gray-400 p-4 rounded-md flex justify-center items-center text-center">
             { imagePreview ? (
               <img src={ imagePreview } alt="Vista previa" width={ 50 } height={ 50 } />
             ) : (
