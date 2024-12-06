@@ -32,6 +32,20 @@ export const FormSettings = ( { site }: Props ) => {
 
   const { register, handleSubmit, setValue, formState: { errors, isValid } } = useForm<FormInputs>();
   const [ message, setMessage ] = useState<string>( '' );
+  const [ imagePreview, setImagePreview ] = useState<string | null>( null );
+
+
+  const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
+    const file = event.target.files?.[ 0 ];
+
+    if ( file ) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview( reader.result as string );
+      };
+      reader.readAsDataURL( file );
+    }
+  };
 
   const onSubmit = async ( data: FormInputs ) => {
     setMessage( '' );
@@ -69,6 +83,9 @@ export const FormSettings = ( { site }: Props ) => {
       setValue( 'description', site.description );
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
+      if ( site.siteLogoUrl ) {
+        setImagePreview( `/uploads/${ site.siteLogoUrl }` );
+      }
     }
   }, [] );
 
@@ -119,13 +136,18 @@ export const FormSettings = ( { site }: Props ) => {
                 { ...register( 'siteLogoUrl', { required: true } ) }
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                 accept="image/*"
+                onChange={ handleImageChange }
               />
             </div>
           </div>
 
 
           <div className="w-full bg-gray-400 p-4 rounded-md flex justify-center items-center">
-            <Image src="/images/logo-light.png" width={ 100 } height={ 100 } alt="" />
+            { imagePreview ? (
+              <img src={ imagePreview } alt="Vista previa" width={ 50 } height={ 50 } />
+            ) : (
+              <p>No se ha seleccionado ninguna imagen</p>
+            ) }
           </div>
         </div>
 
