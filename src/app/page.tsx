@@ -7,8 +7,6 @@ export default async function Page() {
 
   const { siteSettings, hero, aboutUs, services, parallax, footer } = await getDataPage();
 
-  console.log( aboutUs );
-
   return (
     <>
       {

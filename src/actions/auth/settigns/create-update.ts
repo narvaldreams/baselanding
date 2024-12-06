@@ -14,7 +14,9 @@ export const createUpdateSettings = async (data: FormInputs) => {
   try {
     const existingSiteSettings = await prisma.siteSettings.findFirst();
 
-    if (existingSiteSettings) {
+    console.log(siteLogoUrl)
+
+    /* if (existingSiteSettings) {
       await prisma.siteSettings.update({
         where: {
           id: existingSiteSettings.id,
@@ -45,7 +47,7 @@ export const createUpdateSettings = async (data: FormInputs) => {
         ok: true,
         message: "Configuración creada correctamente",
       };
-    }
+    } */
   } catch (error) {
     return {
       ok: false,

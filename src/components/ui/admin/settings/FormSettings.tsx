@@ -35,11 +35,11 @@ export const FormSettings = ( { site }: Props ) => {
 
   const onSubmit = async ( data: FormInputs ) => {
     setMessage( '' );
-    const { message } = await createUpdateSettings( data );
-    setMessage( message );
+    /* const { message } =  */await createUpdateSettings( data );
+    /* setMessage( message );
     setTimeout(() => {
       setMessage( '' );
-    }, 3000);
+    }, 3000); */
   };
 
   useEffect( () => {
