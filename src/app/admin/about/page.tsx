@@ -3,9 +3,7 @@ import { Wrapper } from '@/components';
 import { FormSettings } from '@/components/ui/admin/settings/FormSettings';
 
 
-export default async function SettingsPage() {
-
-  const siteSettings = await getSiteSettings();
+export default async function AboutPage() {
 
   return (
     <Wrapper>
@@ -13,9 +11,7 @@ export default async function SettingsPage() {
         <div className="layout-specing">
           <div className="flex justify-between items-center">
 
-            {
-              siteSettings ? ( <FormSettings site={ siteSettings } /> ) : ( <FormSettings /> )
-            }
+            <p>Sobre nosotros</p>
 
           </div>
         </div>

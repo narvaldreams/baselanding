@@ -9,6 +9,7 @@ interface Props {
 
 export default function Wrapper( { children }: Props ) {
   const [ toggle, setToggle ] = useState( true );
+  
   return (
     <div className={ `page-wrapper ${ toggle ? "toggled" : "" }` }>
       <Sidebar />
