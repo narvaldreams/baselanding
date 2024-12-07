@@ -1,9 +1,11 @@
-import { getSiteSettings } from '@/actions/auth/settigns/getSiteSettings';
-import { Wrapper } from '@/components';
-import { FormSettings } from '@/components/ui/admin/settings/FormSettings';
+import { getSiteAbout } from '@/actions/auth/about/get-about';
+import { FormAbout, Wrapper } from '@/components';
 
 
 export default async function AboutPage() {
+
+
+  const about = await getSiteAbout();
 
   return (
     <Wrapper>
@@ -11,7 +13,9 @@ export default async function AboutPage() {
         <div className="layout-specing">
           <div className="flex justify-between items-center">
 
-            <p>Sobre nosotros</p>
+            {
+              about && ( <FormAbout about={ about } /> )
+            }
 
           </div>
         </div>
