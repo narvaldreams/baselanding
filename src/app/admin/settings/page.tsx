@@ -17,7 +17,6 @@ export default async function SettingsPage() {
               siteSettings ? ( <FormSettings site={ siteSettings } /> ) : ( <FormSettings /> )
             }
 
-
           </div>
         </div>
       </div>

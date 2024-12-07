@@ -1,3 +1,5 @@
+export { FormAbout } from './ui/admin/about/FormAbout';
+
 export { default as Topnav } from './ui/admin/topnav/Topnav';
 
 export { default as Wrapper} from './ui/admin/wrapper/Wrapper';

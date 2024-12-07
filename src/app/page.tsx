@@ -7,10 +7,11 @@ export default async function Page() {
 
   const { siteSettings, hero, aboutUs, services, parallax, footer } = await getDataPage();
 
+
   return (
     <>
       {
-        siteSettings && ( <TopMenu logoUrl={ siteSettings.siteLogoUrl } /> )
+        siteSettings && ( <TopMenu logoUrl={ siteSettings.siteLogoUrl } siteName={ siteSettings.siteName } /> )
       }
       <section className="py-36 md:py-64 w-full table relative bg-center bg-no-repeat bg-cover" style={ { backgroundImage: "url('/images/bg-video.png')" } }>
         <div className="absolute top-0 start-0 w-full h-full z-0 pointer-events-none overflow-hidden">

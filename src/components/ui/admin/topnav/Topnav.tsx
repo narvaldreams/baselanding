@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { IoMdLogOut } from 'react-icons/io';
+import { IoMenuOutline } from 'react-icons/io5';
 
 interface Props {
   toggle: boolean;
@@ -35,8 +36,8 @@ export default function Topnav( { setToggle, toggle }: Props ) {
           <div className="top-header">
             <div className="header-bar flex justify-between">
               <div className="flex items-center space-x-1">
-                <Link id="close-sidebar" className="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 border border-gray-100 dark:border-gray-800 text-slate-900 dark:text-white rounded-full" href="#">
-                  {/* <Icon.Menu className="size-4" onClick={ toggleHandler } /> */}
+                <Link id="close-sidebar" className="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 border border-gray-200 text-slate-900 rounded-full" href="#">
+                  <IoMenuOutline className="size-6" onClick={ toggleHandler } />
                 </Link>
               </div>
 

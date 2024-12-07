@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { IoHomeOutline, IoSettingsOutline } from 'react-icons/io5';
+import { IoHomeOutline, IoInformationCircleOutline, IoSettingsOutline } from 'react-icons/io5';
 import SimpleBarReact from "simplebar-react";
 
 
@@ -24,7 +24,9 @@ export const Sidebar = () => {
       <div className=" sidebar-content">
 
         <div className="sidebar-brand">
-          <Link href="/"><Image src='/images/logo-light.png' placeholder="blur" blurDataURL="/images/logo-light.png" width={ 138 } height="24" alt="" /></Link>
+          <button onClick={ () => window.location.href = '/' } className="sidebar-brand-icon">
+            <Image src={ `/images/logo-light.png` } placeholder="blur" blurDataURL="/images/logo-light.png" width={ 138 } height="24" alt="" />
+          </button>
         </div>
 
         <SimpleBarReact style={ { height: "calc(100% - 70px)" } }>
@@ -34,6 +36,9 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link href="/admin/settings" onClick={ ( e ) => { setSubManu( subManu === "/admin/settings" ? "" : "/admin/settings" ); } }><IoSettingsOutline className=" me-3 icon " />Configuración</Link>
+            </li>
+            <li>
+              <Link href="/admin/about" onClick={ ( e ) => { setSubManu( subManu === "/admin/about" ? "" : "/admin/about" ); } }><IoInformationCircleOutline className=" me-3 icon " />Sobre Nosotros</Link>
             </li>
           </ul>
         </SimpleBarReact>
