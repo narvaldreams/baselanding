@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { IoHomeOutline, IoInformationCircleOutline, IoSettingsOutline } from 'react-icons/io5';
+import { MdOutlineMiscellaneousServices } from 'react-icons/md';
 import SimpleBarReact from "simplebar-react";
 
 
@@ -35,10 +36,13 @@ export const Sidebar = () => {
               <Link href="/admin" onClick={ ( e ) => { setSubManu( subManu === "/admin" ? "" : "/admin" ); } }><IoHomeOutline className=" me-3 icon " />Inicio</Link>
             </li>
             <li>
-              <Link href="/admin/settings" onClick={ ( e ) => { setSubManu( subManu === "/admin/settings" ? "" : "/admin/settings" ); } }><IoSettingsOutline className=" me-3 icon " />Configuración</Link>
+              <Link href="/admin/settings" onClick={ ( e ) => { setSubManu( subManu === "/admin/settings" ? "" : "/admin/settings" ); } }><IoSettingsOutline className="me-3 icon" />Configuración</Link>
             </li>
             <li>
-              <Link href="/admin/about" onClick={ ( e ) => { setSubManu( subManu === "/admin/about" ? "" : "/admin/about" ); } }><IoInformationCircleOutline className=" me-3 icon " />Sobre Nosotros</Link>
+              <Link href="/admin/about" onClick={ ( e ) => { setSubManu( subManu === "/admin/about" ? "" : "/admin/about" ); } }><IoInformationCircleOutline className="me-3 icon" />Sobre Nosotros</Link>
+            </li>
+            <li>
+              <Link href="/admin/services" onClick={ ( e ) => { setSubManu( subManu === "/admin/services" ? "" : "/admin/services" ); } }><MdOutlineMiscellaneousServices  className="me-3 icon" />Servicios</Link>
             </li>
           </ul>
         </SimpleBarReact>

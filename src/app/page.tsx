@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import { getDataPage } from '@/actions/information/get-information';
 import { About, Contact, Parallax, Footer, Service, TopMenu } from '@/components';
 import Image from 'next/image';
@@ -6,6 +7,8 @@ import Link from 'next/link';
 export default async function Page() {
 
   const { siteSettings, hero, aboutUs, services, parallax, footer } = await getDataPage();
+
+  console.log({ siteSettings, hero, aboutUs, services, parallax, footer });
 
 
   return (

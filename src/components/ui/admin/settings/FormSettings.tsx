@@ -85,7 +85,8 @@ export const FormSettings = ( { site }: Props ) => {
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
       if ( site.siteLogoUrl ) {
-        setImagePreview( `/uploads/${ site.siteLogoUrl }` );
+        const baseUrl = window.location.origin;
+        setImagePreview( `${ baseUrl }/uploads/${ site.siteLogoUrl }` );
       }
     }
   }, [] );
