@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
   
-  const filename = `logo-${Date.now()}${path.extname(file.name)}`;
+  const filename = `image-${Date.now()}${path.extname(file.name)}`;
   const uploadPath = path.join(process.cwd(), 'public', 'uploads', filename);
 
   // Asegúrate de que el directorio exista
