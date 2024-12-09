@@ -20,7 +20,7 @@ export default function TopMenu( { logoUrl, siteName }: Props ) {
             width={ 50 }
             height={ 50 }
             className="hidden dark:inline-block py-3"
-            alt="Logo"
+            alt={ logoUrl }
           />
         </Link>
 

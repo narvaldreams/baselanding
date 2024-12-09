@@ -30,7 +30,7 @@ export default function Footer( { logoUrl, footer, description }: Props ) {
                     {
                       logoUrl && (
                         <Link href="/#" className="text-[22px] focus:outline-none">
-                          <Image src={ `/images/${ logoUrl }` } width={ 138 } height={ 24 } alt="" />
+                          <Image src={ `/uploads/${ logoUrl }` } width={ 50 } height={ 50 } alt="Logo" />
                         </Link>
                       )
                     }
