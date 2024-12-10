@@ -1,27 +1,21 @@
 'use server';
-import { FormInputs } from "@/components/ui/admin/about/FormAbout";
 import prisma from "@/lib/prisma";
-import { z } from "zod";
 import { v2 as cloudinary } from 'cloudinary';
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
-const aboutSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  imageUrl: z.string(),
-})
 
 export const createUpdateAbout = async (formData: FormData) => {
 
-  const data = Object.fromEntries(formData);
-  const aboutParsed = aboutSchema.safeParse(data);
-
+  
+  
   try {
     const file = formData.get('imageUrl');
+    
+    console.log(formData.get('title'));
 
     const uploadedImage = await uploadImage(file as File);
-    console.log('URL de la imagen subida:', uploadedImage);
-    /* const existingAbout = await prisma.aboutUs.findFirst();
+
+    const existingAbout = await prisma.aboutUs.findFirst();
 
     if (existingAbout) {
       await prisma.aboutUs.update({
@@ -29,10 +23,11 @@ export const createUpdateAbout = async (formData: FormData) => {
           id: existingAbout.id,
         },
         data: {
-          title,
-          description
+          title: formData.get('title')!.toString(),
+          description: formData.get('description')!.toString()
         },
       });
+
       return {
         ok: true,
         message: "Se actualizó correctamente",
@@ -40,17 +35,17 @@ export const createUpdateAbout = async (formData: FormData) => {
     } else {
       await prisma.aboutUs.create({
         data: {
-          title,
-          description
+          title: formData.get('title')!.toString(),
+          description: formData.get('description')!.toString()
         },
       });
-
-      const image = uploadImages(form);
       return {
         ok: true,
         message: "Se creó correctamente",
       };
-    } */
+    } 
+
+    
   } catch (error) {
     console.log(error);
     return {
