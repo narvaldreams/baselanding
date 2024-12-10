@@ -1,51 +1,62 @@
-'use server';
-import { FormInputs } from "@/components/ui/admin/settings/FormSettings";
+"use server";
 import prisma from "@/lib/prisma";
+import { SiteSettings } from "@prisma/client";
+import { uploadImage } from "../image/upload";
+import { revalidatePath } from "next/cache";
 
-export const createUpdateSettings = async (data: FormInputs) => {
-  const {
-    siteName,
-    siteLogoUrl,
-    description,
-    googleAnalyticsId,
-    googleTagManagerId,
-  } = data;
-
+export const createUpdateSettings = async (formData: FormData) => {
   try {
     const existingSiteSettings = await prisma.siteSettings.findFirst();
 
+    let site: SiteSettings;
+    let message = "";
+
     if (existingSiteSettings) {
-      await prisma.siteSettings.update({
+      site = await prisma.siteSettings.update({
         where: {
           id: existingSiteSettings.id,
         },
         data: {
-          siteName,
-          siteLogoUrl,
-          description,
-          googleAnalyticsId,
-          googleTagManagerId,
+          siteName: formData.get("siteName")!.toString(),
+          description: formData.get("description")!.toString(),
+          googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
+          googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
         },
       });
-      return {
-        ok: true,
-        message: "Configuración actualizada correctamente",
-      };
+      message = "Se actualizó correctamente";
     } else {
-      await prisma.siteSettings.create({
+      site = await prisma.siteSettings.create({
         data: {
-          siteName,
-          siteLogoUrl,
-          description,
-          googleAnalyticsId,
-          googleTagManagerId,
+          siteName: formData.get("siteName")!.toString(),
+          description: formData.get("description")!.toString(),
+          googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
+          googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
         },
       });
-      return {
-        ok: true,
-        message: "Configuración creada correctamente",
-      };
+      message = "Se creó correctamente";
     }
+
+    const file = formData.get("imageUrl");
+    if (file) {
+      const uploadedImage = await uploadImage(file as File);
+
+      await prisma.siteSettings.update({
+        where: {
+          id: site.id,
+        },
+        data: {
+          siteLogoUrl: uploadedImage,
+        },
+      });
+    }
+
+    revalidatePath("/"); // Revalidate the homepage to update the cache
+
+    return {
+      ok: true,
+      site,
+      message,
+    };
   } catch (error) {
     return {
       ok: false,

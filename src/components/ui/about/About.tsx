@@ -1,6 +1,6 @@
 'use client';
+import { CustomImage } from '@/components/image/CustomImage';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 interface Props {
   about: {
@@ -16,50 +16,14 @@ interface Props {
 export default function About( { about }: Props ) {
 
   const { title, description, imageUrl } = about;
-  const [ existeImage, setExisteImage ] = useState<boolean | null>( null );
-
-  useEffect( () => {
-    const verificarImagen = async () => {
-      try {
-        
-        const response = await fetch( `/api/image?nombre_imagen=${ imageUrl }` );
-
-        if ( response.ok ) {
-          const data = await response.json();
-          setExisteImage( data.existe );
-        } else {
-          setExisteImage( false );
-        }
-      } catch ( error ) {
-        console.error( 'Error al verificar la imagen:', error );
-        setExisteImage( false );
-      }
-    };
-
-    verificarImagen();
-  }, [ imageUrl ] );
-
 
   return (
     <div className="container relative">
       <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
         <div className="md:col-span-5">
           <div className="relative">
-            {
-              existeImage
-                ? ( <Image
-                  src={ `/uploads/${ imageUrl }` }
-                  width={ 350 }
-                  height={ 350 }
-                  className="mx-auto"
-                  alt={ title } /> )
-                : ( <Image
-                  src="/uploads/no-image.jpg"
-                  width={ 350 }
-                  height={ 350 }
-                  className="mx-auto"
-                  alt="No exite imagen" /> )
-            }
+
+            <CustomImage src={ imageUrl! } width={ 350 } height={ 350 } className="mx-auto" alt={ title } />
 
           </div>
         </div>

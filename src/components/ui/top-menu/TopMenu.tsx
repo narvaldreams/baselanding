@@ -1,30 +1,22 @@
 'use client';
+import { CustomImage } from '@/components/image/CustomImage';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
-  logoUrl: string;
+  logoUrl: string | null;
   siteName: string;
 }
 
 export default function TopMenu( { logoUrl, siteName }: Props ) {
-
-  console.log( { logoUrl } );
-
 
   return (
     <nav id="topnav" className="defaultscroll bg-slate-900 nav-sticky">
       <div className="container flex items-center justify-start space-x-4 relative">
         {/* Logo */ }
 
-        <Link className="logo" href="/index">
-          <Image
-            src={ `/${ logoUrl }` }
-            width={ 50 }
-            height={ 50 }
-            className="hidden dark:inline-block py-3"
-            alt={ logoUrl }
-          />
+        <Link className="logo" href="/">
+          <CustomImage src={ logoUrl! } width={ 50 } height={ 50 } className="hidden dark:inline-block py-3" alt={ siteName } />
         </Link>
 
         {/* Nombre del sitio */ }
