@@ -1,5 +1,6 @@
 'use server';
 import prisma from "@/lib/prisma";
+import { AboutUs } from '@prisma/client';
 import { v2 as cloudinary } from 'cloudinary';
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
@@ -9,16 +10,13 @@ export const createUpdateAbout = async (formData: FormData) => {
   
   
   try {
-    const file = formData.get('imageUrl');
-    
-    console.log(formData.get('title'));
-
-    const uploadedImage = await uploadImage(file as File);
-
     const existingAbout = await prisma.aboutUs.findFirst();
 
+    let about: AboutUs;
+    let message = '';
+
     if (existingAbout) {
-      await prisma.aboutUs.update({
+      about = await prisma.aboutUs.update({
         where: {
           id: existingAbout.id,
         },
@@ -27,23 +25,36 @@ export const createUpdateAbout = async (formData: FormData) => {
           description: formData.get('description')!.toString()
         },
       });
+      message = 'Se actualizó correctamente';
 
-      return {
-        ok: true,
-        message: "Se actualizó correctamente",
-      };
+      
     } else {
-      await prisma.aboutUs.create({
+      
+      about = await prisma.aboutUs.create({
         data: {
           title: formData.get('title')!.toString(),
           description: formData.get('description')!.toString()
         },
       });
-      return {
-        ok: true,
-        message: "Se creó correctamente",
-      };
+      message = 'Se creó correctamente';
+  
     } 
+
+    const file = formData.get('imageUrl');
+    const uploadedImage = await uploadImage(file as File);
+    await prisma.aboutUs.update({
+      where: {
+        id: about.id,
+      },
+      data: {
+        imageUrl: uploadedImage!
+      }
+    });
+
+    return {
+      ok: true,
+      message
+    };
 
     
   } catch (error) {
