@@ -1,3 +1,4 @@
+export const revalidate = 30;
 import { getDataPage } from '@/actions/information/get-information';
 import { About, Contact, Parallax, Footer, Service, TopMenu } from '@/components';
 import Image from 'next/image';

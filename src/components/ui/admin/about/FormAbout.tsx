@@ -77,10 +77,11 @@ export const FormAbout = ( { about }: Props ) => {
     setValue( 'description', about.description );
     setValue( 'imageUrl', about.imageUrl );
     if ( about.imageUrl ) {
-      setImagePreview( `/uploads/${ about.imageUrl }` );
+      const baseUrl = window.location.origin;
+      setImagePreview( `${ baseUrl }/uploads/${ about.imageUrl }` );
     }
   }, [] );
-
+  
   useEffect( () => {
     if ( !message ) return;
     const Toast = Swal.mixin( {

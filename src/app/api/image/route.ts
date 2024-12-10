@@ -23,7 +23,6 @@ export async function GET(request: Request) {
     const rutaImagen = path.join(
       process.cwd(),
       "public",
-      "uploads",
       nombre_imagen
     );
 
