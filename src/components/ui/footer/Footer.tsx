@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
-  logoUrl: string;
+  logoUrl: string | null;
   description: string;
   footer: {
     id: string;

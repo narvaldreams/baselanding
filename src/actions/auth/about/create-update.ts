@@ -1,45 +1,61 @@
-'use server';
-import { FormInputs } from "@/components/ui/admin/about/FormAbout";
+"use server";
 import prisma from "@/lib/prisma";
+import { AboutUs } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { uploadImage } from "../image/upload";
 
-export const createUpdateAbout = async (data: FormInputs) => {
-  const { title, description, imageUrl } = data;
-
-  console.log({ title, description, imageUrl });
-
+export const createUpdateAbout = async (formData: FormData) => {
   try {
     const existingAbout = await prisma.aboutUs.findFirst();
 
+    let about: AboutUs;
+    let message = "";
+
     if (existingAbout) {
-      await prisma.aboutUs.update({
+      about = await prisma.aboutUs.update({
         where: {
           id: existingAbout.id,
         },
         data: {
-          title,
-          description,
-          imageUrl,
+          title: formData.get("title")!.toString(),
+          description: formData.get("description")!.toString(),
         },
       });
-      return {
-        ok: true,
-        message: "Se actualizó correctamente",
-      };
+      message = "Se actualizó correctamente";
     } else {
-      await prisma.aboutUs.create({
+      about = await prisma.aboutUs.create({
         data: {
-          title,
-          description,
-          imageUrl,
+          title: formData.get("title")!.toString(),
+          description: formData.get("description")!.toString(),
         },
       });
-      return {
-        ok: true,
-        message: "Se creó correctamente",
-      };
+      message = "Se creó correctamente";
     }
+
+    const file = formData.get("imageUrl");
+    if (file) {
+      const uploadedImage = await uploadImage(file as File);
+
+      await prisma.aboutUs.update({
+        where: {
+          id: about.id,
+        },
+        data: {
+          imageUrl: uploadedImage!,
+        },
+      });
+    }
+
+    revalidatePath("/"); // Revalidate the homepage to update the cache
+
+    return {
+      ok: true,
+      about,
+      message,
+    };
   } catch (error) {
     console.log(error);
+
     return {
       ok: false,
       message: "Error al actualizar o crear la configuración",
