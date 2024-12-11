@@ -6,7 +6,12 @@ import { uploadImage } from "../image/upload";
 
 export const createUpdateAbout = async (formData: FormData) => {
   try {
-    const existingAbout = await prisma.aboutUs.findFirst();
+    const siteId = process.env.SITE_ID!;
+    const existingAbout = await prisma.aboutUs.findFirst({
+      where: {
+        siteId,
+      },
+    });
 
     let about: AboutUs;
     let message = "";
@@ -27,6 +32,7 @@ export const createUpdateAbout = async (formData: FormData) => {
         data: {
           title: formData.get("title")!.toString(),
           description: formData.get("description")!.toString(),
+          siteId,
         },
       });
       message = "Se creó correctamente";

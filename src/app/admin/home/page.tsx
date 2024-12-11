@@ -1,5 +1,4 @@
 'use client';
-import { logout } from '@/actions/auth/logout';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
@@ -21,6 +20,7 @@ export default function HomePage() {
       <h2 className="text-slate-400 font-semibold text-3xl">Bienvenid@!</h2>
       <h5 className="text-xl font-bold">{ session?.user.name }</h5>
       <p>Role: { session?.user.role }</p>
+      <p>SiteId: { session?.user.siteId }</p>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+export { FormFooter } from './ui/admin/footer/FormFooter';
+
 export { CustomImage } from './image/CustomImage';
 
 export { FormAbout } from './ui/admin/about/FormAbout';

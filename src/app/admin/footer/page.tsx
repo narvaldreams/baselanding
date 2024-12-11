@@ -1,11 +1,7 @@
-import { getSiteAbout } from '@/actions/auth/about/get-about';
-import { FormAbout, Wrapper } from '@/components';
+import { FormAbout, FormFooter, Wrapper } from '@/components';
 
 
-export default async function AboutPage() {
-
-
-  const about = await getSiteAbout();
+export default async function FooterPage() {
 
   return (
     <Wrapper>
@@ -13,9 +9,11 @@ export default async function AboutPage() {
         <div className="layout-specing">
           <div className="flex justify-between items-center">
 
-            {
+            {/* {
               about ? ( <FormAbout about={ about } /> ) : ( <FormAbout /> )
-            }
+            } */}
+
+            <FormFooter />
 
           </div>
         </div>

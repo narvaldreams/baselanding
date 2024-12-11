@@ -17,34 +17,34 @@ async function main() {
   });
 
   // Insertar registros configuracion del sitio
-  await prisma.siteSettings.create({
+  /* await prisma.siteSettings.create({
     data: initialData.siteSettings,
-  });
+  }); */
 
   // Insertar registros hero
-  await prisma.hero.create({
+  /* await prisma.hero.create({
     data: initialData.hero,
-  });
+  }); */
 
   // Insertar registros about us
-  await prisma.aboutUs.create({
+  /* await prisma.aboutUs.create({
     data: initialData.aboutUs,
-  });
+  }); */
 
   // Insertar registros servicios
-  await prisma.service.createMany({
+  /* await prisma.service.createMany({
     data: initialData.services,
-  });
+  }); */
 
   // Insertar registros parallax
-  await prisma.parallax.create({
+  /* await prisma.parallax.create({
     data: initialData.parallax,
-  });
+  }); */
 
   // Insertar registros footer
-  await prisma.footer.create({
+  /* await prisma.footer.create({
     data: initialData.footer,
-  });
+  }); */
 }
 
 (() => {

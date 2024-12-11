@@ -26,19 +26,20 @@ model User {
   password      String
   role          Role      @default(user)
   image         String?
+  siteId        String    // ID del sitio
 }
 
 model SiteSettings {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  siteName        String
-  siteLogoUrl     String?
-  description     String
-  googleAnalyticsId String?
-  googleTagManagerId String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  siteName              String
+  siteLogoUrl           String?
+  description           String
+  googleAnalyticsId     String?
+  googleTagManagerId    String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  siteId                String   // ID del sitio
 }
-
 
 model Hero {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -48,6 +49,7 @@ model Hero {
   mediaType String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  siteId    String   // ID del sitio
 }
 
 model AboutUs {
@@ -57,6 +59,7 @@ model AboutUs {
   imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  siteId      String   // ID del sitio
 }
 
 model Service {
@@ -67,6 +70,7 @@ model Service {
   serviceUrl  String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  siteId      String   // ID del sitio
 }
 
 model Parallax {
@@ -76,6 +80,7 @@ model Parallax {
   imageUrl    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  siteId      String   // ID del sitio
 }
 
 model RegistrationForm {
@@ -87,6 +92,7 @@ model RegistrationForm {
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  siteId      String   // ID del sitio
 }
 
 model Footer {
@@ -96,4 +102,6 @@ model Footer {
   phoneNumber    String
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+  siteId         String       // ID del sitio
 }
+

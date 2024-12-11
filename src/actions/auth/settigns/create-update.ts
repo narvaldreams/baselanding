@@ -6,7 +6,12 @@ import { revalidatePath } from "next/cache";
 
 export const createUpdateSettings = async (formData: FormData) => {
   try {
-    const existingSiteSettings = await prisma.siteSettings.findFirst();
+    const siteId = process.env.SITE_ID!;
+    const existingSiteSettings = await prisma.siteSettings.findFirst({
+      where: {
+        siteId,
+      },
+    });
 
     let site: SiteSettings;
     let message = "";
@@ -31,6 +36,7 @@ export const createUpdateSettings = async (formData: FormData) => {
           description: formData.get("description")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
+          siteId,
         },
       });
       message = "Se creó correctamente";

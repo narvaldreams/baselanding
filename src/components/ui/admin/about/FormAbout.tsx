@@ -20,16 +20,18 @@ interface AboutUs {
 }
 
 interface Props {
-  about: AboutUs;
+  about?: AboutUs;
 }
 
 export const FormAbout = ( { about }: Props ) => {
+
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors, isValid },
   } = useForm<FormInputs>();
+
   const [ message, setMessage ] = useState<string>( "" );
   const [ imagePreview, setImagePreview ] = useState<string | null>( null );
   const [ loading, setLoading ] = useState<boolean>( false );
@@ -81,10 +83,12 @@ export const FormAbout = ( { about }: Props ) => {
 
 
   useEffect( () => {
-    setValue( "title", about.title );
-    setValue( "description", about.description );
-    if ( about.imageUrl ) {
-      setImagePreview( about.imageUrl );
+    if ( about ) {
+      setValue( "title", about.title );
+      setValue( "description", about.description );
+      if ( about.imageUrl ) {
+        setImagePreview( about.imageUrl );
+      }
     }
   }, [] );
 
