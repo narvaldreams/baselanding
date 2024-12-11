@@ -11,8 +11,15 @@ export const uploadImage = async (image: File) => {
     const base64Image = Buffer.from(buffer).toString("base64");
 
     const response = await cloudinary.uploader.upload(
-      `data:image/png;base64,${base64Image}`
+      `data:image/png;base64,${base64Image}`,{
+        folder: 'base-landing',
+        transformation: [
+          { width: 800, height: 800, crop: "limit" },
+          { quality: "auto:low", fetch_format: "auto" },
+        ],
+      }
     );
+
     return response.secure_url;
   } catch (error) {
     console.error("Error al subir la imagen:", error);

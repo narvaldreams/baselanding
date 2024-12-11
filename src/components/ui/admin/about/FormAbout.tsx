@@ -34,17 +34,24 @@ export const FormAbout = ( { about }: Props ) => {
   const [ imagePreview, setImagePreview ] = useState<string | null>( null );
   const [ loading, setLoading ] = useState<boolean>( false );
 
-  const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
-    const file = event.target.files?.[ 0 ];
-
-    if ( file ) {
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+  
+    if (file) {
+      const MAX_SIZE = 1 * 1024 * 1024;
+  
+      if (file.size > MAX_SIZE) {
+        return Swal.fire('Opsss', 'La imagen es demasiado grande.', 'error');
+      }
+  
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview( reader.result as string );
+        setImagePreview(reader.result as string);
       };
-      reader.readAsDataURL( file );
+      reader.readAsDataURL(file);
     }
   };
+  
 
   const onSubmit = async ( data: FormInputs ) => {
     setLoading( true );
