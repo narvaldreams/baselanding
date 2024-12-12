@@ -60,9 +60,9 @@ export default async function Page() {
 
       </section>
       {/* Footer */ }
-      {
-        footer || siteSettings && ( <Footer footer={ footer } logoUrl={ siteSettings.siteLogoUrl } description={ siteSettings.description } /> )
-      }
+      
+      <Footer footer={ footer } logoUrl={ siteSettings?.siteLogoUrl } description={ siteSettings?.description } />
+      
     </>
   );
 }

@@ -1,7 +1,10 @@
-import { FormAbout, FormFooter, Wrapper } from '@/components';
+import { getFooter } from '@/actions/auth/footer/get-footer';
+import { FormFooter, Wrapper } from '@/components';
 
 
 export default async function FooterPage() {
+
+  const footer = await getFooter();
 
   return (
     <Wrapper>
@@ -9,11 +12,9 @@ export default async function FooterPage() {
         <div className="layout-specing">
           <div className="flex justify-between items-center">
 
-            {/* {
-              about ? ( <FormAbout about={ about } /> ) : ( <FormAbout /> )
-            } */}
-
-            <FormFooter />
+            {
+              footer ? ( <FormFooter footer={ footer } /> ) : ( <FormFooter /> )
+            }
 
           </div>
         </div>

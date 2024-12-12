@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
-  logoUrl: string | null;
-  description: string ;
+  logoUrl: string | undefined | null;
+  description?: string;
   footer: {
     id: string;
     address: string;
