@@ -11,9 +11,9 @@ export default async function Page() {
 
   return (
     <>
-      {
-        siteSettings && ( <TopMenu logoUrl={ siteSettings.siteLogoUrl } siteName={ siteSettings.siteName } /> )
-      }
+
+      <TopMenu logoUrl={ siteSettings?.siteLogoUrl } siteName={ siteSettings?.siteName } />
+
       <section className="py-36 md:py-64 w-full table relative bg-center bg-no-repeat bg-cover" style={ { backgroundImage: "url('/images/bg-video.png')" } }>
         <div className="absolute top-0 start-0 w-full h-full z-0 pointer-events-none overflow-hidden">
           <iframe
@@ -41,9 +41,7 @@ export default async function Page() {
       <section className="relative md:py-24 py-16">
 
         {/* Sobre nosotros */ }
-        {
-          aboutUs && ( <About about={ aboutUs } /> )
-        }
+        <About about={ aboutUs } />
 
         {/* Servicios */ }
         {
@@ -51,18 +49,16 @@ export default async function Page() {
         }
 
         {/* Parallax */ }
-        {
-          parallax && ( <Parallax parallax={ parallax } /> )
-        }
+        <Parallax parallax={ parallax } />
 
         {/* Contact */ }
         <Contact />
 
       </section>
       {/* Footer */ }
-      
+
       <Footer footer={ footer } logoUrl={ siteSettings?.siteLogoUrl } description={ siteSettings?.description } />
-      
+
     </>
   );
 }

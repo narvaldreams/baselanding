@@ -28,15 +28,13 @@ export default function Footer( { logoUrl, footer, description }: Props ) {
               <div className="py-[30px] px-0">
                 <div className="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                   <div className="lg:col-span-4 md:col-span-12">
-                    {
-                      logoUrl && (
-                        <Link href="/#" className="text-[22px] focus:outline-none">
-                          <Image src={  logoUrl  } width={ 50 } height={ 50 } alt="Logo" />
-                        </Link>
-                      )
-                    }
 
-                    <p className="mt-6 text-gray-300">{ description && truncateDescription( description ) }</p>
+                    <Link href="/#" className="text-[22px] focus:outline-none">
+                      <Image src={ logoUrl ? logoUrl : '/uploads/no-image.jpg' } width={ 50 } height={ 50 } alt={ description ? description : 'Logo de la web' } />
+                    </Link>
+
+
+                    <p className="mt-6 text-gray-300">{ description ? truncateDescription( description ) : 'Descripción de la web' }</p>
                   </div>
 
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">
