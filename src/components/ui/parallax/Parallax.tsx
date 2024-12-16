@@ -4,7 +4,7 @@ interface Props {
     id: string;
     title: string;
     description: string;
-    imageUrl: string;
+    imageUrl: string | null;
     createdAt: Date;
     updatedAt: Date;
   } | null | undefined;
