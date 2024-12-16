@@ -1,10 +1,16 @@
 import bcryptjs from "bcryptjs";
+import dotenv from 'dotenv';
+import { v4 as uuid } from "uuid";
+import { generateSiteId } from '../utils/generateSiteId';
+
+dotenv.config();
 
 interface SeedUser {
   email: string;
   name: string;
   password: string;
   role: "admin" | "user";
+  siteId: string;
 }
 
 interface SeedSiteSettings {
@@ -13,6 +19,7 @@ interface SeedSiteSettings {
   description: string;
   googleAnalyticsId: string;
   googleTagManagerId: string;
+  siteId: string;
 }
 
 interface SeedHero {
@@ -20,12 +27,14 @@ interface SeedHero {
   content: string;
   mediaUrl: string;
   mediaType: string;
+  siteId: string;
 }
 
 interface SeedAboutUs {
   title: string;
   description: string;
   imageUrl: string;
+  siteId: string;
 }
 
 interface SeedService {
@@ -33,29 +42,39 @@ interface SeedService {
   description: string;
   mediaUrl: string;
   serviceUrl: string;
+  siteId: string;
 }
 
 interface SeedParallax {
   title: string;
   description: string;
   imageUrl: string;
+  siteId: string;
 }
 
 interface SeedFooter {
   address: string;
   email: string;
   phoneNumber: string;
+  siteId: string;
 }
 
 interface InitialData {
   users: SeedUser[];
-  siteSettings: SeedSiteSettings;
+  /* siteSettings: SeedSiteSettings;
   hero: SeedHero;
   aboutUs: SeedAboutUs;
   services: SeedService[];
   parallax: SeedParallax;
-  footer: SeedFooter;
+  footer: SeedFooter; */
 }
+
+if (process.env.SITE_ID === '' || !process.env.SITE_ID) {
+  const siteId = generateSiteId();
+  process.env.SITE_ID = siteId;
+}
+
+const siteId = process.env.SITE_ID;
 
 export const initialData: InitialData = {
   users: [
@@ -64,21 +83,24 @@ export const initialData: InitialData = {
       name: "Andres Vasquez",
       password: bcryptjs.hashSync("Control.21"),
       role: "admin",
+      siteId: siteId!,
     },
     {
       email: "user@base.com",
       name: "Andres Vasquez",
       password: bcryptjs.hashSync("123456789"),
       role: "user",
+      siteId: siteId!,
     },
   ],
-  siteSettings: {
+  /* siteSettings: {
     siteName: "Base Landing",
     siteLogoUrl: "logo-light.png",
     description:
       "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
     googleAnalyticsId: "G-XXXXXXXXXX",
     googleTagManagerId: "GTM-XXXXXXX",
+    siteId: siteId!,
   },
   hero: {
     title: "Welcome to Base Landing",
@@ -86,12 +108,14 @@ export const initialData: InitialData = {
       "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
     mediaUrl: "https://www.base.com/hero.png",
     mediaType: "image/png",
+    siteId: siteId!,
   },
   aboutUs: {
     title: "About Us",
     description:
       "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
     imageUrl: "about02.jpg",
+    siteId: siteId!,
   },
   services: [
     {
@@ -100,6 +124,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "google-logo.png",
       serviceUrl: "https://www.base.com/web-development",
+      siteId: siteId!,
     },
     {
       title: "Mobile Development",
@@ -107,6 +132,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "android.png",
       serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
     },
     {
       title: "UI/UX Design",
@@ -114,6 +140,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "",
       serviceUrl: "https://www.base.com/ui-ux-design",
+      siteId: siteId!,
     },
     {
       title: "Mobile Development",
@@ -121,6 +148,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "android.png",
       serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
     },
     {
       title: "Mobile Development",
@@ -128,6 +156,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "android.png",
       serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
     },
     {
       title: "Mobile Development",
@@ -135,6 +164,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "android.png",
       serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
     },
     {
       title: "Mobile Development",
@@ -142,6 +172,7 @@ export const initialData: InitialData = {
         "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
       mediaUrl: "android.png",
       serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
     },
   ],
   parallax: {
@@ -149,10 +180,12 @@ export const initialData: InitialData = {
     description:
       "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
     imageUrl: "team.jpg",
+    siteId: siteId!,
   },
   footer: {
     address: "123 Main St, Anytown, USA",
     email: "info@base.com",
     phoneNumber: "(555) 555-5555",
-  },
+    siteId: siteId!,
+  }, */
 };

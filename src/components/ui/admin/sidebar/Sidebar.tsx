@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { BiSolidBookAlt } from 'react-icons/bi';
 import { IoHomeOutline, IoInformationCircleOutline, IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlineMiscellaneousServices } from 'react-icons/md';
 import SimpleBarReact from "simplebar-react";
@@ -43,6 +44,9 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link href="/admin/services" onClick={ ( e ) => { setSubManu( subManu === "/admin/services" ? "" : "/admin/services" ); } }><MdOutlineMiscellaneousServices  className="me-3 icon" />Servicios</Link>
+            </li>
+            <li>
+              <Link href="/admin/footer" onClick={ ( e ) => { setSubManu( subManu === "/admin/footer" ? "" : "/admin/footer" ); } }><BiSolidBookAlt className="me-3 icon" />Pie de página</Link>
             </li>
           </ul>
         </SimpleBarReact>

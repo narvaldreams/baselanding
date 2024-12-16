@@ -1,9 +1,10 @@
+import { truncateDescription } from '@/utils/truncateDescripcion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
-  logoUrl: string;
-  description: string;
+  logoUrl: string | undefined | null;
+  description?: string;
   footer: {
     id: string;
     address: string;
@@ -11,12 +12,12 @@ interface Props {
     phoneNumber: string;
     createdAt: Date;
     updatedAt: Date;
-  };
+  } | null;
 }
 
 export default function Footer( { logoUrl, footer, description }: Props ) {
 
-  const { address, email, phoneNumber } = footer;
+  const { address = '', email = '', phoneNumber = '' } = footer || {};
 
   return (
     <div>
@@ -30,24 +31,24 @@ export default function Footer( { logoUrl, footer, description }: Props ) {
                     {
                       logoUrl && (
                         <Link href="/#" className="text-[22px] focus:outline-none">
-                          <Image src={ `/uploads/${ logoUrl }` } width={ 50 } height={ 50 } alt="Logo" />
+                          <Image src={  logoUrl  } width={ 50 } height={ 50 } alt="Logo" />
                         </Link>
                       )
                     }
 
-                    <p className="mt-6 text-gray-300">{ description }</p>
+                    <p className="mt-6 text-gray-300">{ description && truncateDescription( description ) }</p>
                   </div>
 
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">
                     <div className="text-center">
-                      <h5 className="tracking-[1px] text-gray-100 font-semibold">Dirección: { address }</h5>
-                      <p className="mt-6 text-gray-300">Email: { email }</p>
+                      <h5 className="tracking-[1px] text-gray-100 font-semibold">Dirección: { address ? address : 'No se ha cargado ninguna dirección' }</h5>
+                      <p className="mt-6 text-gray-300">Email: { email ? email : 'No se ha cargado ningun email' }</p>
                     </div>
                   </div>
 
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">
                     <div className="text-center">
-                      <h5 className="text-gray-100 font-semibold">Telefono: { phoneNumber }</h5>
+                      <h5 className="text-gray-100 font-semibold">Telefono: { phoneNumber ? phoneNumber : 'No se ha cargado ninguna numero de telefono' }</h5>
                     </div>
                   </div>
                 </div>
