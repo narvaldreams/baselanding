@@ -77,7 +77,7 @@ model Parallax {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
-  imageUrl    String
+  imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   siteId      String   // ID del sitio

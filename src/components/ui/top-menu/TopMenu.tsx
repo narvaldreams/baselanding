@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
-  logoUrl: string | null;
-  siteName: string;
+  logoUrl: string | undefined | null;
+  siteName?: string;
 }
 
 export default function TopMenu( { logoUrl, siteName }: Props ) {
@@ -16,11 +16,11 @@ export default function TopMenu( { logoUrl, siteName }: Props ) {
         {/* Logo */ }
 
         <Link className="logo" href="/">
-          <CustomImage src={ logoUrl! } width={ 50 } height={ 50 } className="hidden dark:inline-block py-3" alt={ siteName } />
+          <CustomImage src={ logoUrl ? logoUrl : '/uploads/no-image.jpg' } width={ 50 } height={ 50 } className="hidden dark:inline-block py-3" alt={ siteName ? siteName : 'Logo' } />
         </Link>
 
         {/* Nombre del sitio */ }
-        <h1 className="text-white text-2xl font-semibold">{ siteName }</h1>
+        <h1 className="text-white text-2xl font-semibold">{ siteName ? siteName : 'Nombre del sitio' }</h1>
       </div>
     </nav>
 
