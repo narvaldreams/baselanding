@@ -1,7 +1,7 @@
 import bcryptjs from "bcryptjs";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 import { v4 as uuid } from "uuid";
-import { generateSiteId } from '../utils/generateSiteId';
+import { generateSiteId } from "../utils/generateSiteId";
 
 dotenv.config();
 
@@ -69,7 +69,7 @@ interface InitialData {
   footer: SeedFooter; */
 }
 
-if (process.env.SITE_ID === '' || !process.env.SITE_ID) {
+if (process.env.SITE_ID === "" || !process.env.SITE_ID) {
   const siteId = generateSiteId();
   process.env.SITE_ID = siteId;
 }
@@ -117,7 +117,15 @@ export const initialData: InitialData = {
       mediaUrl: "",
       serviceUrl: "https://www.base.com/ui-ux-design",
       siteId: siteId!,
-    }
+    },
+    {
+      title: "Mobile Development",
+      description:
+        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
+      mediaUrl: "android.png",
+      serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
+    },
   ],
   /* siteSettings: {
     siteName: "Base Landing",

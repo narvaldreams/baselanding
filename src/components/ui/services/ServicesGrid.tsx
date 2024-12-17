@@ -13,11 +13,9 @@ export default function ServicesGrid( { service }: Props ) {
 
   return (
     <div className="p-6 hover:shadow-xl hover:shadow-gray-100 dark:hover:shadow-gray-800 transition duration-500 rounded-2xl mt-6">
-      <div className="w-20 h-20 bg-indigo-600/5 text-indigo-600 rounded-xl text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
+      <div className="w-40 h-40 bg-indigo-600/5 text-indigo-600 rounded-xl text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
         {
-          mediaUrl
-            ? <Image src={ `/images/client/${ mediaUrl }` } width={ 50 } height={ 50 } alt={ title } />
-            : <Image src="/images/client/01.jpg" width={ 50 } height={ 50 } alt={ title } />
+          mediaUrl && <Image src={ mediaUrl ? mediaUrl : '/uploads/no-image.jpg' } width={ 250 } height={ 250 } alt={ title } />
         }
 
       </div>

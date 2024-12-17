@@ -1,9 +1,10 @@
 'use client';
-
-
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import Link from 'next/link';
+import { deleteServiceById } from '@/actions/auth/services/delete-service-by-id';
+import Swal from 'sweetalert2';
+import { truncateDescription } from '@/utils/truncateDescripcion';
 import { Service } from './Services';
 
 interface Props {
@@ -14,28 +15,38 @@ export const ServiceRow = ( { service }: Props ) => {
 
   const { id, title, description, mediaUrl, serviceUrl, createdAt, updatedAt } = service;
 
-  const [ existeImage, setExisteImage ] = useState<boolean | null>( null );
+  const onDelete = () => {
 
-  useEffect( () => {
-    const verificarImagen = async () => {
-      try {
-
-        const response = await fetch( `/api/image?nombre_imagen=${ mediaUrl }` );
-
-        if ( response.ok ) {
-          const data = await response.json();
-          setExisteImage( data.existe );
-        } else {
-          setExisteImage( false );
+    Swal.fire( {
+      title: "¿Estás seguro de eliminar este servicio?",
+      text: service.title,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si",
+      cancelButtonText: "No"
+    } ).then( async ( result ) => {
+      const Toast = Swal.mixin( {
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: ( toast ) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
         }
-      } catch ( error ) {
-        console.error( 'Error al verificar la imagen:', error );
-        setExisteImage( false );
+      } );
+      if ( result.isConfirmed ) {
+        const { ok, message } = await deleteServiceById( id );
+        if ( !ok ) {
+          return Toast.fire( 'Opsss!', message, 'error' );
+        }
+        Toast.fire( 'Success', message, 'success' );
       }
-    };
-
-    verificarImagen();
-  }, [ mediaUrl ] );
+    } );
+  };
 
   return (
     <table className="table-fixed w-full text-center">
@@ -49,26 +60,36 @@ export const ServiceRow = ( { service }: Props ) => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className="px-4 py-2">
-            {
-              existeImage
-                ? ( <Image src={ `/uploads/${ mediaUrl }` } width={ 100 } height={ 100 } alt={ title } /> )
-                : ( <Image src="/uploads/no-image.jpg" width={ 100 } height={ 100 } alt="No existe imagen" /> )
-            }
+        <tr className="hover:bg-gray-300">
+          <td className="flex justify-center items-center h-full">
+            <Image
+              src={ mediaUrl ? mediaUrl : '/uploads/no-image.jpg' }
+              width={ 150 }
+              height={ 150 }
+              alt={ title ? title : 'No existe imagen' }
+            />
           </td>
-          <td className="px-4 py-2">{ title }</td>
-          <td className="px-4 py-2">{ description }</td>
+          <td className="px-4 py-2 font-bold">{ title }</td>
+          <td className="px-4 py-2">{ truncateDescription( description, 70 ) }</td>
           <td className="px-4 py-2">{ createdAt.toLocaleDateString() }</td>
-          <td className="px-4 py-2 flex justify-center items-center gap-2">
-            <button className="bg-yellow-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white transition-all">
-              <FaRegEdit />
-            </button>
-            <button className="bg-red-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white transition-all">
-              <FaRegTrashAlt />
-            </button>
+          <td className="px-4 py-2">
+            <div className="flex justify-center items-center gap-3">
+              <Link
+                href={ `/admin/services/${ id }` }
+                className="bg-yellow-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white transition-all"
+              >
+                <FaRegEdit size={ 20 } />
+              </Link>
+              <button
+                onClick={ onDelete }
+                className="bg-red-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white transition-all"
+              >
+                <FaRegTrashAlt size={ 20 } />
+              </button>
+            </div>
           </td>
         </tr>
+
       </tbody>
     </table>
 
