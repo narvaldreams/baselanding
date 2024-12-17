@@ -22,7 +22,7 @@ export const CustomImage = ( {
     ? src.startsWith( 'http' )
       ? src
       : "/uploads/no-image.jpg"
-    : "/uploads/no-image.jpg"
+    : "/uploads/favicon.ico"
 
   return (
     <Image

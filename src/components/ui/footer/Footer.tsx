@@ -30,7 +30,7 @@ export default function Footer( { logoUrl, footer, description }: Props ) {
                   <div className="lg:col-span-4 md:col-span-12">
 
                     <Link href="/#" className="text-[22px] focus:outline-none">
-                      <Image src={ logoUrl ? logoUrl : '/uploads/no-image.jpg' } width={ 50 } height={ 50 } alt={ description ? description : 'Logo de la web' } />
+                      <Image src={ logoUrl ? logoUrl : '/uploads/favicon.ico' } width={ 50 } height={ 50 } alt={ description ? description : 'Logo de la web' } />
                     </Link>
 
 

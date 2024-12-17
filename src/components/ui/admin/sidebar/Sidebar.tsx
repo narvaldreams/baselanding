@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { BiSolidBookAlt } from 'react-icons/bi';
 import { FaImage } from 'react-icons/fa';
-import { IoHomeOutline, IoInformationCircleOutline, IoSettingsOutline } from 'react-icons/io5';
+import { IoHomeOutline, IoImageSharp, IoInformationCircleOutline, IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlineMiscellaneousServices } from 'react-icons/md';
 import SimpleBarReact from "simplebar-react";
 
@@ -41,10 +41,13 @@ export const Sidebar = () => {
               <Link href="/admin/settings" onClick={ ( e ) => { setSubManu( subManu === "/admin/settings" ? "" : "/admin/settings" ); } }><IoSettingsOutline className="me-3 icon" />Configuración</Link>
             </li>
             <li>
+              <Link href="/admin/hero" onClick={ ( e ) => { setSubManu( subManu === "/admin/hero" ? "" : "/admin/hero" ); } }><IoImageSharp className="me-3 icon" />Hero / Banner</Link>
+            </li>
+            <li>
               <Link href="/admin/about" onClick={ ( e ) => { setSubManu( subManu === "/admin/about" ? "" : "/admin/about" ); } }><IoInformationCircleOutline className="me-3 icon" />Sobre Nosotros</Link>
             </li>
             <li>
-              <Link href="/admin/services" onClick={ ( e ) => { setSubManu( subManu === "/admin/services" ? "" : "/admin/services" ); } }><MdOutlineMiscellaneousServices  className="me-3 icon" />Servicios</Link>
+              <Link href="/admin/services" onClick={ ( e ) => { setSubManu( subManu === "/admin/services" ? "" : "/admin/services" ); } }><MdOutlineMiscellaneousServices className="me-3 icon" />Servicios</Link>
             </li>
             <li>
               <Link href="/admin/parallax" onClick={ ( e ) => { setSubManu( subManu === "/admin/parallax" ? "" : "/admin/parallax" ); } }><FaImage className="me-3 icon" />Parallax</Link>

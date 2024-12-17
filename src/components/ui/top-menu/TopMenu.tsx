@@ -16,7 +16,7 @@ export default function TopMenu( { logoUrl, siteName }: Props ) {
         {/* Logo */ }
 
         <Link className="logo" href="/">
-          <CustomImage src={ logoUrl ? logoUrl : '/uploads/no-image.jpg' } width={ 50 } height={ 50 } className="hidden dark:inline-block py-3" alt={ siteName ? siteName : 'Logo' } />
+          <CustomImage src={ logoUrl! } width={ 50 } height={ 50 } className="hidden dark:inline-block py-3" alt={ siteName ? siteName : 'Logo' } />
         </Link>
 
         {/* Nombre del sitio */ }
