@@ -1,9 +1,10 @@
 'use client';
 
-import { Service } from '@/components/ui/services/Service';
+
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { Service } from './Services';
 
 interface Props {
   service: Service;

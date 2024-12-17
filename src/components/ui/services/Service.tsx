@@ -4,8 +4,8 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  mediaUrl: string;
-  serviceUrl: string;
+  mediaUrl: string | null;
+  serviceUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,8 +19,8 @@ export default function Service( { services }: Props ) {
     <div className="container relative md:mt-24 mt-16 md:mb-24 mb-10">
       <div className="grid grid-cols-1 pb-8 text-center">
         <h6 className="text-indigo-600 text-xl font-bold uppercase mb-2">Servicios</h6>
-        <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">What we offer ?</h3>
-        <p className="text-slate-400 max-w-xl mx-auto">Proident ipsum nostrud incididunt magna culpa.</p>
+        <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">¿Que ofrecemos?</h3>
+        <p className="text-slate-400 max-w-xl mx-auto">Salen de nosotros y caen en una gran falta.</p>
       </div>
 
       <div className="flex flex-wrap justify-center items-center">

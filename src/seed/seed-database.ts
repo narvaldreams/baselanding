@@ -16,6 +16,10 @@ async function main() {
     data: initialData.users,
   });
 
+  await prisma.service.createMany({
+    data: initialData.services,
+  });
+
   // Insertar registros configuracion del sitio
   /* await prisma.siteSettings.create({
     data: initialData.siteSettings,

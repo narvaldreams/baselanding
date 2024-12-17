@@ -61,11 +61,11 @@ interface SeedFooter {
 
 interface InitialData {
   users: SeedUser[];
+  services: SeedService[];
   /* siteSettings: SeedSiteSettings;
   hero: SeedHero;
-  aboutUs: SeedAboutUs;
-  services: SeedService[];
   parallax: SeedParallax;
+  aboutUs: SeedAboutUs;
   footer: SeedFooter; */
 }
 
@@ -92,6 +92,32 @@ export const initialData: InitialData = {
       role: "user",
       siteId: siteId!,
     },
+  ],
+  services: [
+    {
+      title: "Web Development",
+      description:
+        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
+      mediaUrl: "google-logo.png",
+      serviceUrl: "https://www.base.com/web-development",
+      siteId: siteId!,
+    },
+    {
+      title: "Mobile Development",
+      description:
+        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
+      mediaUrl: "android.png",
+      serviceUrl: "https://www.base.com/mobile-development",
+      siteId: siteId!,
+    },
+    {
+      title: "UI/UX Design",
+      description:
+        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
+      mediaUrl: "",
+      serviceUrl: "https://www.base.com/ui-ux-design",
+      siteId: siteId!,
+    }
   ],
   /* siteSettings: {
     siteName: "Base Landing",
