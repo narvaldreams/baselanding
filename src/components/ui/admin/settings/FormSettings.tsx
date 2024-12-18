@@ -13,6 +13,7 @@ export interface FormInputs {
   instagramUrl: string;
   linkedinUrl: string;
   youtubeUrl: string;
+  siteColor: string;
   googleAnalyticsId?: string;
   googleTagManagerId?: string;
 }
@@ -22,6 +23,12 @@ interface SiteSettings {
   siteName: string;
   siteLogoUrl: string | null;
   description: string;
+  facebookUrl: string | null;
+  twitterUrl: string | null;
+  instagramUrl: string | null;
+  linkedinUrl: string | null;
+  youtubeUrl: string | null;
+  siteColor: string | null;
   googleAnalyticsId: string | null;
   googleTagManagerId: string | null;
   createdAt: Date;
@@ -57,7 +64,7 @@ export const FormSettings = ( { site }: Props ) => {
     setLoading( true );
     setMessage( '' );
 
-    const { siteName, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl } = data;
+    const { siteName, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor } = data;
 
     const formData = new FormData();
 
@@ -68,6 +75,7 @@ export const FormSettings = ( { site }: Props ) => {
     formData.append( "instagramUrl", instagramUrl );
     formData.append( "linkedinUrl", linkedinUrl );
     formData.append( "youtubeUrl", youtubeUrl );
+    formData.append( "siteColor", siteColor );
     formData.append( "googleAnalyticsId", googleAnalyticsId ? googleAnalyticsId : "" );
     formData.append( "googleTagManagerId", googleTagManagerId ? googleTagManagerId : "" );
 
@@ -91,6 +99,12 @@ export const FormSettings = ( { site }: Props ) => {
     if ( site ) {
       setValue( 'siteName', site.siteName );
       setValue( 'description', site.description );
+      setValue( 'facebookUrl', site.facebookUrl ? site.facebookUrl : '' );
+      setValue( 'twitterUrl', site.twitterUrl ? site.twitterUrl : '' );
+      setValue( 'instagramUrl', site.instagramUrl ? site.instagramUrl : '' );
+      setValue( 'linkedinUrl', site.linkedinUrl ? site.linkedinUrl : '' );
+      setValue( 'youtubeUrl', site.youtubeUrl ? site.youtubeUrl : '' );
+      setValue( 'siteColor', site.siteColor ? site.siteColor : '' );
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
       if ( site.siteLogoUrl ) {
@@ -180,6 +194,35 @@ export const FormSettings = ( { site }: Props ) => {
           </div>
         </div>
 
+        {/* Selección de Google Analytics y Google Tag Manager */}
+        <div className="sm:col-span-6 flex gap-4">
+          <div className="w-full sm:w-1/2">
+            <label htmlFor="googleAnalyticsId" className="block text-sm/6 font-medium text-gray-900">Google Analytics ID</label>
+            <div className="mt-2">
+              <input
+                type="text"
+                id="googleAnalyticsId"
+                { ...register( 'googleAnalyticsId' ) }
+                placeholder="Ingresa el id de Google Analytics"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div className="w-full sm:w-1/2">
+            <label htmlFor="googleTagManagerId" className="block text-sm/6 font-medium text-gray-900">Google Tag Manager ID</label>
+            <div className="mt-2">
+              <input
+                type="text"
+                id="googleTagManagerId"
+                { ...register( 'googleTagManagerId' ) }
+                placeholder="Ingresa el id de Google Tag Manager"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Redes Sociales */ }
         <div className="sm:col-span-6 grid grid-cols-2 gap-6 mt-8">
           <div className="flex flex-col gap-2">
@@ -236,7 +279,20 @@ export const FormSettings = ( { site }: Props ) => {
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             />
           </div>
+
+          {/* Selección de color */ }
+          <div className="flex flex-col gap-2">
+            <label htmlFor="siteColor" className="block text-sm/6 font-medium text-gray-900">Color del Sitio</label>
+            <input
+              type="color"
+              id="siteColor"
+              { ...register( 'siteColor' ) }
+              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+            />
+          </div>
         </div>
+
+
 
         {/* Botón de guardar */ }
         <div className="sm:col-span-3 text-end">
@@ -248,5 +304,6 @@ export const FormSettings = ( { site }: Props ) => {
         </div>
       </div>
     </form>
+
   );
 };

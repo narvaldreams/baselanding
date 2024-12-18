@@ -20,6 +20,7 @@ export default async function Page() {
         instagramUrl={ siteSettings?.instagramUrl }
         linkedinUrl={ siteSettings?.linkedinUrl }
         youtubeUrl={ siteSettings?.youtubeUrl }
+        siteColor={ siteSettings?.siteColor }
       />
 
       <section className="py-36 md:py-64 w-full table relative bg-center bg-no-repeat bg-cover" style={ { backgroundImage: hero?.imageUrl ? `url(${ hero?.imageUrl })` : 'url("/uploads/bg-video.png")' } }>
@@ -31,7 +32,7 @@ export default async function Page() {
           ></iframe>
 
         </div> */}
-        <div className="absolute inset-0 bg-black/80"></div>
+        <div className="absolute inset-0" style={ { backgroundColor: siteSettings?.siteColor ? `${ siteSettings?.siteColor }70` : '#00000080', } }></div>
         <div className="container relative">
           <div className="grid grid-cols-1 text-center">
             <Image src={ siteSettings?.siteLogoUrl ? siteSettings?.siteLogoUrl : '/uploads/favicon.ico' } width={ 72 } height={ 64 } className="mx-auto" alt="" />
@@ -42,7 +43,7 @@ export default async function Page() {
             </p>
 
             <div className="relative mt-8">
-              <Link href="#" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">
+              <Link href="#" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center text-white rounded-md" style={{ backgroundColor: siteSettings?.siteColor || '#000' }}>
                 { hero?.textButton ? hero?.textButton : 'Texto del botón' }
               </Link>
             </div>
@@ -56,13 +57,13 @@ export default async function Page() {
         <About about={ aboutUs } />
 
         {/* Servicios */ }
-        
+
         {
-          services && <Service services={ services } />
+          services && <Service services={ services } siteColor={ siteSettings?.siteColor } />
         }
 
         {/* Parallax */ }
-        <Parallax parallax={ parallax } />
+        <Parallax parallax={ parallax } siteColor={ siteSettings?.siteColor } />
 
         {/* Contact */ }
         <Contact />
@@ -79,6 +80,7 @@ export default async function Page() {
         instagramUrl={ siteSettings?.instagramUrl }
         linkedinUrl={ siteSettings?.linkedinUrl }
         youtubeUrl={ siteSettings?.youtubeUrl }
+        siteColor={ siteSettings?.siteColor }
       />
 
     </>

@@ -12,13 +12,14 @@ interface Props {
   instagramUrl: string | undefined | null;
   linkedinUrl: string | undefined | null;
   youtubeUrl: string | undefined | null;
+  siteColor: string | undefined | null;
 }
 
-export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl }: Props ) {
+export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor }: Props ) {
 
 
   return (
-    <nav id="topnav" className="defaultscroll bg-slate-900 nav-sticky">
+    <nav id="topnav" className="defaultscroll bg-slate-900 nav-sticky" style={ { backgroundColor: siteColor || '#000' } }>
       <div className="container flex items-center justify-between py-4 flex-col sm:flex-row">
         {/* Logo y Nombre del sitio */ }
 

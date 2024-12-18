@@ -30,22 +30,22 @@ model User {
 }
 
 model SiteSettings {
-  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
-  siteName             String
-  siteLogoUrl          String?
-  description          String
-  googleAnalyticsId    String?
-  googleTagManagerId   String?
-  facebookUrl          String?
-  twitterUrl           String?
-  instagramUrl         String?
-  linkedinUrl          String?
-  youtubeUrl           String?
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
-  siteId               String // ID del sitio
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  siteName           String
+  siteLogoUrl        String?
+  description        String
+  googleAnalyticsId  String?
+  googleTagManagerId String?
+  facebookUrl        String?
+  twitterUrl         String?
+  instagramUrl       String?
+  linkedinUrl        String?
+  youtubeUrl         String?
+  siteColor          String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  siteId             String // ID del sitio
 }
-
 
 model Hero {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId

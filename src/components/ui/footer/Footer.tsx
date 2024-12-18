@@ -11,6 +11,7 @@ interface Props {
   instagramUrl: string | undefined | null;
   linkedinUrl: string | undefined | null;
   youtubeUrl: string | undefined | null;
+  siteColor: string | undefined | null;
   footer: {
     id: string;
     address: string;
@@ -21,13 +22,13 @@ interface Props {
   } | null;
 }
 
-export default function Footer( { logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl }: Props ) {
+export default function Footer( { logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor }: Props ) {
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
 
   return (
     <div>
-      <footer className="footer bg-dark-footer relative text-gray-200 dark:text-gray-200">
+      <footer className="footer relative text-gray-200" style={ { backgroundColor: siteColor || '#000' } }>
         <div className="container relative">
           <div className="grid grid-cols-12">
             <div className="col-span-12">
