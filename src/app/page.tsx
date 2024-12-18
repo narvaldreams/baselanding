@@ -12,7 +12,15 @@ export default async function Page() {
   return (
     <>
 
-      <TopMenu logoUrl={ siteSettings?.siteLogoUrl } siteName={ siteSettings?.siteName } />
+      <TopMenu
+        logoUrl={ siteSettings?.siteLogoUrl }
+        siteName={ siteSettings?.siteName }
+        facebookUrl={ siteSettings?.youtubeUrl }
+        twitterUrl={ siteSettings?.twitterUrl }
+        instagramUrl={ siteSettings?.instagramUrl }
+        linkedinUrl={ siteSettings?.linkedinUrl }
+        youtubeUrl={ siteSettings?.youtubeUrl }
+      />
 
       <section className="py-36 md:py-64 w-full table relative bg-center bg-no-repeat bg-cover" style={ { backgroundImage: hero?.imageUrl ? `url(${ hero?.imageUrl })` : 'url("/uploads/bg-video.png")' } }>
         {/* <div className="absolute top-0 start-0 w-full h-full z-0 pointer-events-none overflow-hidden">
@@ -35,7 +43,7 @@ export default async function Page() {
 
             <div className="relative mt-8">
               <Link href="#" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">
-              { hero?.textButton ? hero?.textButton : 'Texto del botón' }
+                { hero?.textButton ? hero?.textButton : 'Texto del botón' }
               </Link>
             </div>
           </div>
@@ -48,6 +56,7 @@ export default async function Page() {
         <About about={ aboutUs } />
 
         {/* Servicios */ }
+        
         {
           services && <Service services={ services } />
         }
@@ -61,7 +70,16 @@ export default async function Page() {
       </section>
       {/* Footer */ }
 
-      <Footer footer={ footer } logoUrl={ siteSettings?.siteLogoUrl } description={ siteSettings?.description } />
+      <Footer
+        footer={ footer }
+        logoUrl={ siteSettings?.siteLogoUrl }
+        description={ siteSettings?.description }
+        facebookUrl={ siteSettings?.facebookUrl }
+        twitterUrl={ siteSettings?.twitterUrl }
+        instagramUrl={ siteSettings?.instagramUrl }
+        linkedinUrl={ siteSettings?.linkedinUrl }
+        youtubeUrl={ siteSettings?.youtubeUrl }
+      />
 
     </>
   );

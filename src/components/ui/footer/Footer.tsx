@@ -1,10 +1,16 @@
 import { truncateDescription } from '@/utils/truncateDescripcion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter, CiYoutube } from 'react-icons/ci';
 
 interface Props {
   logoUrl: string | undefined | null;
-  description?: string;
+  description: string | undefined | null;
+  facebookUrl: string | undefined | null;
+  twitterUrl: string | undefined | null;
+  instagramUrl: string | undefined | null;
+  linkedinUrl: string | undefined | null;
+  youtubeUrl: string | undefined | null;
   footer: {
     id: string;
     address: string;
@@ -15,7 +21,7 @@ interface Props {
   } | null;
 }
 
-export default function Footer( { logoUrl, footer, description }: Props ) {
+export default function Footer( { logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl }: Props ) {
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
 
@@ -52,6 +58,28 @@ export default function Footer( { logoUrl, footer, description }: Props ) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex flex-row justify-center items-center py-[10px] gap-4">
+            {/* Facebook */ }
+            <Link href={ facebookUrl ? facebookUrl : '#' }>
+              <CiFacebook size={ 30 } className="text-gray-300 hover:text-white" />
+            </Link>
+            {/* Twitter */ }
+            <Link href={ twitterUrl ? twitterUrl : '#' }>
+              <CiTwitter size={ 30 } className="text-gray-300 hover:text-white" />
+            </Link>
+            {/* Instagram */ }
+            <Link href={ instagramUrl ? instagramUrl : '#' }>
+              <CiInstagram size={ 30 } className="text-gray-300 hover:text-white" />
+            </Link>
+            {/* LinkedIn */ }
+            <Link href={ linkedinUrl ? linkedinUrl : '#' }>
+              <CiLinkedin size={ 30 } className="text-gray-300 hover:text-white" />
+            </Link>
+            {/* Youtube */ }
+            <Link href={ youtubeUrl ? youtubeUrl : '#' }>
+              <CiYoutube size={ 30 } className="text-gray-300 hover:text-white" />
+            </Link>
           </div>
         </div>
         <div className="py-[30px] px-0 border-t border-slate-800">

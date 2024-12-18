@@ -24,6 +24,11 @@ export const createUpdateSettings = async (formData: FormData) => {
         data: {
           siteName: formData.get("siteName")!.toString(),
           description: formData.get("description")!.toString(),
+          facebookUrl: formData.get("facebookUrl")!.toString(),
+          twitterUrl: formData.get("twitterUrl")!.toString(),
+          instagramUrl: formData.get("instagramUrl")!.toString(),
+          linkedinUrl: formData.get("linkedinUrl")!.toString(),
+          youtubeUrl: formData.get("youtubeUrl")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
         },
@@ -34,6 +39,11 @@ export const createUpdateSettings = async (formData: FormData) => {
         data: {
           siteName: formData.get("siteName")!.toString(),
           description: formData.get("description")!.toString(),
+          facebookUrl: formData.get("facebookUrl")!.toString(),
+          twitterUrl: formData.get("twitterUrl")!.toString(),
+          instagramUrl: formData.get("instagramUrl")!.toString(),
+          linkedinUrl: formData.get("linkedinUrl")!.toString(),
+          youtubeUrl: formData.get("youtubeUrl")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
           siteId,
