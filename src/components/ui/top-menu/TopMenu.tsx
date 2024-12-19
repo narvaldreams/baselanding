@@ -13,9 +13,12 @@ interface Props {
   linkedinUrl: string | undefined | null;
   youtubeUrl: string | undefined | null;
   siteColor: string | undefined | null;
+  siteColorText: string | undefined | null;
 }
 
-export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor }: Props ) {
+export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText }: Props ) {
+
+  const colorText = siteColorText || '#FFFFFF';
 
 
   return (
@@ -33,33 +36,33 @@ export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, i
               alt={ siteName ? siteName : 'Logo' }
             />
           </Link>
-          <h1 className="text-white text-2xl font-semibold">{ siteName ? siteName : 'Nombre del sitio' }</h1>
+          <h1 className="text-2xl font-semibold" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
         </div>
 
         {/* Iconos de redes sociales */ }
         <div className="flex items-center space-x-2 sm:space-x-4">
           {/* Facebook */ }
           <Link href={ facebookUrl || "#" }>
-            <CiFacebook size={ 25 } className="text-gray-300 hover:text-white" />
+            <CiFacebook size={ 25 } className="hover:text-white" style={ { color: colorText } } />
           </Link>
           {/* Twitter */ }
           <Link href={ twitterUrl || "#" }>
-            <CiTwitter size={ 25 } className="text-gray-300 hover:text-white" />
+            <CiTwitter size={ 25 } className="hover:text-white" style={ { color: colorText } } />
           </Link>
           {/* Instagram */ }
           <Link href={ instagramUrl || "#" }>
-            <CiInstagram size={ 25 } className="text-gray-300 hover:text-white" />
+            <CiInstagram size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
           </Link>
           {/* LinkedIn */ }
           <Link href={ linkedinUrl || "#" }>
-            <CiLinkedin size={ 25 } className="text-gray-300 hover:text-white" />
+            <CiLinkedin size={ 25 } className="hover:text-white" style={ { color: colorText } } />
           </Link>
           {/* YouTube */ }
           <Link href={ youtubeUrl || "#" }>
-            <CiYoutube size={ 25 } className="text-gray-300 hover:text-white" />
+            <CiYoutube size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
           </Link>
         </div>
-        
+
       </div>
     </nav>
 

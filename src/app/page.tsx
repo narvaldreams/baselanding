@@ -21,6 +21,7 @@ export default async function Page() {
         linkedinUrl={ siteSettings?.linkedinUrl }
         youtubeUrl={ siteSettings?.youtubeUrl }
         siteColor={ siteSettings?.siteColor }
+        siteColorText={ siteSettings?.siteColorText }
       />
 
       <section className="py-36 md:py-64 w-full table relative bg-center bg-no-repeat bg-cover" style={ { backgroundImage: hero?.imageUrl ? `url(${ hero?.imageUrl })` : 'url("/uploads/bg-video.png")' } }>
@@ -78,6 +79,7 @@ export default async function Page() {
       {/* Footer */ }
 
       <Footer
+        siteName={ siteSettings?.siteName }
         footer={ footer }
         logoUrl={ siteSettings?.siteLogoUrl }
         description={ siteSettings?.description }
@@ -87,6 +89,7 @@ export default async function Page() {
         linkedinUrl={ siteSettings?.linkedinUrl }
         youtubeUrl={ siteSettings?.youtubeUrl }
         siteColor={ siteSettings?.siteColor }
+        siteColorText={ siteSettings?.siteColorText }
       />
 
     </>
