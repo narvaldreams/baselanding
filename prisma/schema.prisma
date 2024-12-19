@@ -42,6 +42,7 @@ model SiteSettings {
   linkedinUrl        String?
   youtubeUrl         String?
   siteColor          String?
+  siteColorText      String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
   siteId             String // ID del sitio

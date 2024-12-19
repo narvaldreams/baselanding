@@ -1,8 +1,10 @@
 'use client';
 import { createUpdateSettings } from '@/actions/auth/settigns/create-update';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { SketchPicker } from "react-color";
+
 
 export interface FormInputs {
   siteName: string;
@@ -14,6 +16,7 @@ export interface FormInputs {
   linkedinUrl: string;
   youtubeUrl: string;
   siteColor: string;
+  siteColorText: string;
   googleAnalyticsId?: string;
   googleTagManagerId?: string;
 }
@@ -29,6 +32,7 @@ interface SiteSettings {
   linkedinUrl: string | null;
   youtubeUrl: string | null;
   siteColor: string | null;
+  siteColorText: string | null;
   googleAnalyticsId: string | null;
   googleTagManagerId: string | null;
   createdAt: Date;
@@ -39,13 +43,21 @@ interface Props {
   site?: SiteSettings;
 }
 
-
 export const FormSettings = ( { site }: Props ) => {
 
-  const { register, handleSubmit, setValue, formState: { errors, isValid } } = useForm<FormInputs>();
+  const [ loaded, setLoaded ] = useState( false );
+  const { control, register, handleSubmit, setValue, formState: { errors, isValid } } = useForm<FormInputs>();
   const [ message, setMessage ] = useState<string>( '' );
   const [ imagePreview, setImagePreview ] = useState<string | null>( null );
   const [ loading, setLoading ] = useState<boolean>( false );
+
+  /* Colores Sitio y Texto */
+  const [ showSiteColorPicker, setShowSiteColorPicker ] = useState( false );
+  const [ showTextColorPicker, setShowTextColorPicker ] = useState( false );
+
+  useEffect( () => {
+    setLoaded( true );
+  }, [] );
 
 
   const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
@@ -64,7 +76,7 @@ export const FormSettings = ( { site }: Props ) => {
     setLoading( true );
     setMessage( '' );
 
-    const { siteName, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor } = data;
+    const { siteName, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText } = data;
 
     const formData = new FormData();
 
@@ -76,6 +88,7 @@ export const FormSettings = ( { site }: Props ) => {
     formData.append( "linkedinUrl", linkedinUrl );
     formData.append( "youtubeUrl", youtubeUrl );
     formData.append( "siteColor", siteColor );
+    formData.append( "siteColorText", siteColorText );
     formData.append( "googleAnalyticsId", googleAnalyticsId ? googleAnalyticsId : "" );
     formData.append( "googleTagManagerId", googleTagManagerId ? googleTagManagerId : "" );
 
@@ -105,6 +118,7 @@ export const FormSettings = ( { site }: Props ) => {
       setValue( 'linkedinUrl', site.linkedinUrl ? site.linkedinUrl : '' );
       setValue( 'youtubeUrl', site.youtubeUrl ? site.youtubeUrl : '' );
       setValue( 'siteColor', site.siteColor ? site.siteColor : '' );
+      setValue( 'siteColorText', site.siteColorText ? site.siteColorText : '' );
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
       if ( site.siteLogoUrl ) {
@@ -194,7 +208,77 @@ export const FormSettings = ( { site }: Props ) => {
           </div>
         </div>
 
-        {/* Selección de Google Analytics y Google Tag Manager */}
+        <div className="sm:col-span-6 flex gap-4">
+          <div className="flex w-full gap-4 items-start">
+            {/* Site Color Picker */ }
+            <div className="flex-1 relative">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Color del Sitio</label>
+              <Controller
+                name="siteColor"
+                control={ control }
+                render={ ( { field } ) => (
+                  <div>
+                    <div
+                      className="w-full h-9 rounded border cursor-pointer flex items-center justify-center hover:bg-gray-300 border-gray-300"
+                      style={ { backgroundColor: field.value } }
+                      onClick={ () => setShowSiteColorPicker( !showSiteColorPicker ) }
+                    >
+                      <span className="text-md text-black">Seleccionar color</span>
+                    </div>
+                    { showSiteColorPicker && (
+                      <div className="absolute z-10 mt-2 w-full">
+                        <div
+                          className="fixed top-0 left-0 w-full h-full"
+                          onClick={ () => setShowSiteColorPicker( false ) }
+                        />
+                        <SketchPicker
+                          color={ field.value }
+                          onChange={ ( color ) => field.onChange( color.hex ) }
+                        />
+                      </div>
+                    ) }
+                  </div>
+                ) }
+              />
+            </div>
+
+            {/* Text Color Picker */ }
+            <div className="flex-1 relative">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Color de Texto</label>
+              <Controller
+                name="siteColorText"
+                control={ control }
+                render={ ( { field } ) => (
+                  <div>
+                    <div
+                      className="w-full h-9 rounded border cursor-pointer flex items-center justify-center hover:bg-gray-300 border-gray-300"
+                      style={ { backgroundColor: field.value } }
+                      onClick={ () => setShowTextColorPicker( !showTextColorPicker ) }
+                    >
+                      <span className="text-md text-black">Seleccionar color</span>
+                    </div>
+                    { showTextColorPicker && (
+                      <div className="absolute z-10 mt-2">
+                        <div
+                          className="fixed top-0 left-0 w-full h-full"
+                          onClick={ () => setShowTextColorPicker( false ) }
+                        />
+                        <SketchPicker
+                          color={ field.value }
+                          onChange={ ( color ) => field.onChange( color.hex ) }
+                        />
+                      </div>
+                    ) }
+                  </div>
+                ) }
+              />
+            </div>
+          </div>
+        </div>
+
+
+
+        {/* Selección de Google Analytics y Google Tag Manager */ }
         <div className="sm:col-span-6 flex gap-4">
           <div className="w-full sm:w-1/2">
             <label htmlFor="googleAnalyticsId" className="block text-sm/6 font-medium text-gray-900">Google Analytics ID</label>
@@ -224,7 +308,7 @@ export const FormSettings = ( { site }: Props ) => {
         </div>
 
         {/* Redes Sociales */ }
-        <div className="sm:col-span-6 grid grid-cols-2 gap-6 mt-8">
+        <div className="sm:col-span-6 grid grid-cols-2 gap-6">
           <div className="flex flex-col gap-2">
             <label htmlFor="facebookUrl" className="block text-sm/6 font-medium text-gray-900">Facebook URL</label>
             <input
@@ -279,20 +363,7 @@ export const FormSettings = ( { site }: Props ) => {
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             />
           </div>
-
-          {/* Selección de color */ }
-          <div className="flex flex-col gap-2">
-            <label htmlFor="siteColor" className="block text-sm/6 font-medium text-gray-900">Color del Sitio</label>
-            <input
-              type="color"
-              id="siteColor"
-              { ...register( 'siteColor' ) }
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            />
-          </div>
         </div>
-
-
 
         {/* Botón de guardar */ }
         <div className="sm:col-span-3 text-end">
