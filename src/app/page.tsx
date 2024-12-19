@@ -32,7 +32,7 @@ export default async function Page() {
           ></iframe>
 
         </div> */}
-        <div className="absolute inset-0" style={ { backgroundColor: siteSettings?.siteColor ? `${ siteSettings?.siteColor }70` : '#00000080', } }></div>
+        <div className="absolute inset-0 bg-black/80"></div>
         <div className="container relative">
           <div className="grid grid-cols-1 text-center">
             <Image src={ siteSettings?.siteLogoUrl ? siteSettings?.siteLogoUrl : '/uploads/favicon.ico' } width={ 72 } height={ 64 } className="mx-auto" alt="" />
