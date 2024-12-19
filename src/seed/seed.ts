@@ -61,7 +61,7 @@ interface SeedFooter {
 
 interface InitialData {
   users: SeedUser[];
-  services: SeedService[];
+  /* services: SeedService[]; */
   /* siteSettings: SeedSiteSettings;
   hero: SeedHero;
   parallax: SeedParallax;
@@ -93,7 +93,7 @@ export const initialData: InitialData = {
       siteId: siteId!,
     },
   ],
-  services: [
+  /* services: [
     {
       title: "Web Development",
       description:
@@ -126,7 +126,7 @@ export const initialData: InitialData = {
       serviceUrl: "https://www.base.com/mobile-development",
       siteId: siteId!,
     },
-  ],
+  ], */
   /* siteSettings: {
     siteName: "Base Landing",
     siteLogoUrl: "logo-light.png",

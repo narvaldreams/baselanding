@@ -9,9 +9,10 @@ import { Service } from './Services';
 
 interface Props {
   service: Service;
+  serviceSettingsId: string;
 }
 
-export const ServiceRow = ( { service }: Props ) => {
+export const ServiceRow = ( { service, serviceSettingsId }: Props ) => {
 
   const { id, title, description, mediaUrl, serviceUrl, createdAt, updatedAt } = service;
 
@@ -75,7 +76,7 @@ export const ServiceRow = ( { service }: Props ) => {
           <td className="px-4 py-2">
             <div className="flex justify-center items-center gap-3">
               <Link
-                href={ `/admin/services/${ id }` }
+                href={ `/admin/services/${ serviceSettingsId }/${ id }` }
                 className="bg-yellow-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white transition-all"
               >
                 <FaRegEdit size={ 20 } />

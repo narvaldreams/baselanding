@@ -4,11 +4,13 @@ import prisma from "@/lib/prisma";
 interface PaginationOptions {
   page?: number;
   take?: number;
+  serviceSettignsId: string;
 }
 
 export const getServices = async ({
   page = 1,
   take = 3,
+  serviceSettignsId,
 }: PaginationOptions) => {
   try {
     const siteId = process.env.SITE_ID!;
@@ -17,6 +19,7 @@ export const getServices = async ({
       skip: (page - 1) * take,
       where: {
         siteId,
+        serviceModuleId: serviceSettignsId,
       },
     });
 
@@ -25,6 +28,7 @@ export const getServices = async ({
     const totalCount = await prisma.service.count({
       where: {
         siteId,
+        serviceModuleId: serviceSettignsId,
       },
     });
 

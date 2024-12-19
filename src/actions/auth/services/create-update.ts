@@ -4,7 +4,10 @@ import { Service } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { uploadImage } from "../image/upload";
 
-export const createUpdateService = async (formData: FormData) => {
+export const createUpdateService = async (
+  formData: FormData,
+  serviceSettingsId: string
+) => {
   try {
     const siteId = process.env.SITE_ID!;
     const serviceId = formData.get("id")?.toString();
@@ -16,6 +19,7 @@ export const createUpdateService = async (formData: FormData) => {
       const existingService = await prisma.service.findUnique({
         where: {
           id: serviceId,
+          serviceModuleId: serviceSettingsId,
           siteId,
         },
       });
@@ -24,6 +28,7 @@ export const createUpdateService = async (formData: FormData) => {
         service = await prisma.service.update({
           where: {
             id: existingService.id,
+            serviceModuleId: serviceSettingsId,
           },
           data: {
             title: formData.get("title")!.toString(),
@@ -38,6 +43,7 @@ export const createUpdateService = async (formData: FormData) => {
             title: formData.get("title")!.toString(),
             description: formData.get("description")!.toString(),
             serviceUrl: formData.get("serviceUrl")!.toString(),
+            serviceModuleId: serviceSettingsId,
             siteId,
           },
         });
@@ -49,6 +55,7 @@ export const createUpdateService = async (formData: FormData) => {
           title: formData.get("title")!.toString(),
           description: formData.get("description")!.toString(),
           serviceUrl: formData.get("serviceUrl")!.toString(),
+          serviceModuleId: serviceSettingsId,
           siteId,
         },
       });
@@ -62,6 +69,7 @@ export const createUpdateService = async (formData: FormData) => {
       await prisma.service.update({
         where: {
           id: service.id,
+          serviceModuleId: serviceSettingsId,
         },
         data: {
           mediaUrl: uploadedImage!,

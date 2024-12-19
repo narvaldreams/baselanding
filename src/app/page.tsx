@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default async function Page() {
 
-  const { siteSettings, hero, aboutUs, services, parallax, footer } = await getDataPage();
+  const { siteSettings, hero, aboutUs, serviceSettings, services, parallax, footer } = await getDataPage();
 
 
   return (
@@ -43,7 +43,7 @@ export default async function Page() {
             </p>
 
             <div className="relative mt-8">
-              <Link href="#" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center text-white rounded-md" style={{ backgroundColor: siteSettings?.siteColor || '#000' }}>
+              <Link href="#" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center text-white rounded-md" style={ { backgroundColor: siteSettings?.siteColor || '#000' } }>
                 { hero?.textButton ? hero?.textButton : 'Texto del botón' }
               </Link>
             </div>
@@ -59,7 +59,13 @@ export default async function Page() {
         {/* Servicios */ }
 
         {
-          services && <Service services={ services } siteColor={ siteSettings?.siteColor } />
+          services && <Service
+            services={ services }
+            siteColor={ siteSettings?.siteColor }
+            title={ serviceSettings?.generalTitle }
+            description={ serviceSettings?.generalDescription }
+            mediaUrl={ serviceSettings?.generalImageUrl }
+          />
         }
 
         {/* Parallax */ }

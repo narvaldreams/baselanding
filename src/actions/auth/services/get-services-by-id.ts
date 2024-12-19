@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/prisma";
 
-export const getServiceById = async (id: string) => {
+export const getServiceById = async (id: string, serviceSettingsId: string) => {
   try {
     if (id === 'crear') return null;
     const siteId = process.env.SITE_ID!;
@@ -9,6 +9,7 @@ export const getServiceById = async (id: string) => {
       where: {
         id,
         siteId,
+        serviceModuleId: serviceSettingsId,
       },
     });
 

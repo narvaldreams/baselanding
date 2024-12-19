@@ -1,32 +1,33 @@
 "use client";
-import { createUpdateService } from "@/actions/auth/services/create-update";
-import { redirect } from 'next/navigation';
+import { createUpdateServiceSettings } from '@/actions/auth/services/Settings/create-update';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 interface FormInputs {
-  title: string;
-  description: string;
-  mediaUrl: File;
-  serviceUrl: string;
+  id: string;
+  generalTitle: string;
+  generalDescription: string;
+  generalImageUrl: File;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-interface Service {
+interface ServiceModule {
   id: string;
-  title: string;
-  description: string;
-  mediaUrl: string | null;
-  serviceUrl: string | null;
+  generalTitle: string;
+  generalDescription: string;
+  generalImageUrl: string | null;
+  createdAt: Date;
+  updatedAt: Date;
   siteId: string;
 }
 
 interface Props {
-  service: Service | null | undefined;
-  serviceSettingsId: string;
+  services?: ServiceModule;
 }
 
-export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
+export const FormServiceSettings = ( { services }: Props ) => {
   const {
     register,
     handleSubmit,
@@ -60,47 +61,38 @@ export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
     setLoading( true );
     setMessage( "" );
 
-    const { title, description, mediaUrl, serviceUrl } = data;
+    const { generalTitle, generalDescription, generalImageUrl, createdAt, updatedAt } = data;
 
     const formData = new FormData();
 
-    if ( service ) {
-      formData.append( "id", service.id );
+    if ( services ) {
+      formData.append( "id", services.id );
     }
 
-    formData.append( "title", title );
-    formData.append( "description", description );
-    formData.append( "serviceUrl", serviceUrl );
+    formData.append( "generalTitle", generalTitle );
+    formData.append( "generalDescription", generalDescription );
 
-    if ( mediaUrl instanceof FileList && mediaUrl.length > 0 ) {
-      formData.append( "imageUrl", mediaUrl[ 0 ] );
+    if ( generalImageUrl instanceof FileList && generalImageUrl.length > 0 ) {
+      formData.append( "imageUrl", generalImageUrl[ 0 ] );
     }
 
-    const { message, ok } = await createUpdateService( formData, serviceSettingsId );
+    const { message, ok } = await createUpdateServiceSettings( formData );
 
     if ( ok ) {
       setMessage( message );
       setTimeout( () => {
         setMessage( "" );
       }, 3000 );
-      redirect( '/admin/services' );
     }
     setLoading( false );
   };
 
   useEffect( () => {
-    if ( service ) {
-      setValue( "title", service.title ? service.title : "Titulo del Servicio" );
-      setValue(
-        "description",
-        service.description ? service.description : "Descripción del Servicio"
-      );
-      setValue(
-        "serviceUrl",
-        service.serviceUrl ? service.serviceUrl : "Url del Servicio"
-      );
-      if ( service.mediaUrl ) {
-        setImagePreview( service.mediaUrl );
+    if ( services ) {
+      setValue( "generalTitle", services.generalTitle ? services.generalTitle : "Titulo global del Servicio" );
+      setValue( "generalDescription", services.generalDescription ? services.generalDescription : "Descripción global del Servicio" );
+      if ( services.generalImageUrl ) {
+        setImagePreview( services.generalImageUrl );
       }
     }
   }, [] );
@@ -139,14 +131,14 @@ export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
             htmlFor="title"
             className="block text-sm/6 font-medium text-gray-900"
           >
-            Titulo
+            Titulo Global del Servicio
           </label>
           <div className="mt-2">
             <input
               type="text"
               id="title"
-              placeholder="Ingresa el titulo"
-              { ...register( "title", { required: true } ) } // register
+              placeholder="Ingresa el titulo global del servicio"
+              { ...register( "generalTitle", { required: true } ) } // register
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             />
           </div>
@@ -157,34 +149,16 @@ export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
             htmlFor="description"
             className="block text-sm/6 font-medium text-gray-900"
           >
-            Descripción
+            Descripción Global del Servicio
           </label>
           <div className="mt-2">
             <textarea
               id="description"
               rows={ 3 }
-              placeholder="Ingresa la descripción"
-              { ...register( "description", { required: true } ) } // register
+              placeholder="Ingresa la descripción global del servicio"
+              { ...register( "generalDescription", { required: true } ) } // register
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             ></textarea>
-          </div>
-        </div>
-
-        <div className="sm:col-span-3">
-          <label
-            htmlFor="title"
-            className="block text-sm/6 font-medium text-gray-900"
-          >
-            Url
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              id="title"
-              placeholder="Ingresa la url"
-              { ...register( "serviceUrl", { required: true } ) } // register
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            />
           </div>
         </div>
 
@@ -194,13 +168,13 @@ export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
               htmlFor="siteLogoUrl"
               className="block text-sm/6 font-medium text-gray-900"
             >
-              Imagen
+              Imagen Global del Servicio
             </label>
             <div className="mt-2">
               <input
                 type="file"
                 id="imageUrl"
-                { ...register( "mediaUrl" ) }
+                { ...register( "generalImageUrl" ) }
                 onChange={ handleImageChange }
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                 accept="image/*"
@@ -210,13 +184,13 @@ export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
         </div>
 
         <div className="sm:col-span-3">
-          <div className="w-[400px] h-[400px] bg-gray-300 p-4 rounded-md flex justify-center items-center text-center">
+          <div className="w-[300px] h-[300px] bg-gray-300 p-4 rounded-md flex justify-center items-center text-center">
             { imagePreview ? (
               <img
                 src={ imagePreview }
                 alt="Vista previa"
-                width={ 400 }
-                height={ 400 }
+                width={ 250 }
+                height={ 250 }
               />
             ) : (
               <p>No se ha seleccionado ninguna imagen</p>

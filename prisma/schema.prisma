@@ -69,16 +69,28 @@ model AboutUs {
   siteId      String // ID del sitio
 }
 
-model Service {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  mediaUrl    String?
-  serviceUrl  String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  siteId      String // ID del sitio
+model ServiceModule {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  generalTitle       String    // Título general del módulo
+  generalDescription String    // Descripción general del módulo
+  generalImageUrl    String?   // URL de la imagen general
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  siteId             String    // ID del sitio
 }
+
+model Service {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String
+  mediaUrl        String?
+  serviceUrl      String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  siteId          String        // ID del sitio
+  serviceModuleId String        // ID del módulo de servicio
+}
+
 
 model Parallax {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
