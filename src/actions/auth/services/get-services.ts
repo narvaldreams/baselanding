@@ -1,4 +1,4 @@
-"use server";
+'use server';
 import prisma from "@/lib/prisma";
 
 interface PaginationOptions {
@@ -13,18 +13,24 @@ export const getServices = async ({
   serviceSettignsId,
 }: PaginationOptions) => {
   try {
-    const siteId = process.env.SITE_ID!;
+    // Aseguramos que `serviceSettignsId` esté presente
+    if (!serviceSettignsId) {
+      return { services: [], totalPages: 0 };
+    }
+
+    const siteId = process.env.SITE_ID!; // Asegúrate de que SITE_ID esté en .env
+
+    // Hacemos la consulta de los servicios con los parámetros de paginación
     const services = await prisma.service.findMany({
-      take: 3,
-      skip: (page - 1) * take,
+      take, // Usamos el valor de `take` desde los parámetros
+      skip: (page - 1) * take, // Calcular la cantidad de servicios que se saltarán
       where: {
-        siteId,
-        serviceModuleId: serviceSettignsId,
+        siteId, // Filtro para el `siteId`
+        serviceModuleId: serviceSettignsId, // Filtro por ID de servicio
       },
     });
 
-    if (!services) throw new Error("No se pudo obtener los servicios");
-
+    // Obtención del total de servicios disponibles para el módulo específico
     const totalCount = await prisma.service.count({
       where: {
         siteId,
@@ -32,6 +38,7 @@ export const getServices = async ({
       },
     });
 
+    // Calcular el número total de páginas
     const totalPages = Math.ceil(totalCount / take);
 
     return {
@@ -40,6 +47,7 @@ export const getServices = async ({
       services,
     };
   } catch (error) {
-    throw new Error("No se pudo obtener los servicios");
+    console.error("Error al obtener los servicios: ", error);
+    throw new Error(`No se pudieron obtener los servicios para el serviceSettignsId: ${serviceSettignsId}`);
   }
 };
