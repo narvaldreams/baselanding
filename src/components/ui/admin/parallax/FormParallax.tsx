@@ -180,16 +180,15 @@ export const FormParallax = ({ parallax }: Props) => {
 
         <div className="sm:col-span-3">
           <div className="w-[400px] h-[400px] bg-gray-300 p-4 rounded-md flex justify-center items-center text-center">
-            {imagePreview ? (
+            { imagePreview ? (
               <img
-                src={imagePreview}
+                src={ imagePreview }
                 alt="Vista previa"
-                width={400}
-                height={400}
+                className="object-contain w-full h-full"
               />
             ) : (
               <p>No se ha seleccionado ninguna imagen</p>
-            )}
+            ) }
           </div>
         </div>
 

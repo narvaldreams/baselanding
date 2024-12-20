@@ -8,7 +8,7 @@ export interface FormInputs {
   title: string;
   content: string;
   imageUrl: File;
-  heroUrl: string;
+  /* heroUrl: string; */
   textButton: string;
 }
 
@@ -63,13 +63,13 @@ export const FormHero = ( { hero }: Props ) => {
     setLoading( true );
     setMessage( "" );
 
-    const { title, content, imageUrl, heroUrl, textButton } = data;
+    const { title, content, imageUrl, textButton } = data;
 
     const formData = new FormData();
 
     formData.append( "title", title );
     formData.append( "content", content );
-    formData.append( "heroUrl", heroUrl );
+    /* formData.append( "heroUrl", heroUrl ); */
     formData.append( "textButton", textButton );
 
     if ( imageUrl instanceof FileList && imageUrl.length > 0 ) {
@@ -92,7 +92,6 @@ export const FormHero = ( { hero }: Props ) => {
     if ( hero ) {
       setValue( "title", hero.title );
       setValue( "content", hero.content );
-      setValue( "heroUrl", hero.heroUrl ? hero.heroUrl : '' );
       setValue( "textButton", hero.textButton ? hero.textButton : '' );
       if ( hero.imageUrl ) {
         setImagePreview( hero.imageUrl );
@@ -167,7 +166,7 @@ export const FormHero = ( { hero }: Props ) => {
           </div>
         </div>
 
-        <div className="sm:col-span-3">
+        {/* <div className="sm:col-span-3">
           <label
             htmlFor="title"
             className="block text-sm/6 font-medium text-gray-900"
@@ -184,13 +183,13 @@ export const FormHero = ( { hero }: Props ) => {
             />
           </div>
         </div>
-
+ */}
         <div className="sm:col-span-3">
           <label
             htmlFor="title"
             className="block text-sm/6 font-medium text-gray-900"
           >
-            Texto de boton
+            Texto del boton
           </label>
           <div className="mt-2">
             <input
@@ -226,15 +225,18 @@ export const FormHero = ( { hero }: Props ) => {
 
         <div className="sm:col-span-3">
           <div className="w-[400px] h-[400px] bg-gray-300 p-4 rounded-md flex justify-center items-center text-center">
-
             { imagePreview ? (
-              <img src={ imagePreview } alt="Vista previa" width={ 400 } height={ 400 } />
+              <img
+                src={ imagePreview }
+                alt="Vista previa"
+                className="object-contain w-full h-full"
+              />
             ) : (
               <p>No se ha seleccionado ninguna imagen</p>
             ) }
-
           </div>
         </div>
+
 
         <div className="sm:col-span-3 text-end">
           <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white transition-all disabled:bg-slate-900 disabled:text-slate-400">

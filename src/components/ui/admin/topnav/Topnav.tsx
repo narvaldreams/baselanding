@@ -45,7 +45,7 @@ export default function Topnav( { setToggle, toggle }: Props ) {
                 <li className="dropdown inline-block relative">
                   <button onClick={ () => setUser( !user ) } className="dropdown-toggle items-center" type="button">
                     <span className="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 border border-gray-100 dark:border-gray-800 text-slate-900 dark:text-white rounded-full">
-                      <Image src='/images/client/05.jpg' width={ 30 } height={ 30 } className="rounded-full" alt="" />
+                      <Image src='/uploads/user.jpg' width={ 30 } height={ 30 } className="rounded-full" alt="" />
                     </span>
                     <span className="font-semibold text-[16px] ms-1 sm:inline-block hidden">{ session?.user.name }</span>
                   </button>

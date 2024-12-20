@@ -24,7 +24,7 @@ export const createUpdateHero = async (formData: FormData) => {
         data: {
           title: formData.get("title")!.toString(),
           content: formData.get("content")!.toString(),
-          heroUrl: formData.get("heroUrl")!.toString(),
+          /* heroUrl: formData.get("heroUrl")!.toString(), */
           textButton: formData.get("textButton")!.toString(),
         },
       });
@@ -34,7 +34,7 @@ export const createUpdateHero = async (formData: FormData) => {
         data: {
           title: formData.get("title")!.toString(),
           content: formData.get("content")!.toString(),
-          heroUrl: formData.get("heroUrl")!.toString(),
+          /* heroUrl: formData.get("heroUrl")!.toString(), */
           textButton: formData.get("textButton")!.toString(),
           siteId,
         },

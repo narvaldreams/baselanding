@@ -1,20 +1,16 @@
-import Image from 'next/image';
+import { CustomImage } from '@/components/image/CustomImage';
 import { FiMessageCircle } from 'react-icons/fi';
 import { IoBookOutline, IoMailOutline, IoPersonOutline } from 'react-icons/io5';
 
+interface Props {
+  imageUrl: string | null | undefined;
+}
 
-export default function Contact() {
+export default function Contact({ imageUrl }: Props) {
   return ( <div className="container relative">
     <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
       <div className="lg:col-span-7 md:col-span-6">
-        <Image
-          width={ 0 }
-          height={ 0 }
-          sizes="100vw"
-          style={ { width: "100%", height: "auto" } }
-          src="/images/contact.svg"
-          alt=""
-        />
+        <CustomImage src={ imageUrl ? imageUrl : '/uploads/no-image.jpg' } width={ 350 } height={ 350 } className="mx-auto" alt='Formualio de contacto' />
       </div>
 
       <div className="lg:col-span-5 md:col-span-6">

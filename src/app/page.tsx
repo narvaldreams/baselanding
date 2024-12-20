@@ -44,8 +44,8 @@ export default async function Page() {
             </p>
 
             <div className="relative mt-8">
-              <Link href="#" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center text-white rounded-md" style={ { backgroundColor: siteSettings?.siteColor || '#000' } }>
-                { hero?.textButton ? hero?.textButton : 'Texto del botón' }
+              <Link href="#services" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center text-white rounded-md" style={ { backgroundColor: siteSettings?.siteColor || '#000' } }>
+                { hero?.textButton ? hero?.textButton : 'Servicios' }
               </Link>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default async function Page() {
         <Parallax parallax={ parallax } siteColor={ siteSettings?.siteColor } />
 
         {/* Contact */ }
-        <Contact />
+        <Contact imageUrl={ aboutUs?.imageUrl } />
 
       </section>
       {/* Footer */ }

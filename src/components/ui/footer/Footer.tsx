@@ -43,7 +43,7 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
                       <Link href="/#" className="text-[22px] focus:outline-none">
                         <Image src={ logoUrl ? logoUrl : '/uploads/favicon.ico' } width={ 50 } height={ 50 } alt={ description ? description : 'Logo de la web' } />
                       </Link>
-                      <h1 className="text-2xl font-semibold" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
+                      <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
                     </div>
 
 
