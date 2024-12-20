@@ -215,8 +215,7 @@ export const CreatedUpdating = ( { service, serviceSettingsId }: Props ) => {
               <img
                 src={ imagePreview }
                 alt="Vista previa"
-                width={ 400 }
-                height={ 400 }
+                className="object-contain w-full h-full"
               />
             ) : (
               <p>No se ha seleccionado ninguna imagen</p>

@@ -73,7 +73,7 @@ export default async function Page() {
         <Parallax parallax={ parallax } siteColor={ siteSettings?.siteColor } />
 
         {/* Contact */ }
-        <Contact />
+        <Contact imageUrl={ aboutUs?.imageUrl } />
 
       </section>
       {/* Footer */ }

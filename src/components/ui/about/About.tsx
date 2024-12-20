@@ -1,7 +1,5 @@
 'use client';
 import { CustomImage } from '@/components/image/CustomImage';
-import Image from 'next/image';
-
 interface Props {
   about: {
     id: string;
@@ -23,7 +21,7 @@ export default function About( { about }: Props ) {
         <div className="md:col-span-5">
           <div className="relative">
 
-            <CustomImage src={ imageUrl ? imageUrl : '/uploads/no-image.jpg' } width={ 350 } height={ 350 } className="mx-auto" alt={ title ? title : 'Imagen sobre nosotros' } />
+            <CustomImage src={ imageUrl ? imageUrl : '/uploads/no-image.jpg' } width={ 600 } height={ 600 } className="mx-auto" alt={ title ? title : 'Imagen sobre nosotros' } />
 
           </div>
         </div>

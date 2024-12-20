@@ -18,9 +18,9 @@ export default function HomePage() {
   return (
     <div>
       <h2 className="text-slate-400 font-semibold text-3xl">Bienvenid@!</h2>
-      <h5 className="text-xl font-bold">{ session?.user.name }</h5>
-      <p>Role: { session?.user.role }</p>
-      <p>SiteId: { session?.user.siteId }</p>
+      <h5 className="text-x">Usuario: <strong>{ session?.user.name }</strong></h5>
+      <p>Role: <strong>{ session?.user.role ? 'Administrador' : 'Usuario' }</strong></p>
+      <p>SiteId: <strong>{ session?.user.siteId }</strong></p>
     </div>
   );
 }

@@ -184,13 +184,12 @@ export const FormServiceSettings = ( { services }: Props ) => {
         </div>
 
         <div className="sm:col-span-3">
-          <div className="w-[300px] h-[300px] bg-gray-300 p-4 rounded-md flex justify-center items-center text-center">
+          <div className="w-[400px] h-[400px] bg-gray-300 p-4 rounded-md flex justify-center items-center text-center">
             { imagePreview ? (
               <img
                 src={ imagePreview }
                 alt="Vista previa"
-                width={ 250 }
-                height={ 250 }
+                className="object-contain w-full h-full"
               />
             ) : (
               <p>No se ha seleccionado ninguna imagen</p>

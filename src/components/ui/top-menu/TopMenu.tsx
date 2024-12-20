@@ -36,7 +36,7 @@ export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, i
               alt={ siteName ? siteName : 'Logo' }
             />
           </Link>
-          <h1 className="text-2xl font-semibold" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
+          <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
         </div>
 
         {/* Iconos de redes sociales */ }
