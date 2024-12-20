@@ -21,7 +21,7 @@ interface Props {
 
 export default function Service( { services, siteColor, title, description, mediaUrl }: Props ) {
   return (
-    <div className="container relative md:mt-24 mt-16 md:mb-24 mb-10">
+    <div id="services" className="container relative md:mt-24 mt-16 md:mb-24 mb-10">
       <div className="grid grid-cols-1 pb-8 text-center">
         <h6 className="text-2xl font-bold uppercase mb-2" style={ { color: siteColor || '#000' } }>{ title ? title : 'Titulo del servicio' }</h6>
         <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">¿Que ofrecemos?</h3>
