@@ -1,6 +1,7 @@
 //export const revalidate = 30;
 import { getDataPage } from '@/actions/information/get-information';
 import { About, Contact, Parallax, Footer, Service, TopMenu } from '@/components';
+import ScrollButton from '@/components/ui/scroll/ScrollButton';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,10 +9,8 @@ export default async function Page() {
 
   const { siteSettings, hero, aboutUs, serviceSettings, services, parallax, footer } = await getDataPage();
 
-
   return (
     <>
-
       <TopMenu
         logoUrl={ siteSettings?.siteLogoUrl }
         siteName={ siteSettings?.siteName }
@@ -44,9 +43,7 @@ export default async function Page() {
             </p>
 
             <div className="relative mt-8">
-              <Link href="#services" className="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center text-white rounded-md" style={ { backgroundColor: siteSettings?.siteColor || '#000' } }>
-                { hero?.textButton ? hero?.textButton : 'Servicios' }
-              </Link>
+              <ScrollButton targetId="services" label={ hero?.textButton ? hero?.textButton : 'Servicios' } backgroundColor={ siteSettings?.siteColor || '#000' } />
             </div>
           </div>
         </div>
@@ -73,7 +70,10 @@ export default async function Page() {
         <Parallax parallax={ parallax } siteColor={ siteSettings?.siteColor } />
 
         {/* Contact */ }
-        <Contact imageUrl={ aboutUs?.imageUrl } />
+        <Contact 
+          siteColor={ siteSettings?.siteColor }
+          siteColorText={ siteSettings?.siteColorText }
+          />
 
       </section>
       {/* Footer */ }
@@ -90,6 +90,7 @@ export default async function Page() {
         youtubeUrl={ siteSettings?.youtubeUrl }
         siteColor={ siteSettings?.siteColor }
         siteColorText={ siteSettings?.siteColorText }
+        policyPrivacyUrl={ siteSettings?.policyPrivacyUrl }
       />
 
     </>

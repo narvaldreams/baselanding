@@ -8,6 +8,7 @@ import { SketchPicker } from "react-color";
 
 export interface FormInputs {
   siteName: string;
+  emailSite: string;
   siteLogoUrl: File;
   description: string;
   facebookUrl: string;
@@ -17,6 +18,7 @@ export interface FormInputs {
   youtubeUrl: string;
   siteColor: string;
   siteColorText: string;
+  policyPrivacyUrl: string;
   googleAnalyticsId?: string;
   googleTagManagerId?: string;
 }
@@ -24,6 +26,7 @@ export interface FormInputs {
 interface SiteSettings {
   id: string;
   siteName: string;
+  emailSite: string;
   siteLogoUrl: string | null;
   description: string;
   facebookUrl: string | null;
@@ -35,6 +38,7 @@ interface SiteSettings {
   siteColorText: string | null;
   googleAnalyticsId: string | null;
   googleTagManagerId: string | null;
+  policyPrivacyUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -76,11 +80,12 @@ export const FormSettings = ( { site }: Props ) => {
     setLoading( true );
     setMessage( '' );
 
-    const { siteName, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText } = data;
+    const { siteName, emailSite, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyUrl } = data;
 
     const formData = new FormData();
 
     formData.append( "siteName", siteName );
+    formData.append( "emailSite", emailSite );
     formData.append( "description", description );
     formData.append( "facebookUrl", facebookUrl );
     formData.append( "twitterUrl", twitterUrl );
@@ -89,6 +94,7 @@ export const FormSettings = ( { site }: Props ) => {
     formData.append( "youtubeUrl", youtubeUrl );
     formData.append( "siteColor", siteColor );
     formData.append( "siteColorText", siteColorText );
+    formData.append( "policyPrivacyUrl", policyPrivacyUrl );
     formData.append( "googleAnalyticsId", googleAnalyticsId ? googleAnalyticsId : "" );
     formData.append( "googleTagManagerId", googleTagManagerId ? googleTagManagerId : "" );
 
@@ -111,6 +117,7 @@ export const FormSettings = ( { site }: Props ) => {
   useEffect( () => {
     if ( site ) {
       setValue( 'siteName', site.siteName );
+      setValue( 'emailSite', site.emailSite );
       setValue( 'description', site.description );
       setValue( 'facebookUrl', site.facebookUrl ? site.facebookUrl : '' );
       setValue( 'twitterUrl', site.twitterUrl ? site.twitterUrl : '' );
@@ -119,6 +126,7 @@ export const FormSettings = ( { site }: Props ) => {
       setValue( 'youtubeUrl', site.youtubeUrl ? site.youtubeUrl : '' );
       setValue( 'siteColor', site.siteColor ? site.siteColor : '' );
       setValue( 'siteColorText', site.siteColorText ? site.siteColorText : '' );
+      setValue( 'policyPrivacyUrl', site.policyPrivacyUrl ? site.policyPrivacyUrl : '' );
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
       if ( site.siteLogoUrl ) {
@@ -155,7 +163,7 @@ export const FormSettings = ( { site }: Props ) => {
       { message && <p className="mt-1 text-sm/6 text-indigo-500">{ message }</p> }
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        {/* Nombre del Sitio en una fila */ }
+        {/* Nombre del Sitio */ }
         <div className="sm:col-span-6">
           <label htmlFor="siteName" className="block text-sm/6 font-medium text-gray-900">Nombre del Sitio</label>
           <div className="mt-2">
@@ -169,7 +177,21 @@ export const FormSettings = ( { site }: Props ) => {
           </div>
         </div>
 
-        {/* Descripción en una fila */ }
+        {/* Email del Sitio */ }
+        <div className="sm:col-span-6">
+          <label htmlFor="siteName" className="block text-sm/6 font-medium text-gray-900">Email del Sitio</label>
+          <div className="mt-2">
+            <input
+              type="text"
+              id="emailSite"
+              placeholder="Ingresa el email del sitio"
+              { ...register( 'emailSite', { required: true } ) }
+              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        {/* Descripción */ }
         <div className="sm:col-span-6">
           <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">Descripción</label>
           <div className="mt-2">
@@ -360,6 +382,17 @@ export const FormSettings = ( { site }: Props ) => {
               id="youtubeUrl"
               placeholder="Ingresa la URL de YouTube"
               { ...register( 'youtubeUrl' ) }
+              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="policyPrivacyUrl" className="block text-sm/6 font-medium text-gray-900">Políticas de privacidad URL</label>
+            <input
+              type="text"
+              id="policyPrivacyUrl"
+              placeholder="Ingresa la URL de las Políticas de privacidad"
+              { ...register( 'policyPrivacyUrl' ) }
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             />
           </div>
