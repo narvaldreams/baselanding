@@ -23,6 +23,7 @@ export const createUpdateSettings = async (formData: FormData) => {
         },
         data: {
           siteName: formData.get("siteName")!.toString(),
+          emailSite: formData.get("emailSite")!.toString(),
           description: formData.get("description")!.toString(),
           facebookUrl: formData.get("facebookUrl")!.toString(),
           twitterUrl: formData.get("twitterUrl")!.toString(),
@@ -31,6 +32,7 @@ export const createUpdateSettings = async (formData: FormData) => {
           youtubeUrl: formData.get("youtubeUrl")!.toString(),
           siteColor: formData.get("siteColor")!.toString(),
           siteColorText: formData.get("siteColorText")!.toString(),
+          policyPrivacyUrl: formData.get("policyPrivacyUrl")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
         },
@@ -40,6 +42,7 @@ export const createUpdateSettings = async (formData: FormData) => {
       site = await prisma.siteSettings.create({
         data: {
           siteName: formData.get("siteName")!.toString(),
+          emailSite: formData.get("emailSite")!.toString(),
           description: formData.get("description")!.toString(),
           facebookUrl: formData.get("facebookUrl")!.toString(),
           twitterUrl: formData.get("twitterUrl")!.toString(),
@@ -48,6 +51,7 @@ export const createUpdateSettings = async (formData: FormData) => {
           youtubeUrl: formData.get("youtubeUrl")!.toString(),
           siteColor: formData.get("siteColor")!.toString(),
           siteColorText: formData.get("siteColorText")!.toString(),
+          policyPrivacyUrl: formData.get("policyPrivacyUrl")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
           siteId,

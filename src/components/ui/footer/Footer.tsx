@@ -2,6 +2,7 @@ import { truncateDescription } from '@/utils/truncateDescripcion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter, CiYoutube } from 'react-icons/ci';
+import { FaXTwitter } from 'react-icons/fa6';
 
 interface Props {
   siteName: string | undefined | null;
@@ -14,6 +15,7 @@ interface Props {
   youtubeUrl: string | undefined | null;
   siteColor: string | undefined | null;
   siteColorText: string | undefined | null;
+  policyPrivacyUrl: string | undefined | null;
   footer: {
     id: string;
     address: string;
@@ -24,7 +26,7 @@ interface Props {
   } | null;
 }
 
-export default function Footer( { siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText }: Props ) {
+export default function Footer( { siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyUrl }: Props ) {
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
   const colorText = siteColorText || '#FFFFFF';
@@ -53,7 +55,7 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">
                     <div className="text-center">
                       <h5 className="tracking-[1px] font-semibold" style={ { color: colorText } }>Dirección: { address ? address : 'No se ha cargado ninguna dirección' }</h5>
-                      <p className="mt-6" style={ { color: colorText } }>Email: { email ? email : 'No se ha cargado ningun email' }</p>
+                      {/* <p className="mt-6" style={ { color: colorText } }>Email: { email ? email : 'No se ha cargado ningun email' }</p> */ }
                     </div>
                   </div>
 
@@ -68,31 +70,36 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
           </div>
           <div className="flex flex-row justify-center items-center py-[10px] gap-4">
             {/* Facebook */ }
-            <Link href={ facebookUrl ? facebookUrl : '#' }>
+            <Link href={ facebookUrl ? facebookUrl : '#' } target="_blank">
               <CiFacebook size={ 30 } className="hover:text-white" style={ { color: colorText } } />
             </Link>
             {/* Twitter */ }
-            <Link href={ twitterUrl ? twitterUrl : '#' }>
-              <CiTwitter size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+            <Link href={ twitterUrl ? twitterUrl : '#' } target="_blank">
+              <FaXTwitter size={ 26 } className="hover:text-white" style={ { color: colorText } } />
             </Link>
             {/* Instagram */ }
-            <Link href={ instagramUrl ? instagramUrl : '#' }>
+            <Link href={ instagramUrl ? instagramUrl : '#' } target="_blank">
               <CiInstagram size={ 30 } className="hover:text-white" style={ { color: colorText } } />
             </Link>
             {/* LinkedIn */ }
-            <Link href={ linkedinUrl ? linkedinUrl : '#' }>
+            <Link href={ linkedinUrl ? linkedinUrl : '#' } target="_blank">
               <CiLinkedin size={ 30 } className="hover:text-white" style={ { color: colorText } } />
             </Link>
             {/* Youtube */ }
-            <Link href={ youtubeUrl ? youtubeUrl : '#' }>
+            <Link href={ youtubeUrl ? youtubeUrl : '#' } target="_blank">
               <CiYoutube size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+            </Link>
+          </div>
+          <div className="flex items-center  justify-center py-[10px] gap-4">
+            <Link href={ policyPrivacyUrl ? policyPrivacyUrl : '#' } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">
+              Política de privacidad
             </Link>
           </div>
         </div>
         <div className="py-[30px] px-0 border-t" style={ { borderColor: colorText } }>
           <div className="container relative text-center">
             <div className="grid items-center">
-              <Link href="https://narvaldreams.com" className="text-center">
+              <Link href="https://narvaldreams.com" className="text-center" target="_blank">
                 <p className="mb-0" style={ { color: colorText } }>© { new Date().getFullYear() } Agencia de desarrollo web NarvalDreams <i className="mdi mdi-heart text-red-600"></i></p>
               </Link>
             </div>

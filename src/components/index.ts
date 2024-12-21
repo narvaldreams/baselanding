@@ -1,3 +1,5 @@
+import { default as ScrollButton } from './ui/scroll/ScrollButton';
+
 export { FormParallax } from './ui/admin/parallax/FormParallax';
 
 export { FormFooter } from './ui/admin/footer/FormFooter';
