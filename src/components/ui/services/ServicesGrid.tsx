@@ -19,8 +19,16 @@ export default function ServicesGrid( { service, siteColor }: Props ) {
         boxShadow: `0 15px 30px rgba(${ parseInt( ( siteColor || '#000' ).slice( 1, 3 ), 16 ) }, ${ parseInt( ( siteColor || '#000' ).slice( 3, 5 ), 16 ) }, ${ parseInt( ( siteColor || '#000' ).slice( 5, 7 ), 16 ) }, 0.7)`,
       } }
     >
-      <div className="w-40 h-40 bg-indigo-600/5 text-indigo-600 rounded-xl text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
-        { mediaUrl && <Image src={ mediaUrl ? mediaUrl : '/uploads/no-image.jpg' } width={ 250 } height={ 250 } alt={ title } /> }
+      <div className="w-40 h-40 bg-indigo-600/5 text-indigo-600 rounded-xl text-3xl flex justify-center items-center shadow-sm shadow-gray-800">
+        { mediaUrl &&
+          <Image
+            src={ mediaUrl ? mediaUrl : '/uploads/no-image.jpg' }
+            alt={ title }
+            width={ 250 }
+            height={ 250 }
+            className="w-full h-full object-cover rounded-xl" // Añadido: para que la imagen se ajuste
+          />
+        }
       </div>
 
       <div className="content mt-7">
