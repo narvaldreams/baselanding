@@ -34,7 +34,7 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
 
   return (
     <div>
-      <footer className="footer relative text-gray-200" style={ { backgroundColor: siteColor || '#000' } }>
+      <footer className="footer relative text-gray-200 shadow-footer-strong" style={ { backgroundColor: siteColor || '#000' } }>
         <div className="container relative">
           <div className="grid grid-cols-12">
             <div className="col-span-12">
@@ -71,25 +71,35 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
           </div>
           <div className="flex flex-row justify-center items-center py-[10px] gap-4">
             {/* Facebook */ }
-            <Link href={ facebookUrl ? facebookUrl : '#' } target="_blank">
-              <CiFacebook size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              facebookUrl && ( <Link href={ facebookUrl ? facebookUrl : '#' } target="_blank">
+                <CiFacebook size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* Twitter */ }
-            <Link href={ twitterUrl ? twitterUrl : '#' } target="_blank">
-              <FaXTwitter size={ 26 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              twitterUrl && ( <Link href={ twitterUrl ? twitterUrl : '#' } target="_blank">
+                <FaXTwitter size={ 26 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* Instagram */ }
-            <Link href={ instagramUrl ? instagramUrl : '#' } target="_blank">
-              <CiInstagram size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              instagramUrl && ( <Link href={ instagramUrl ? instagramUrl : '#' } target="_blank">
+                <CiInstagram size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* LinkedIn */ }
-            <Link href={ linkedinUrl ? linkedinUrl : '#' } target="_blank">
-              <CiLinkedin size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              linkedinUrl && ( <Link href={ linkedinUrl ? linkedinUrl : '#' } target="_blank">
+                <CiLinkedin size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* Youtube */ }
-            <Link href={ youtubeUrl ? youtubeUrl : '#' } target="_blank">
-              <CiYoutube size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              youtubeUrl && ( <Link href={ youtubeUrl ? youtubeUrl : '#' } target="_blank">
+                <CiYoutube size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
           </div>
           <div className="flex items-center  justify-center py-[10px] gap-4">
             <Link href={ policyPrivacyUrl ? policyPrivacyUrl : '#' } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">

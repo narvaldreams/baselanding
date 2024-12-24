@@ -43,26 +43,36 @@ export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, i
         {/* Iconos de redes sociales */ }
         <div className="flex items-center space-x-2 sm:space-x-4">
           {/* Facebook */ }
-          <Link href={ facebookUrl || "#" } target="_blank">
-            <CiFacebook size={ 25 } className="hover:text-white" style={ { color: colorText } } />
-          </Link>
-          {/* Twitter */ }
-          <Link href={ twitterUrl || "#" } target="_blank">
-            <FaXTwitter size={ 22 } className="hover:text-white" style={ { color: colorText } } />
-          </Link>
-          {/* Instagram */ }
-          <Link href={ instagramUrl || "#" } target="_blank">
+          {
+            facebookUrl && ( <Link href={ facebookUrl || "#" } target="_blank">
+              <CiFacebook size={ 25 } className="hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
 
-            <CiInstagram size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
-          </Link>
+          {/* Twitter */ }
+          {
+            twitterUrl && ( <Link href={ twitterUrl || "#" } target="_blank">
+              <FaXTwitter size={ 22 } className="hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
+          {/* Instagram */ }
+          {
+            instagramUrl && ( <Link href={ instagramUrl || "#" } target="_blank">
+              <CiInstagram size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
           {/* LinkedIn */ }
-          <Link href={ linkedinUrl || "#" } target="_blank">
-            <CiLinkedin size={ 25 } className="hover:text-white" style={ { color: colorText } } />
-          </Link>
+          {
+            linkedinUrl && ( <Link href={ linkedinUrl || "#" } target="_blank">
+              <CiLinkedin size={ 25 } className="hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
           {/* YouTube */ }
-          <Link href={ youtubeUrl || "#" } target="_blank">
-            <CiYoutube size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
-          </Link>
+          {
+            youtubeUrl && ( <Link href={ youtubeUrl || "#" } target="_blank">
+              <CiYoutube size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
         </div>
 
       </div>

@@ -51,6 +51,7 @@ export default {
         "2xl": "0 25px 50px -12px rgb(60 72 88 / 0.25)",
         inner: "inset 0 2px 4px 0 rgb(60 72 88 / 0.05)",
         testi: "2px 2px 2px -1px rgb(60 72 88 / 0.15)",
+        'footer-strong': '0 -1px 4px rgba(0, 0, 0, 0.9)',
       },
 
       spacing: {
