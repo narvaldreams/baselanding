@@ -3,6 +3,7 @@ import { createUpdateHero } from '@/actions/auth/hero/create-update';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { Spinner } from '../spinner/Spinner';
 
 export interface FormInputs {
   title: string;
@@ -28,6 +29,8 @@ interface Props {
 }
 
 export const FormHero = ( { hero }: Props ) => {
+
+  const [ loaded, setLoaded ] = useState( false );
 
   const {
     register,
@@ -117,6 +120,14 @@ export const FormHero = ( { hero }: Props ) => {
       title: message,
     } );
   }, [ message ] );
+
+  useEffect( () => {
+    setLoaded( true );
+  }, [] );
+
+  if ( !loaded ) {
+    return <Spinner />;
+  }
 
   return (
     <form onSubmit={ handleSubmit( onSubmit ) } className="w-full px-10">

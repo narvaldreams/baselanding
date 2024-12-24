@@ -3,6 +3,7 @@ import { createUpdateAbout } from "@/actions/auth/about/create-update";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { Spinner } from '../spinner/Spinner';
 
 export interface FormInputs {
   title: string;
@@ -25,6 +26,8 @@ interface Props {
 
 export const FormAbout = ( { about }: Props ) => {
 
+  const [ loaded, setLoaded ] = useState( false );
+
   const {
     register,
     handleSubmit,
@@ -36,24 +39,24 @@ export const FormAbout = ( { about }: Props ) => {
   const [ imagePreview, setImagePreview ] = useState<string | null>( null );
   const [ loading, setLoading ] = useState<boolean>( false );
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-  
-    if (file) {
+  const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
+    const file = event.target.files?.[ 0 ];
+
+    if ( file ) {
       const MAX_SIZE = 1 * 1024 * 1024;
-  
-      if (file.size > MAX_SIZE) {
-        return Swal.fire('Opsss', 'La imagen es demasiado grande.', 'error');
+
+      if ( file.size > MAX_SIZE ) {
+        return Swal.fire( 'Opsss', 'La imagen es demasiado grande.', 'error' );
       }
-  
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setImagePreview( reader.result as string );
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL( file );
     }
   };
-  
+
 
   const onSubmit = async ( data: FormInputs ) => {
     setLoading( true );
@@ -110,6 +113,14 @@ export const FormAbout = ( { about }: Props ) => {
       title: message,
     } );
   }, [ message ] );
+
+  useEffect( () => {
+    setLoaded( true );
+  }, [] );
+
+  if ( !loaded ) {
+    return <Spinner />;
+  }
 
   return (
     <form onSubmit={ handleSubmit( onSubmit ) } className="w-full px-10">

@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { SketchPicker } from "react-color";
+import { EditorTexto } from '../editor/EditorTexto';
+import { Spinner } from '../spinner/Spinner';
 
 
 export interface FormInputs {
@@ -59,9 +61,7 @@ export const FormSettings = ( { site }: Props ) => {
   const [ showSiteColorPicker, setShowSiteColorPicker ] = useState( false );
   const [ showTextColorPicker, setShowTextColorPicker ] = useState( false );
 
-  useEffect( () => {
-    setLoaded( true );
-  }, [] );
+
 
 
   const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
@@ -155,6 +155,14 @@ export const FormSettings = ( { site }: Props ) => {
     } );
   }, [ message ] );
 
+  useEffect( () => {
+    setLoaded( true );
+  }, [] );
+
+  if ( !loaded ) {
+    return <Spinner />;
+  }
+
   return (
     <form onSubmit={ handleSubmit( onSubmit ) } className="w-full px-10">
       <h2 className="text-base/7 font-semibold text-gray-900">Configuración del Sitio</h2>
@@ -195,13 +203,14 @@ export const FormSettings = ( { site }: Props ) => {
         <div className="sm:col-span-6">
           <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">Descripción</label>
           <div className="mt-2">
-            <textarea
+            <EditorTexto name="description" control={ control } defaultValue={ site?.description } />
+            {/* <textarea
               id="description"
               rows={ 3 }
               { ...register( 'description', { required: true } ) }
               placeholder="Ingresa la descripción del sitio"
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            ></textarea>
+            ></textarea> */}
           </div>
         </div>
 

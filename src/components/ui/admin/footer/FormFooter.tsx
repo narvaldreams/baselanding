@@ -3,6 +3,7 @@ import { createUpdateFooter } from '@/actions/auth/footer/create-update';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { Spinner } from '../spinner/Spinner';
 
 
 export interface FormInputs {
@@ -25,6 +26,8 @@ interface Props {
 }
 
 export const FormFooter = ( { footer }: Props ) => {
+
+  const [ loaded, setLoaded ] = useState( false );
 
   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<FormInputs>();
 
@@ -80,6 +83,14 @@ export const FormFooter = ( { footer }: Props ) => {
       title: message,
     } );
   }, [ message ] );
+
+  useEffect( () => {
+    setLoaded( true );
+  }, [] );
+
+  if ( !loaded ) {
+    return <Spinner />;
+  }
 
   return (
 

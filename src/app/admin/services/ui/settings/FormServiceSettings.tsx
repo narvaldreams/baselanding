@@ -1,5 +1,6 @@
 "use client";
 import { createUpdateServiceSettings } from '@/actions/auth/services/Settings/create-update';
+import { Spinner } from '@/components/ui/admin/spinner/Spinner';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -28,6 +29,9 @@ interface Props {
 }
 
 export const FormServiceSettings = ( { services }: Props ) => {
+
+  const [ loaded, setLoaded ] = useState( false );
+
   const {
     register,
     handleSubmit,
@@ -115,6 +119,14 @@ export const FormServiceSettings = ( { services }: Props ) => {
       title: message,
     } );
   }, [ message ] );
+
+  useEffect( () => {
+    setLoaded( true );
+  }, [] );
+
+  if ( !loaded ) {
+    return <Spinner />;
+  }
 
   return (
     <form onSubmit={ handleSubmit( onSubmit ) } className="w-full px-10">
