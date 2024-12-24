@@ -48,8 +48,6 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
                       </Link>
                       <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
                     </div>
-
-                    {/*  <p className="mt-6" style={ { color: colorText } }>{ description ? truncateDescription( description ) : 'Descripción de la web' }</p> */ }
                     <ContenidoDynamico text={ description ? description : 'Descripción de la web' } colorText={ colorText } />
                   </div>
 
