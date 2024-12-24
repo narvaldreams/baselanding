@@ -20,7 +20,7 @@ export interface FormInputs {
   youtubeUrl: string;
   siteColor: string;
   siteColorText: string;
-  policyPrivacyUrl: string;
+  policyPrivacyText: string;
   googleAnalyticsId?: string;
   googleTagManagerId?: string;
 }
@@ -40,7 +40,7 @@ interface SiteSettings {
   siteColorText: string | null;
   googleAnalyticsId: string | null;
   googleTagManagerId: string | null;
-  policyPrivacyUrl: string | null;
+  policyPrivacyText: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -80,7 +80,7 @@ export const FormSettings = ( { site }: Props ) => {
     setLoading( true );
     setMessage( '' );
 
-    const { siteName, emailSite, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyUrl } = data;
+    const { siteName, emailSite, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyText } = data;
 
     const formData = new FormData();
 
@@ -94,7 +94,7 @@ export const FormSettings = ( { site }: Props ) => {
     formData.append( "youtubeUrl", youtubeUrl );
     formData.append( "siteColor", siteColor );
     formData.append( "siteColorText", siteColorText );
-    formData.append( "policyPrivacyUrl", policyPrivacyUrl );
+    formData.append( "policyPrivacyText", policyPrivacyText );
     formData.append( "googleAnalyticsId", googleAnalyticsId ? googleAnalyticsId : "" );
     formData.append( "googleTagManagerId", googleTagManagerId ? googleTagManagerId : "" );
 
@@ -126,7 +126,7 @@ export const FormSettings = ( { site }: Props ) => {
       setValue( 'youtubeUrl', site.youtubeUrl ? site.youtubeUrl : '' );
       setValue( 'siteColor', site.siteColor ? site.siteColor : '' );
       setValue( 'siteColorText', site.siteColorText ? site.siteColorText : '' );
-      setValue( 'policyPrivacyUrl', site.policyPrivacyUrl ? site.policyPrivacyUrl : '' );
+      setValue( 'policyPrivacyText', site.policyPrivacyText ? site.policyPrivacyText : '' );
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
       if ( site.siteLogoUrl ) {
@@ -204,13 +204,6 @@ export const FormSettings = ( { site }: Props ) => {
           <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">Descripción</label>
           <div className="mt-2">
             <EditorTexto name="description" control={ control } defaultValue={ site?.description } />
-            {/* <textarea
-              id="description"
-              rows={ 3 }
-              { ...register( 'description', { required: true } ) }
-              placeholder="Ingresa la descripción del sitio"
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            ></textarea> */}
           </div>
         </div>
 
@@ -394,16 +387,11 @@ export const FormSettings = ( { site }: Props ) => {
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             />
           </div>
-
-          <div className="flex flex-col gap-2">
-            <label htmlFor="policyPrivacyUrl" className="block text-sm/6 font-medium text-gray-900">Políticas de privacidad URL</label>
-            <input
-              type="text"
-              id="policyPrivacyUrl"
-              placeholder="Ingresa la URL de las Políticas de privacidad"
-              { ...register( 'policyPrivacyUrl' ) }
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            />
+        </div>
+        <div className="sm:col-span-6">
+          <label htmlFor="policyPrivacyText" className="block text-sm/6 font-medium text-gray-900">Políticas de privacidad</label>
+          <div className="mt-2">
+            <EditorTexto name="policyPrivacyText" control={ control } defaultValue={ site?.policyPrivacyText ?? '' } />
           </div>
         </div>
 

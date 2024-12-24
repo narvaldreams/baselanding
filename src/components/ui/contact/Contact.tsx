@@ -8,7 +8,7 @@ interface Props {
 
 
 export default function Contact( { siteColor, siteColorText }: Props ) {
-  return ( <div className="container relative">
+  return ( <div className="container relative mt-10">
     <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
       <div className="lg:col-span-7 md:col-span-6">
         <Image src={ `/uploads/contact.svg` } width={ 450 } height={ 450 } className="mx-auto" alt='Formualio de contacto' />

@@ -66,6 +66,20 @@ const MenuBar = ( { editor }: MenuBarProps ) => {
         >
           H1
         </button>
+        <button
+          onClick={ handleClick( () => editor.chain().focus().toggleHeading( { level: 2 } ).run() ) }
+          className={ `p-2 ${ editor.isActive( 'heading', { level: 2 } ) ? 'bg-gray-200' : '' }` }
+          type="button"
+        >
+          H2
+        </button>
+        <button
+          onClick={ handleClick( () => editor.chain().focus().toggleHeading( { level: 3 } ).run() ) }
+          className={ `p-2 ${ editor.isActive( 'heading', { level: 3 } ) ? 'bg-gray-200' : '' }` }
+          type="button"
+        >
+          H3
+        </button>
       </div>
 
       <div className="flex gap-1 border-r pr-2">

@@ -27,42 +27,58 @@ export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, i
       <div className="container flex items-center justify-between py-4 flex-col sm:flex-row">
         {/* Logo y Nombre del sitio */ }
 
-        <div className="flex items-center space-x-4 mb-4 sm:mb-0">
+        <div className="flex items-end space-x-4 mb-4 sm:mb-0">
           <Link className="logo" href="/">
             <CustomImage
               src={ logoUrl! }
               width={ 50 }
               height={ 50 }
-              className="hidden dark:inline-block py-3"
-              alt={ siteName ? siteName : 'Logo' }
+              className="hidden dark:inline-block"
+              alt={ siteName ? siteName : "Logo" }
             />
           </Link>
-          <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
+          <h1
+            className="text-3xl font-bold tracking-wide"
+            style={ { color: colorText } }
+          >
+            { siteName ? siteName : "Nombre del sitio" }
+          </h1>
         </div>
+
 
         {/* Iconos de redes sociales */ }
         <div className="flex items-center space-x-2 sm:space-x-4">
           {/* Facebook */ }
-          <Link href={ facebookUrl || "#" } target="_blank">
-            <CiFacebook size={ 25 } className="hover:text-white" style={ { color: colorText } } />
-          </Link>
-          {/* Twitter */ }
-          <Link href={ twitterUrl || "#" } target="_blank">
-            <FaXTwitter size={ 22 } className="hover:text-white" style={ { color: colorText } } />
-          </Link>
-          {/* Instagram */ }
-          <Link href={ instagramUrl || "#" } target="_blank">
+          {
+            facebookUrl && ( <Link href={ facebookUrl || "#" } target="_blank">
+              <CiFacebook size={ 25 } className="hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
 
-            <CiInstagram size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
-          </Link>
+          {/* Twitter */ }
+          {
+            twitterUrl && ( <Link href={ twitterUrl || "#" } target="_blank">
+              <FaXTwitter size={ 20 } className="hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
+          {/* Instagram */ }
+          {
+            instagramUrl && ( <Link href={ instagramUrl || "#" } target="_blank">
+              <CiInstagram size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
           {/* LinkedIn */ }
-          <Link href={ linkedinUrl || "#" } target="_blank">
-            <CiLinkedin size={ 25 } className="hover:text-white" style={ { color: colorText } } />
-          </Link>
+          {
+            linkedinUrl && ( <Link href={ linkedinUrl || "#" } target="_blank">
+              <CiLinkedin size={ 25 } className="hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
           {/* YouTube */ }
-          <Link href={ youtubeUrl || "#" } target="_blank">
-            <CiYoutube size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
-          </Link>
+          {
+            youtubeUrl && ( <Link href={ youtubeUrl || "#" } target="_blank">
+              <CiYoutube size={ 25 } className=" hover:text-white" style={ { color: colorText } } />
+            </Link> )
+          }
         </div>
 
       </div>

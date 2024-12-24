@@ -44,7 +44,7 @@ model SiteSettings {
   youtubeUrl         String?
   siteColor          String?
   siteColorText      String?
-  policyPrivacyUrl   String?
+  policyPrivacyText  String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
   siteId             String // ID del sitio
@@ -106,7 +106,7 @@ model Parallax {
 
 model RegistrationForm {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  fullName   String
+  fullName    String
   email       String   @unique
   phoneNumber String
   description String

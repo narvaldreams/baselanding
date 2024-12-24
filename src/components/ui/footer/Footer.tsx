@@ -6,6 +6,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 import ContenidoDynamico from '../admin/contenido/DynamicContent';
 
 interface Props {
+  id: string | undefined | null;
   siteName: string | undefined | null;
   logoUrl: string | undefined | null;
   description: string | undefined | null;
@@ -16,7 +17,7 @@ interface Props {
   youtubeUrl: string | undefined | null;
   siteColor: string | undefined | null;
   siteColorText: string | undefined | null;
-  policyPrivacyUrl: string | undefined | null;
+  policyPrivacyText: string | undefined | null;
   footer: {
     id: string;
     address: string;
@@ -27,14 +28,16 @@ interface Props {
   } | null;
 }
 
-export default function Footer( { siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyUrl }: Props ) {
+export default function Footer( { id, siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyText }: Props ) {
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
   const colorText = siteColorText || '#FFFFFF';
 
+  console.log( { policyPrivacyText } );
+
   return (
     <div>
-      <footer className="footer relative text-gray-200" style={ { backgroundColor: siteColor || '#000' } }>
+      <footer className="footer relative text-gray-200 shadow-footer-strong" style={ { backgroundColor: siteColor || '#000' } }>
         <div className="container relative">
           <div className="grid grid-cols-12">
             <div className="col-span-12">
@@ -48,8 +51,6 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
                       </Link>
                       <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
                     </div>
-
-                    {/*  <p className="mt-6" style={ { color: colorText } }>{ description ? truncateDescription( description ) : 'Descripción de la web' }</p> */ }
                     <ContenidoDynamico text={ description ? description : 'Descripción de la web' } colorText={ colorText } />
                   </div>
 
@@ -71,28 +72,38 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
           </div>
           <div className="flex flex-row justify-center items-center py-[10px] gap-4">
             {/* Facebook */ }
-            <Link href={ facebookUrl ? facebookUrl : '#' } target="_blank">
-              <CiFacebook size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              facebookUrl && ( <Link href={ facebookUrl ? facebookUrl : '#' } target="_blank">
+                <CiFacebook size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* Twitter */ }
-            <Link href={ twitterUrl ? twitterUrl : '#' } target="_blank">
-              <FaXTwitter size={ 26 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              twitterUrl && ( <Link href={ twitterUrl ? twitterUrl : '#' } target="_blank">
+                <FaXTwitter size={ 26 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* Instagram */ }
-            <Link href={ instagramUrl ? instagramUrl : '#' } target="_blank">
-              <CiInstagram size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              instagramUrl && ( <Link href={ instagramUrl ? instagramUrl : '#' } target="_blank">
+                <CiInstagram size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* LinkedIn */ }
-            <Link href={ linkedinUrl ? linkedinUrl : '#' } target="_blank">
-              <CiLinkedin size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              linkedinUrl && ( <Link href={ linkedinUrl ? linkedinUrl : '#' } target="_blank">
+                <CiLinkedin size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
             {/* Youtube */ }
-            <Link href={ youtubeUrl ? youtubeUrl : '#' } target="_blank">
-              <CiYoutube size={ 30 } className="hover:text-white" style={ { color: colorText } } />
-            </Link>
+            {
+              youtubeUrl && ( <Link href={ youtubeUrl ? youtubeUrl : '#' } target="_blank">
+                <CiYoutube size={ 30 } className="hover:text-white" style={ { color: colorText } } />
+              </Link> )
+            }
           </div>
           <div className="flex items-center  justify-center py-[10px] gap-4">
-            <Link href={ policyPrivacyUrl ? policyPrivacyUrl : '#' } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">
+            <Link href={ policyPrivacyText ? `/policy-privacy/${ id }` : '#' } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">
               Política de privacidad
             </Link>
           </div>
