@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter, CiYoutube } from 'react-icons/ci';
 import { FaXTwitter } from 'react-icons/fa6';
+import ContenidoDynamico from '../admin/contenido/DynamicContent';
 
 interface Props {
   siteName: string | undefined | null;
@@ -48,8 +49,8 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
                       <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
                     </div>
 
-
-                    <p className="mt-6" style={ { color: colorText } }>{ description ? truncateDescription( description ) : 'Descripción de la web' }</p>
+                    {/*  <p className="mt-6" style={ { color: colorText } }>{ description ? truncateDescription( description ) : 'Descripción de la web' }</p> */ }
+                    <ContenidoDynamico text={ description ? description : 'Descripción de la web' } colorText={ colorText } />
                   </div>
 
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">

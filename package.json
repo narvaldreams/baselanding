@@ -10,7 +10,15 @@
     "seed": "ts-node src/seed/seed-database.ts"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "^6.1.0",
+=======
+    "@prisma/client": "^6.0.1",
+    "@tiptap/extension-text-align": "^2.10.4",
+    "@tiptap/pm": "^2.10.4",
+    "@tiptap/react": "^2.10.4",
+    "@tiptap/starter-kit": "^2.10.4",
+>>>>>>> 95d1b02d9406369ed43583a6623f28e6bb161b2b
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
