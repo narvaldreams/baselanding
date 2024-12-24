@@ -3,7 +3,6 @@ import { getDataPage } from '@/actions/information/get-information';
 import { About, Contact, Parallax, Footer, Service, TopMenu } from '@/components';
 import ScrollButton from '@/components/ui/scroll/ScrollButton';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default async function Page() {
 
@@ -79,6 +78,7 @@ export default async function Page() {
       {/* Footer */ }
 
       <Footer
+        id={ siteSettings?.id }
         siteName={ siteSettings?.siteName }
         footer={ footer }
         logoUrl={ siteSettings?.siteLogoUrl }
@@ -90,7 +90,7 @@ export default async function Page() {
         youtubeUrl={ siteSettings?.youtubeUrl }
         siteColor={ siteSettings?.siteColor }
         siteColorText={ siteSettings?.siteColorText }
-        policyPrivacyUrl={ siteSettings?.policyPrivacyUrl }
+        policyPrivacyText={ siteSettings?.policyPrivacyText }
       />
 
     </>

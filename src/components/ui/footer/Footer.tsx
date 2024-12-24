@@ -6,6 +6,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 import ContenidoDynamico from '../admin/contenido/DynamicContent';
 
 interface Props {
+  id: string | undefined | null;
   siteName: string | undefined | null;
   logoUrl: string | undefined | null;
   description: string | undefined | null;
@@ -16,7 +17,7 @@ interface Props {
   youtubeUrl: string | undefined | null;
   siteColor: string | undefined | null;
   siteColorText: string | undefined | null;
-  policyPrivacyUrl: string | undefined | null;
+  policyPrivacyText: string | undefined | null;
   footer: {
     id: string;
     address: string;
@@ -27,10 +28,12 @@ interface Props {
   } | null;
 }
 
-export default function Footer( { siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyUrl }: Props ) {
+export default function Footer( { id, siteName, logoUrl, footer, description, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyText }: Props ) {
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
   const colorText = siteColorText || '#FFFFFF';
+
+  console.log( { policyPrivacyText } );
 
   return (
     <div>
@@ -100,7 +103,7 @@ export default function Footer( { siteName, logoUrl, footer, description, facebo
             }
           </div>
           <div className="flex items-center  justify-center py-[10px] gap-4">
-            <Link href={ policyPrivacyUrl ? policyPrivacyUrl : '#' } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">
+            <Link href={ policyPrivacyText ? `/policy-privacy/${ id }` : '#' } className="text-[16px] focus:outline-none" style={ { color: colorText } } target="_blank">
               Política de privacidad
             </Link>
           </div>
