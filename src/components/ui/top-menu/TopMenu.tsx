@@ -58,7 +58,7 @@ export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, i
           {/* Twitter */ }
           {
             twitterUrl && ( <Link href={ twitterUrl || "#" } target="_blank">
-              <FaXTwitter size={ 22 } className="hover:text-white" style={ { color: colorText } } />
+              <FaXTwitter size={ 20 } className="hover:text-white" style={ { color: colorText } } />
             </Link> )
           }
           {/* Instagram */ }

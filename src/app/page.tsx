@@ -13,7 +13,7 @@ export default async function Page() {
       <TopMenu
         logoUrl={ siteSettings?.siteLogoUrl }
         siteName={ siteSettings?.siteName }
-        facebookUrl={ siteSettings?.youtubeUrl }
+        facebookUrl={ siteSettings?.facebookUrl }
         twitterUrl={ siteSettings?.twitterUrl }
         instagramUrl={ siteSettings?.instagramUrl }
         linkedinUrl={ siteSettings?.linkedinUrl }
