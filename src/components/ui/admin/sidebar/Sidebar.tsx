@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { BiSolidBookAlt } from 'react-icons/bi';
-import { FaImage } from 'react-icons/fa';
+import { FaImage, FaWpforms } from 'react-icons/fa';
 import { IoHomeOutline, IoImageSharp, IoInformationCircleOutline, IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlineMiscellaneousServices } from 'react-icons/md';
 import SimpleBarReact from "simplebar-react";
@@ -54,6 +54,9 @@ export const Sidebar = () => {
             </li>
             <li>
               <Link href="/admin/footer" onClick={ ( e ) => { setSubManu( subManu === "/admin/footer" ? "" : "/admin/footer" ); } }><BiSolidBookAlt className="me-3 icon" />Pie de página</Link>
+            </li>
+            <li>
+              <Link href="/admin/form" onClick={ ( e ) => { setSubManu( subManu === "/admin/form" ? "" : "/admin/form" ); } }><FaWpforms className="me-3 icon" />Solicitudes de Contacto</Link>
             </li>
           </ul>
         </SimpleBarReact>

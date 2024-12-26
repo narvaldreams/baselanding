@@ -116,7 +116,7 @@ export const FormFooter = ( { footer }: Props ) => {
         </div>
 
         <div className="sm:col-span-3">
-          <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">Email</label>
+          <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">Email de contacto</label>
           <div className="mt-2">
             <input
               type="text"
