@@ -59,7 +59,7 @@ export default function Topnav( { setToggle, toggle }: Props ) {
                   } >
                     <ul className="py-2 text-start">
                       <li>
-                        <Link href="#" className="flex items-center font-medium py-1 px-4 dark:text-white/70 hover:text-indigo-600 dark:hover:text-white"><AiOutlineUser className="me-2" />Perfil</Link>
+                        <Link href="/admin/profile" className="flex items-center font-medium py-1 px-4 dark:text-white/70 hover:text-indigo-600 dark:hover:text-white"><AiOutlineUser className="me-2" />Perfil</Link>
                       </li>
                       <li>
                         <button className="flex items-center font-medium py-1 px-4 dark:text-white/70 hover:text-indigo-600 dark:hover:text-white" onClick={ onLogout }>
