@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Spinner } from '../spinner/Spinner';
+import EditorTexto from '../editor/EditorTexto';
 
 interface FormInputs {
   title: string;
@@ -30,6 +31,7 @@ export const FormParallax = ( { parallax }: Props ) => {
   const [ loaded, setLoaded ] = useState( false );
 
   const {
+    control,
     register,
     handleSubmit,
     setValue,
@@ -72,8 +74,6 @@ export const FormParallax = ( { parallax }: Props ) => {
     if ( imageUrl instanceof FileList && imageUrl.length > 0 ) {
       formData.append( "imageUrl", imageUrl[ 0 ] );
     }
-
-    console.log( { formData } );
 
     const { message, ok } = await createUpdateParallax( formData );
 
@@ -159,13 +159,7 @@ export const FormParallax = ( { parallax }: Props ) => {
             Descripción
           </label>
           <div className="mt-2">
-            <textarea
-              id="description"
-              rows={ 3 }
-              placeholder="Ingresa la descripción"
-              { ...register( "description", { required: true } ) } // register
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            ></textarea>
+            <EditorTexto name="description" control={ control } defaultValue={ parallax?.description } maxCharacters={ 200 } />
           </div>
         </div>
 

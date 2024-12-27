@@ -92,8 +92,8 @@ export const FormSettings = ( { site }: Props ) => {
     formData.append( "instagramUrl", instagramUrl );
     formData.append( "linkedinUrl", linkedinUrl );
     formData.append( "youtubeUrl", youtubeUrl );
-    formData.append( "siteColor", siteColor );
-    formData.append( "siteColorText", siteColorText );
+    formData.append( "siteColor", siteColor ? siteColor : "" );
+    formData.append( "siteColorText", siteColorText ? siteColorText : "" );
     formData.append( "policyPrivacyText", policyPrivacyText );
     formData.append( "googleAnalyticsId", googleAnalyticsId ? googleAnalyticsId : "" );
     formData.append( "googleTagManagerId", googleTagManagerId ? googleTagManagerId : "" );

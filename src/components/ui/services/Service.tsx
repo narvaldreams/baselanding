@@ -1,3 +1,4 @@
+import ContenidoDynamico from '../admin/contenido/DynamicContent';
 import ServicesGrid from './ServicesGrid';
 
 export interface Service {
@@ -25,14 +26,15 @@ export default function Service( { services, siteColor, title, description, medi
       <div className="grid grid-cols-1 pb-8 text-center">
         <h6 className="text-2xl font-bold uppercase mb-2" style={ { color: siteColor || '#000' } }>{ title ? title : 'Titulo del servicio' }</h6>
         <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">¿Que ofrecemos?</h3>
-        <p className="text-slate-400 max-w-xl mx-auto">{ description ? description : 'Descripción del servicio' }</p>
+        <div className="max-w-xl mx-auto">
+          <ContenidoDynamico text={ description ? description : 'Descripción del servicio' } colorText={ '#94a3b8' } />
+        </div>
       </div>
 
       <div className="flex flex-wrap justify-center items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl place-items-center">
           { services.map( ( service ) => (
             <ServicesGrid key={ service.id } service={ service } siteColor={ siteColor } />
-
           ) ) }
         </div>
       </div>

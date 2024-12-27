@@ -1,3 +1,4 @@
+import ContenidoDynamico from '../admin/contenido/DynamicContent';
 
 interface Props {
   siteColor: string | undefined | null;
@@ -29,9 +30,9 @@ export default function Parallax( { parallax, siteColor }: Props ) {
           <h3 className="mb-4 md:text-3xl text-2xl text-white font-medium">
             { title || 'Titulo del parallax' }
           </h3>
-          <p className="text-white/80 max-w-xl mx-auto">
-            { description || 'Descripción del parallax' }
-          </p>
+          <div className="max-w-xl mx-auto">
+            <ContenidoDynamico text={ description ? description : 'Descripción del parallax' } colorText={ '#FFFFFFCC' } />
+          </div>
         </div>
       </div>
     </section>

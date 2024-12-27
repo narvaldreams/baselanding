@@ -32,7 +32,7 @@ export default function Footer( { id, siteName, logoUrl, footer, description, fa
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
   const colorText = siteColorText || '#FFFFFF';
-  const descripcionSite = description!.length > 7 ? description : 'Descripción de la web';
+  const descripcionSite = description ? description : 'Descripción de la web';
 
   return (
     <div>
@@ -56,7 +56,6 @@ export default function Footer( { id, siteName, logoUrl, footer, description, fa
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">
                     <div className="text-center">
                       <h5 className="tracking-[1px] font-semibold" style={ { color: colorText } }>Dirección: { address ? address : 'No se ha cargado ninguna dirección' }</h5>
-                      {/* <p className="mt-6" style={ { color: colorText } }>Email: { email ? email : 'No se ha cargado ningun email' }</p> */ }
                     </div>
                   </div>
 
