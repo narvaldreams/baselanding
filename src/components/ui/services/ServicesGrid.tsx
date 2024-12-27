@@ -35,7 +35,7 @@ export default function ServicesGrid( { service, siteColor }: Props ) {
       <div className="content mt-7">
         <Link href="/page-services" className="title h5 text-lg font-medium hover:text-indigo-600">{ title }</Link>
         <div className="mt-3">
-          <ContenidoDynamico text={ service?.description ? service?.description : 'Contenido del servicio' } colorText={ '#94a3b8' } />
+          <ContenidoDynamico text={ description ? description : 'Contenido del servicio' } colorText={ '#94a3b8' } />
         </div>
       </div>
     </div>
