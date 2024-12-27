@@ -30,7 +30,7 @@ model User {
 }
 
 model SiteSettings {
-  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
   siteName           String
   emailSite          String
   siteLogoUrl        String?
@@ -45,9 +45,10 @@ model SiteSettings {
   siteColor          String?
   siteColorText      String?
   policyPrivacyText  String?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-  siteId             String // ID del sitio
+  smtp_gmail_key     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  siteId    String // ID del sitio
 }
 
 model Hero {

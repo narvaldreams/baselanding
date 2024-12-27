@@ -131,7 +131,7 @@ export const Formulario = ( { siteColor, siteColorText }: Props ) => {
         id="submit"
         name="send"
         disabled={ isLoading }
-        className="py-2 px-5 font-semibold tracking-wide border align-middle duration-500 text-base text-center rounded-md justify-center flex items-center"
+        className="py-2 px-5 font-semibold tracking-wide border align-middle duration-500 text-base text-center rounded-md justify-center flex items-center bg-slate-900 text-gray-200"
         style={ { backgroundColor: siteColor || '#000', color: siteColorText || '#FFF' } }
       >
         { isLoading ? 'Enviando...' : 'Solicita información' }

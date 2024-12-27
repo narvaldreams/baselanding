@@ -23,7 +23,7 @@ export default function TopMenu( { logoUrl, siteName, facebookUrl, twitterUrl, i
 
 
   return (
-    <nav id="topnav" className="defaultscroll bg-slate-900 nav-sticky" style={ { backgroundColor: siteColor || '#000' } }>
+    <nav id="topnav" className="defaultscroll bg-slate-900 nav-sticky text-gray-200" style={ { backgroundColor: siteColor || '#000' } }>
       <div className="container flex items-center justify-between py-4 flex-col sm:flex-row">
         {/* Logo y Nombre del sitio */ }
 

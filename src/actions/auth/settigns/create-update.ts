@@ -35,6 +35,7 @@ export const createUpdateSettings = async (formData: FormData) => {
           policyPrivacyText: formData.get("policyPrivacyText")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
+          smtp_gmail_key: formData.get("smtp_gmail_key")!.toString(),
         },
       });
       message = "Se actualizó correctamente";
@@ -54,6 +55,7 @@ export const createUpdateSettings = async (formData: FormData) => {
           policyPrivacyText: formData.get("policyPrivacyText")!.toString(),
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
+          smtp_gmail_key: formData.get("smtp_gmail_key")!.toString(),
           siteId,
         },
       });

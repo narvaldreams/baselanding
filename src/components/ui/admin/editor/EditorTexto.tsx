@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
 import { useController, Control } from 'react-hook-form';
 import { useState } from 'react';
+import { CharacterCount } from '@tiptap/extension-character-count';
 
 interface MenuBarProps {
   editor: Editor | null;
@@ -14,6 +15,7 @@ interface EditorTextoProps {
   name: string;
   control: Control<any>;
   defaultValue?: string;
+  maxCharacters?: number;
 }
 
 const MenuBar = ( { editor }: MenuBarProps ) => {
@@ -162,37 +164,46 @@ const MenuBar = ( { editor }: MenuBarProps ) => {
   );
 };
 
-export const EditorTexto = ( { name, control, defaultValue = '<p></p>' }: EditorTextoProps ) => {
-
+export const EditorTexto = ( {
+  name,
+  control,
+  defaultValue = '<p></p>',
+  maxCharacters = 200, // Límite de caracteres configurable
+}: EditorTextoProps ) => {
   const [ isLoading, setIsLoading ] = useState( true );
-
-  const { field } = useController( {
-    name,
-    control,
-    defaultValue
-  } );
+  const { field } = useController( { name, control, defaultValue } );
 
   const editor = useEditor( {
     extensions: [
-      StarterKit,
+      StarterKit.configure( {
+        heading: { levels: [ 1, 2, 3 ] }, // Activa niveles de encabezados específicos
+      } ),
       TextAlign.configure( {
-        types: [ 'heading', 'paragraph' ],
-        alignments: [ 'left', 'center', 'right' ]
+        types: [ 'heading', 'paragraph' ], // Configura correctamente para no interferir con Heading
+      } ),
+      CharacterCount.configure( {
+        limit: maxCharacters,
       } ),
     ],
     content: field.value,
     onUpdate: ( { editor } ) => {
-      field.onChange( editor.getHTML() );
+      field.onChange( editor.getHTML() ); // Actualiza el contenido
     },
     onCreate: () => {
       setIsLoading( false );
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose max-w-none focus:outline-none'
-      }
-    }
+        class: 'prose prose-sm sm:prose max-w-none focus:outline-none',
+      },
+    },
   } );
+  
+  console.log( editor?.getHTML() );
+
+
+  // Verificación del conteo de caracteres en cada actualización
+  const characterCount = editor?.storage.characterCount.characters();
 
   if ( isLoading ) {
     return (
@@ -207,6 +218,9 @@ export const EditorTexto = ( { name, control, defaultValue = '<p></p>' }: Editor
       <MenuBar editor={ editor } />
       <div className="p-4 border-gray-600">
         <EditorContent editor={ editor } />
+        <div className="text-right mt-2 text-sm text-gray-500">
+          { characterCount }/{ maxCharacters } caracteres
+        </div>
       </div>
     </div>
   );
