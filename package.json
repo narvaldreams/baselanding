@@ -10,7 +10,12 @@
     "seed": "ts-node src/seed/seed-database.ts"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "^6.1.0",
+=======
+    "@prisma/client": "^6.0.1",
+    "@tiptap/extension-character-count": "^2.10.4",
+>>>>>>> 4c34579150ec32c386c352a41b24f7f18bea6b46
     "@tiptap/extension-text-align": "^2.10.4",
     "@tiptap/pm": "^2.10.4",
     "@tiptap/react": "^2.10.4",

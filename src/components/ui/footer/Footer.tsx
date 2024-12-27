@@ -32,12 +32,11 @@ export default function Footer( { id, siteName, logoUrl, footer, description, fa
 
   const { address = '', email = '', phoneNumber = '' } = footer || {};
   const colorText = siteColorText || '#FFFFFF';
-
-  console.log( { policyPrivacyText } );
+  const descripcionSite = description ? description : 'Descripción de la web';
 
   return (
     <div>
-      <footer className="footer relative text-gray-200 shadow-footer-strong" style={ { backgroundColor: siteColor || '#000' } }>
+      <footer className="footer relative text-gray-200 shadow-footer-strong bg-slate-900" style={ { backgroundColor: siteColor || '#000' } }>
         <div className="container relative">
           <div className="grid grid-cols-12">
             <div className="col-span-12">
@@ -51,13 +50,12 @@ export default function Footer( { id, siteName, logoUrl, footer, description, fa
                       </Link>
                       <h1 className="text-3xl font-bold tracking-wide" style={ { color: colorText } }>{ siteName ? siteName : 'Nombre del sitio' }</h1>
                     </div>
-                    <ContenidoDynamico text={ description ? description : 'Descripción de la web' } colorText={ colorText } />
+                    <ContenidoDynamico text={ descripcionSite! } colorText={ colorText } />
                   </div>
 
                   <div className="lg:col-span-4 md:col-span-12 grid items-center">
                     <div className="text-center">
                       <h5 className="tracking-[1px] font-semibold" style={ { color: colorText } }>Dirección: { address ? address : 'No se ha cargado ninguna dirección' }</h5>
-                      {/* <p className="mt-6" style={ { color: colorText } }>Email: { email ? email : 'No se ha cargado ningun email' }</p> */ }
                     </div>
                   </div>
 

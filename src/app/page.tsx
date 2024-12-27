@@ -1,6 +1,7 @@
 //export const revalidate = 30;
 import { getDataPage } from '@/actions/information/get-information';
 import { About, Contact, Parallax, Footer, Service, TopMenu } from '@/components';
+import ContenidoDynamico from '@/components/ui/admin/contenido/DynamicContent';
 import ScrollButton from '@/components/ui/scroll/ScrollButton';
 import Image from 'next/image';
 
@@ -37,12 +38,12 @@ export default async function Page() {
             <Image src={ siteSettings?.siteLogoUrl ? siteSettings?.siteLogoUrl : '/uploads/favicon.ico' } width={ 72 } height={ 64 } className="mx-auto" alt="" />
             <h4 className="text-white lg:text-5xl text-4xl lg:leading-normal leading-normal font-medium my-6 position-relative">{ hero?.title ? hero?.title : 'Titulo del Hero / Banner' }</h4>
 
-            <p className="text-white opacity-50 mb-0 max-w-xl text-lg mx-auto">
-              { hero?.content ? hero?.content : 'Contenido del Hero / Banner' }
-            </p>
+            <div className="opacity-50 mb-0 max-w-xl text-lg mx-auto">
+              <ContenidoDynamico text={ hero?.content ? hero?.content : 'Contenido del Hero / Banner' } colorText={ "#FFFFFF" } />
+            </div>
 
             <div className="relative mt-8">
-              <ScrollButton targetId="services" label={ hero?.textButton ? hero?.textButton : 'Servicios' } backgroundColor={ siteSettings?.siteColor || '#000' } />
+              <ScrollButton targetId="services" label={ hero?.textButton ? hero?.textButton : 'Servicios' } backgroundColor={ siteSettings?.siteColor ? siteSettings?.siteColor : '#000' } />
             </div>
           </div>
         </div>
@@ -69,10 +70,10 @@ export default async function Page() {
         <Parallax parallax={ parallax } siteColor={ siteSettings?.siteColor } />
 
         {/* Contact */ }
-        <Contact 
+        <Contact
           siteColor={ siteSettings?.siteColor }
           siteColorText={ siteSettings?.siteColorText }
-          />
+        />
 
       </section>
       {/* Footer */ }

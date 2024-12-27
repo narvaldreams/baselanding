@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Spinner } from '../spinner/Spinner';
+import EditorTexto from '../editor/EditorTexto';
 
 export interface FormInputs {
   title: string;
@@ -33,6 +34,7 @@ export const FormHero = ( { hero }: Props ) => {
   const [ loaded, setLoaded ] = useState( false );
 
   const {
+    control,
     register,
     handleSubmit,
     setValue,
@@ -167,34 +169,9 @@ export const FormHero = ( { hero }: Props ) => {
             Contenido
           </label>
           <div className="mt-2">
-            <textarea
-              id="description"
-              rows={ 3 }
-              placeholder="Ingresa el contenido"
-              { ...register( "content", { required: true } ) } // register
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            ></textarea>
+            <EditorTexto name="content" control={ control } defaultValue={ hero?.content } maxCharacters={ 200 } />
           </div>
         </div>
-
-        {/* <div className="sm:col-span-3">
-          <label
-            htmlFor="title"
-            className="block text-sm/6 font-medium text-gray-900"
-          >
-            Url
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              id="heroUrl"
-              placeholder="Ingresa la url"
-              { ...register( "heroUrl" ) } // register
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            />
-          </div>
-        </div>
- */}
         <div className="sm:col-span-3">
           <label
             htmlFor="title"

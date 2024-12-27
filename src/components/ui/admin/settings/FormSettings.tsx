@@ -23,6 +23,7 @@ export interface FormInputs {
   policyPrivacyText: string;
   googleAnalyticsId?: string;
   googleTagManagerId?: string;
+  smtp_gmail_key?: string;
 }
 
 interface SiteSettings {
@@ -41,6 +42,7 @@ interface SiteSettings {
   googleAnalyticsId: string | null;
   googleTagManagerId: string | null;
   policyPrivacyText: string | null;
+  smtp_gmail_key: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -62,8 +64,6 @@ export const FormSettings = ( { site }: Props ) => {
   const [ showTextColorPicker, setShowTextColorPicker ] = useState( false );
 
 
-
-
   const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     const file = event.target.files?.[ 0 ];
 
@@ -80,7 +80,7 @@ export const FormSettings = ( { site }: Props ) => {
     setLoading( true );
     setMessage( '' );
 
-    const { siteName, emailSite, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyText } = data;
+    const { siteName, emailSite, description, siteLogoUrl, googleAnalyticsId, googleTagManagerId, facebookUrl, twitterUrl, instagramUrl, linkedinUrl, youtubeUrl, siteColor, siteColorText, policyPrivacyText, smtp_gmail_key } = data;
 
     const formData = new FormData();
 
@@ -92,11 +92,12 @@ export const FormSettings = ( { site }: Props ) => {
     formData.append( "instagramUrl", instagramUrl );
     formData.append( "linkedinUrl", linkedinUrl );
     formData.append( "youtubeUrl", youtubeUrl );
-    formData.append( "siteColor", siteColor );
-    formData.append( "siteColorText", siteColorText );
+    formData.append( "siteColor", siteColor ? siteColor : "" );
+    formData.append( "siteColorText", siteColorText ? siteColorText : "" );
     formData.append( "policyPrivacyText", policyPrivacyText );
     formData.append( "googleAnalyticsId", googleAnalyticsId ? googleAnalyticsId : "" );
     formData.append( "googleTagManagerId", googleTagManagerId ? googleTagManagerId : "" );
+    formData.append( "smtp_gmail_key", smtp_gmail_key ? smtp_gmail_key : "" );
 
     if ( siteLogoUrl instanceof FileList && siteLogoUrl.length > 0 ) {
       formData.append( "imageUrl", siteLogoUrl[ 0 ] );
@@ -129,6 +130,7 @@ export const FormSettings = ( { site }: Props ) => {
       setValue( 'policyPrivacyText', site.policyPrivacyText ? site.policyPrivacyText : '' );
       setValue( 'googleAnalyticsId', site.googleAnalyticsId ? site.googleAnalyticsId : '' );
       setValue( 'googleTagManagerId', site.googleTagManagerId ? site.googleTagManagerId : '' );
+      setValue( 'smtp_gmail_key', site.smtp_gmail_key ? site.smtp_gmail_key : '' );
       if ( site.siteLogoUrl ) {
         //const baseUrl = window.location.origin;
         setImagePreview( site.siteLogoUrl );
@@ -387,11 +389,22 @@ export const FormSettings = ( { site }: Props ) => {
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
             />
           </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="youtubeUrl" className="block text-sm/6 font-medium text-gray-900">Llave de SMTP de Gmail</label>
+            <input
+              type="text"
+              id="youtubeUrl"
+              placeholder="Ingresa la llave de SMTP de Gmail"
+              { ...register( 'smtp_gmail_key' ) }
+              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+            />
+          </div>
         </div>
         <div className="sm:col-span-6">
           <label htmlFor="policyPrivacyText" className="block text-sm/6 font-medium text-gray-900">Políticas de privacidad</label>
           <div className="mt-2">
-            <EditorTexto name="policyPrivacyText" control={ control } defaultValue={ site?.policyPrivacyText ?? '' } />
+            <EditorTexto name="policyPrivacyText" control={ control } defaultValue={ site?.policyPrivacyText ?? '' } maxCharacters={ 2000 }/>
           </div>
         </div>
 

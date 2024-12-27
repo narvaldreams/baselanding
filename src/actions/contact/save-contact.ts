@@ -24,6 +24,13 @@ export const saveContactForm = async ({
     },
   });
 
+  if (!siteSettings?.smtp_gmail_key || !siteSettings?.emailSite) {
+    return {
+      ok: false,
+      message: "No se ha configurado el correo, contacte con el administrador",
+    };
+  }
+
   try {
     const existingContact = await prisma.registrationForm.findUnique({
       where: {
@@ -40,14 +47,15 @@ export const saveContactForm = async ({
           siteId,
         },
       });
-      if (siteSettings?.emailSite) {
+      if (siteSettings?.emailSite && siteSettings?.smtp_gmail_key) {
         await sendEmailToSite(
           email,
           fullName,
           email,
           phoneNumber,
           description,
-          siteSettings.emailSite
+          siteSettings.emailSite,
+          siteSettings.smtp_gmail_key
         );
       }
       return {
@@ -60,7 +68,6 @@ export const saveContactForm = async ({
       message: "El correo ya fue registrado",
     };
   } catch (error) {
-    console.log(error);
     return {
       ok: false,
       message: "Error al registrar el correo, Contacte con el administrador",
@@ -75,13 +82,14 @@ const sendEmailToSite = async (
   email: string,
   phoneNumber: string,
   description: string,
-  emailSite: string
+  emailSite: string,
+  gmail_key: string
 ) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: emailSite,
-      pass: process.env.GMAIL_PASSWORD,
+      pass: gmail_key,
     },
   });
 

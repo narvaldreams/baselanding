@@ -1,5 +1,6 @@
 "use client";
 import { createUpdateServiceSettings } from '@/actions/auth/services/Settings/create-update';
+import EditorTexto from '@/components/ui/admin/editor/EditorTexto';
 import { Spinner } from '@/components/ui/admin/spinner/Spinner';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -33,6 +34,7 @@ export const FormServiceSettings = ( { services }: Props ) => {
   const [ loaded, setLoaded ] = useState( false );
 
   const {
+    control,
     register,
     handleSubmit,
     setValue,
@@ -164,13 +166,7 @@ export const FormServiceSettings = ( { services }: Props ) => {
             Descripción Global del Servicio
           </label>
           <div className="mt-2">
-            <textarea
-              id="description"
-              rows={ 3 }
-              placeholder="Ingresa la descripción global del servicio"
-              { ...register( "generalDescription", { required: true } ) } // register
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-            ></textarea>
+            <EditorTexto name="generalDescription" control={ control } defaultValue={ services?.generalDescription } maxCharacters={ 300 } />
           </div>
         </div>
 
