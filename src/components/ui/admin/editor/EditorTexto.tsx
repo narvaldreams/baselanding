@@ -199,9 +199,6 @@ export const EditorTexto = ( {
     },
   } );
   
-  console.log( editor?.getHTML() );
-
-
   // Verificación del conteo de caracteres en cada actualización
   const characterCount = editor?.storage.characterCount.characters();
 
