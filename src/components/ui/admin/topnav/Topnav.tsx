@@ -44,7 +44,7 @@ export default function Topnav( { setToggle, toggle }: Props ) {
               <ul className="list-none mb-0 space-x-1">
                 <li className="dropdown inline-block relative">
                   <button onClick={ () => setUser( !user ) } className="dropdown-toggle items-center" type="button">
-                    <span className="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 border border-gray-100 dark:border-gray-800 text-slate-900 dark:text-white rounded-full">
+                    <span className="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900  rounded-full">
                       <Image src='/uploads/favicon.ico' width={ 30 } height={ 30 } className="rounded-full" alt="" />
                     </span>
                     <span className="font-semibold text-[16px] ms-1 sm:inline-block hidden">{ session?.user.name }</span>
@@ -59,10 +59,10 @@ export default function Topnav( { setToggle, toggle }: Props ) {
                   } >
                     <ul className="py-2 text-start">
                       <li>
-                        <Link href="/admin/profile" className="flex items-center font-medium py-1 px-4 dark:text-white/70 hover:text-indigo-600 dark:hover:text-white"><AiOutlineUser className="me-2" />Perfil</Link>
+                        <Link href="/admin/profile" className="flex items-center font-medium py-1 px-4 hover:text-indigo-600 dark:hover:text-white text-white"><AiOutlineUser className="me-2" />Perfil</Link>
                       </li>
                       <li>
-                        <button className="flex items-center font-medium py-1 px-4 dark:text-white/70 hover:text-indigo-600 dark:hover:text-white" onClick={ onLogout }>
+                        <button className="flex items-center font-medium py-1 px-4 hover:text-indigo-600 dark:hover:text-white text-white" onClick={ onLogout }>
                           <IoMdLogOut className="me-2" />
                           <span>Salir</span>
                         </button>
