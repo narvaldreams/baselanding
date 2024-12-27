@@ -38,10 +38,10 @@ export const LoginForm = () => {
         </div>
 
         <div className="flex justify-between mb-4">
-          <div className="flex items-center mb-0">
+          {/* <div className="flex items-center mb-0">
             <input className="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2" type="checkbox" value="" id="RememberMe" />
             <label className="form-checkbox-label text-slate-400" htmlFor="RememberMe">Remember me</label>
-          </div>
+          </div> */}
           {/* <p className="text-slate-400 mb-0"><Link href="/auth-re-password" className="text-slate-400">Forgot password ?</Link></p> */ }
         </div>
 

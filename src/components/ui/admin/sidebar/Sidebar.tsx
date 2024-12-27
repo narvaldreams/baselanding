@@ -28,7 +28,7 @@ export const Sidebar = () => {
 
         <div className="sidebar-brand">
           <button onClick={ () => window.location.href = '/' } className="sidebar-brand-icon">
-            <Image src={ `/uploads/favicon.ico` } placeholder="blur" blurDataURL="/images/logo-light.png" width={ 50 } height="24" alt="Logo de la web" />
+            <Image src={ `/uploads/favicon.ico` } width={ 50 } height="24" alt="Logo de la web" />
           </button>
         </div>
 
