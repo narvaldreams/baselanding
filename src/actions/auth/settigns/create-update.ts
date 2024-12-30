@@ -6,8 +6,10 @@ import { revalidatePath } from "next/cache";
 
 export const createUpdateSettings = async (formData: FormData) => {
   try {
+
     const siteId = process.env.SITE_ID;
-    if (!siteId) {
+
+    if (!siteId || siteId === "") {
       return {
         ok: false,
         message: "No se encontró el id del sitio",
@@ -62,7 +64,7 @@ export const createUpdateSettings = async (formData: FormData) => {
           googleAnalyticsId: formData.get("googleAnalyticsId")!.toString(),
           googleTagManagerId: formData.get("googleTagManagerId")!.toString(),
           smtp_gmail_key: formData.get("smtp_gmail_key")!.toString(),
-          siteId,
+          siteId: siteId,
         },
       });
       message = "Se creó correctamente";
