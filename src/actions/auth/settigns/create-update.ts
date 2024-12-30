@@ -6,7 +6,13 @@ import { revalidatePath } from "next/cache";
 
 export const createUpdateSettings = async (formData: FormData) => {
   try {
-    const siteId = process.env.SITE_ID!;
+    const siteId = process.env.SITE_ID;
+    if (!siteId) {
+      return {
+        ok: false,
+        message: "No se encontró el id del sitio",
+      };
+    }
     const existingSiteSettings = await prisma.siteSettings.findFirst({
       where: {
         siteId,
