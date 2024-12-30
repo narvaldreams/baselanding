@@ -9,6 +9,7 @@ interface SeedUser {
   email: string;
   name: string;
   password: string;
+  password_change_required: boolean;
   role: "admin" | "user";
   siteId: string;
 }
@@ -60,13 +61,7 @@ interface SeedFooter {
 }
 
 interface InitialData {
-  users: SeedUser[];
-  /* services: SeedService[]; */
-  /* siteSettings: SeedSiteSettings;
-  hero: SeedHero;
-  parallax: SeedParallax;
-  aboutUs: SeedAboutUs;
-  footer: SeedFooter; */
+  users: SeedUser[]
 }
 
 if (process.env.SITE_ID === "" || !process.env.SITE_ID) {
@@ -79,147 +74,12 @@ const siteId = process.env.SITE_ID;
 export const initialData: InitialData = {
   users: [
     {
-      email: "gustavovasquez15@gmail.com",
-      name: "Andres Vasquez",
-      password: bcryptjs.hashSync("Control.21"),
+      email: "admin@admin.com",
+      name: "Administrador",
+      password: bcryptjs.hashSync("administrador"),
       role: "admin",
-      siteId: siteId!,
-    },
-    {
-      email: "user@base.com",
-      name: "Andres Vasquez",
-      password: bcryptjs.hashSync("123456789"),
-      role: "user",
-      siteId: siteId!,
-    },
-  ],
-  /* services: [
-    {
-      title: "Web Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "google-logo.png",
-      serviceUrl: "https://www.base.com/web-development",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-    {
-      title: "UI/UX Design",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "",
-      serviceUrl: "https://www.base.com/ui-ux-design",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-  ], */
-  /* siteSettings: {
-    siteName: "Base Landing",
-    siteLogoUrl: "logo-light.png",
-    description:
-      "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-    googleAnalyticsId: "G-XXXXXXXXXX",
-    googleTagManagerId: "GTM-XXXXXXX",
-    siteId: siteId!,
-  },
-  hero: {
-    title: "Welcome to Base Landing",
-    content:
-      "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-    mediaUrl: "https://www.base.com/hero.png",
-    mediaType: "image/png",
-    siteId: siteId!,
-  },
-  aboutUs: {
-    title: "About Us",
-    description:
-      "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-    imageUrl: "about02.jpg",
-    siteId: siteId!,
-  },
-  services: [
-    {
-      title: "Web Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "google-logo.png",
-      serviceUrl: "https://www.base.com/web-development",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-    {
-      title: "UI/UX Design",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "",
-      serviceUrl: "https://www.base.com/ui-ux-design",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-      mediaUrl: "android.png",
-      serviceUrl: "https://www.base.com/mobile-development",
-      siteId: siteId!,
-    },
-  ],
-  parallax: {
-    title: "Parallax",
-    description:
-      "Base Landing is a free and open-source landing page template built with Tailwind CSS and Next.js.",
-    imageUrl: "team.jpg",
-    siteId: siteId!,
-  },
-  footer: {
-    address: "123 Main St, Anytown, USA",
-    email: "info@base.com",
-    phoneNumber: "(555) 555-5555",
-    siteId: siteId!,
-  }, */
+      password_change_required: true,
+      siteId: siteId,
+    }
+  ]
 };

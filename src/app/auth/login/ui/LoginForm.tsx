@@ -37,14 +37,6 @@ export const LoginForm = () => {
           <input id="LoginPassword" type="password" name="password" className="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0" placeholder="Password:" />
         </div>
 
-        <div className="flex justify-between mb-4">
-          {/* <div className="flex items-center mb-0">
-            <input className="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2" type="checkbox" value="" id="RememberMe" />
-            <label className="form-checkbox-label text-slate-400" htmlFor="RememberMe">Remember me</label>
-          </div> */}
-          {/* <p className="text-slate-400 mb-0"><Link href="/auth-re-password" className="text-slate-400">Forgot password ?</Link></p> */ }
-        </div>
-
         { errorMessage === 'Invalid credentials.' && (
           <div className="flex flex-row mb-2">
             <IoInformationOutline className="h-5 w-5 text-red-500" />
@@ -69,10 +61,6 @@ export const LoginForm = () => {
                 "py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-600 border-gray-600 text-white rounded-md w-full": isPending,
               } )
             }>Ingresar</button>
-        </div>
-
-        <div className="text-center">
-          <span className="text-slate-400 me-2">¿No tienes una cuenta?</span> <Link href="#" className="btn btn-primary  text-black font-bold inline-block">Inscribirse</Link>
         </div>
       </div>
     </form>

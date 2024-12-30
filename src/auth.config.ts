@@ -7,8 +7,7 @@ import async from "./app/admin/layout";
 
 export const authConfig: NextAuthConfig = {
   pages: {
-    signIn: "/auth/login",
-    newUser: "/auth/register",
+    signIn: "/auth/login"
   },
   callbacks: {
     jwt({ token, user }) {
@@ -34,7 +33,6 @@ export const authConfig: NextAuthConfig = {
         const { email, password } = parsedCredentials.data;
 
         // Buscar el correo en la base de datos
-
         const user = await prisma.user.findUnique({
           where: {
             email: email.toLowerCase(),

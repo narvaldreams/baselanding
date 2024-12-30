@@ -7,6 +7,7 @@ declare module "next-auth" {
       name: string;
       email: string;
       emailVerified: boolean;
+      password_change_required: boolean;
       role: string;
       image: string;
       siteId: string;

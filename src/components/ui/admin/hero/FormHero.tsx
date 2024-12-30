@@ -169,7 +169,7 @@ export const FormHero = ( { hero }: Props ) => {
             Contenido
           </label>
           <div className="mt-2">
-            <EditorTexto name="content" control={ control } defaultValue={ hero?.content } maxCharacters={ 200 } />
+            <EditorTexto name="content" control={ control } defaultValue={ hero?.content } maxCharacters={ 300 } />
           </div>
         </div>
         <div className="sm:col-span-3">

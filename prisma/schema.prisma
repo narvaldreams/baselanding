@@ -19,18 +19,19 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  email         String    @unique
-  emailVerified DateTime?
-  password      String
-  role          Role      @default(user)
-  image         String?
-  siteId        String // ID del sitio
+  id                       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name                     String
+  email                    String    @unique
+  emailVerified            DateTime?
+  password                 String
+  password_change_required Boolean   @default(true)
+  role                     Role      @default(user)
+  image                    String?
+  siteId                   String // ID del sitio
 }
 
 model SiteSettings {
-  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
   siteName           String
   emailSite          String
   siteLogoUrl        String?
@@ -46,9 +47,9 @@ model SiteSettings {
   siteColorText      String?
   policyPrivacyText  String?
   smtp_gmail_key     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  siteId    String // ID del sitio
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  siteId             String // ID del sitio
 }
 
 model Hero {

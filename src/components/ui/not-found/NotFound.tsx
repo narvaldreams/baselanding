@@ -14,7 +14,7 @@ export default function NotFound(){
         </p>
       </div>
       <div className="px-5 mx-5">
-        <Image src="/images/starman_750x750.png" alt="Starman" className="p-5 sm:p-0" width={ 550 } height={ 550 } />
+        <Image src="/uploads/starman_750x750.png" alt="Starman" className="p-5 sm:p-0" width={ 550 } height={ 550 } />
       </div>
     </div>
   )

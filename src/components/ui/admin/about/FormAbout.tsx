@@ -162,7 +162,7 @@ export const FormAbout = ( { about }: Props ) => {
             Descripción
           </label>
           <div className="mt-2">
-            <EditorTexto name="description" control={ control } defaultValue={ about?.description } maxCharacters={ 500 } />
+            <EditorTexto name="description" control={ control } defaultValue={ about?.description } maxCharacters={ 800 } />
           </div>
         </div>
 
