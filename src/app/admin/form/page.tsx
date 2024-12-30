@@ -39,8 +39,6 @@ export default async function FormPage( { searchParams }: Props ) {
 
             </div>
 
-
-
           </div>
         </div>
       </div>
