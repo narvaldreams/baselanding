@@ -71,6 +71,8 @@ if (process.env.SITE_ID === "" || !process.env.SITE_ID) {
 
 const siteId = process.env.SITE_ID;
 
+console.log(siteId);
+
 export const initialData: InitialData = {
   users: [
     {
