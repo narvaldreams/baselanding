@@ -1,26 +1,40 @@
 "use server";
 import { signIn } from "@/auth.config";
+import prisma from "@/lib/prisma";
 import { AuthError } from "next-auth";
 
 export async function authenticate(
-  prevState: string | undefined,
+  prevState: { ok: boolean; message: string },
   formData: FormData
 ) {
   try {
-    await signIn("credentials", {
+
+    await prisma.$connect();
+
+    const result = await signIn("credentials", {
       ...Object.fromEntries(formData),
       redirect: false,
     });
-    return 'Success';
+
+    if (result?.error) {
+      // Error desde NextAuth
+      return { ok: false, message: result.error };
+    }
+
+    return { ok: true, message: "Login successful." };
+
   } catch (error) {
+    
+    // Manejar errores específicos o genéricos
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return "Invalid credentials.";
+          return { ok: false, message: "Credenciales Invalidas." };
         default:
-          return "Something went wrong.";
+          return { ok: false, message: "Error de autenticación inesperado." };
       }
     }
-    throw error;
+
+    return { ok: false, message: "Ha ocurrido un error inesperado, Por favor validar con el administrador." };
   }
 }

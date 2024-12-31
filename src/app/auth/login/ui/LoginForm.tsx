@@ -9,19 +9,15 @@ import { IoInformationOutline } from 'react-icons/io5';
 
 export const LoginForm = () => {
 
-
-  const [ errorMessage, formAction, isPending ] = useActionState(
-    authenticate,
-    undefined,
-  );
+  const [response, formAction, isPending] = useActionState(authenticate, { ok: false, message: '' });
 
   const router = useRouter();
 
   useEffect( () => {
-    if ( errorMessage === 'Success' ) {
+    if ( response.ok ) {
       router.replace( '/admin' );
     }
-  }, [ errorMessage ] );
+  }, [ response.ok ] );
 
 
   return (
@@ -37,17 +33,10 @@ export const LoginForm = () => {
           <input id="LoginPassword" type="password" name="password" className="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0" placeholder="Password:" />
         </div>
 
-        { errorMessage === 'Invalid credentials.' && (
+        { !response.ok && response.message !== '' && (
           <div className="flex flex-row mb-2">
             <IoInformationOutline className="h-5 w-5 text-red-500" />
-            <p className="text-sm text-red-500">Credenciales no son correctas</p>
-          </div>
-        ) }
-
-        { errorMessage === 'Something went wrong.' && (
-          <div className="flex flex-row mb-2">
-            <IoInformationOutline className="h-5 w-5 text-red-500" />
-            <p className="text-sm text-red-500">Por favor, intenta de nuevo</p>
+            <p className="text-sm text-red-500">{ response.message }</p>
           </div>
         ) }
 
