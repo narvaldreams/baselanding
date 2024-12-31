@@ -2,6 +2,7 @@ import { getFooter } from '@/actions/auth/footer/get-footer';
 import { getSettingById } from '@/actions/auth/settigns/get-setting-by-id';
 import { Footer, TopMenu } from '@/components';
 import { PolicyPrivacy } from '@/components/ui/policy-privacy/PolicyPrivacy';
+import siteId from '@/utils/getSiteId';
 import Link from 'next/link';
 import { IoIosArrowBack } from 'react-icons/io';
 
@@ -14,7 +15,8 @@ export default async function PolicyPrivacyPage( { params }: Props ) {
   const { id } = await params;
 
   const site = await getSettingById( id );
-  const footer = await getFooter();
+  
+  const footer = await getFooter(siteId);
 
   return (
     <>

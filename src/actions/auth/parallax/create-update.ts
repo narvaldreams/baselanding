@@ -4,12 +4,12 @@ import { Parallax } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { uploadImage } from "../image/upload";
 
-export const createUpdateParallax = async (formData: FormData) => {
+export const createUpdateParallax = async (formData: FormData, siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
+
     const existingParallax = await prisma.parallax.findFirst({
       where: {
-        siteId,
+        siteId: siteId,
       },
     });
 
@@ -20,6 +20,7 @@ export const createUpdateParallax = async (formData: FormData) => {
       about = await prisma.parallax.update({
         where: {
           id: existingParallax.id,
+          siteId: siteId,
         },
         data: {
           title: formData.get("title")!.toString(),
@@ -32,7 +33,7 @@ export const createUpdateParallax = async (formData: FormData) => {
         data: {
           title: formData.get("title")!.toString(),
           description: formData.get("description")!.toString(),
-          siteId,
+          siteId: siteId,
         },
       });
       message = "Se creó correctamente";
@@ -45,6 +46,7 @@ export const createUpdateParallax = async (formData: FormData) => {
       await prisma.parallax.update({
         where: {
           id: about.id,
+          siteId: siteId,
         },
         data: {
           imageUrl: uploadedImage!,

@@ -1,12 +1,11 @@
 import prisma from '@/lib/prisma';
 
 
-export const getParallax = async () => {
+export const getParallax = async (siteId: string) => {
     try {
-        const siteId = process.env.SITE_ID!;
         const siteAbout = await prisma.parallax.findFirst({
             where: {
-                siteId
+                siteId: siteId,
             }
         });
         return siteAbout;

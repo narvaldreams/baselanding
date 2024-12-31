@@ -4,12 +4,12 @@ import { AboutUs } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { uploadImage } from "../image/upload";
 
-export const createUpdateAbout = async (formData: FormData) => {
+export const createUpdateAbout = async (formData: FormData, siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
+
     const existingAbout = await prisma.aboutUs.findFirst({
       where: {
-        siteId,
+        siteId: siteId,
       },
     });
 
@@ -32,7 +32,7 @@ export const createUpdateAbout = async (formData: FormData) => {
         data: {
           title: formData.get("title")!.toString(),
           description: formData.get("description")!.toString(),
-          siteId,
+          siteId: siteId,
         },
       });
       message = "Se creó correctamente";
@@ -45,6 +45,7 @@ export const createUpdateAbout = async (formData: FormData) => {
       await prisma.aboutUs.update({
         where: {
           id: about.id,
+          siteId: siteId,
         },
         data: {
           imageUrl: uploadedImage!,

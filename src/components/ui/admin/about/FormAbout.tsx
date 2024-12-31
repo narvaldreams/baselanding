@@ -23,9 +23,10 @@ interface AboutUs {
 
 interface Props {
   about?: AboutUs;
+  siteId: string;
 }
 
-export const FormAbout = ( { about }: Props ) => {
+export const FormAbout = ( { about, siteId }: Props ) => {
 
   const [ loaded, setLoaded ] = useState( false );
 
@@ -75,7 +76,7 @@ export const FormAbout = ( { about }: Props ) => {
       formData.append( "imageUrl", imageUrl[ 0 ] );
     }
 
-    const { message, ok } = await createUpdateAbout( formData );
+    const { message, ok } = await createUpdateAbout( formData, siteId );
 
     if ( ok ) {
       setMessage( message );

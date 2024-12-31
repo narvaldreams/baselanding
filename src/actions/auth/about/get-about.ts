@@ -1,12 +1,12 @@
 import prisma from '@/lib/prisma';
 
 
-export const getSiteAbout = async () => {
+export const getSiteAbout = async (siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
+
     const siteAbout = await prisma.aboutUs.findFirst({
       where: {
-        siteId
+        siteId: siteId,
       }
     });
     return siteAbout;

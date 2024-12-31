@@ -2,13 +2,12 @@ import { getSiteSettings } from '@/actions/auth/settigns/getSiteSettings';
 import { auth } from '@/auth.config';
 import { Wrapper } from '@/components';
 import { FormSettings } from '@/components/ui/admin/settings/FormSettings';
+import siteId from '@/utils/getSiteId';
 
 
 export default async function SettingsPage() {
-
-  const session = await auth();
   
-  const siteSettings = await getSiteSettings(session?.user.siteId!);
+  const siteSettings = await getSiteSettings(siteId);
 
   return (
     <Wrapper>
@@ -17,7 +16,7 @@ export default async function SettingsPage() {
           <div className="flex justify-between items-center">
 
             {
-              siteSettings && session?.user ? ( <FormSettings site={ siteSettings } siteId={ session.user.siteId }/> ) : ( <FormSettings siteId={ session?.user.siteId! }/> )
+              siteSettings && siteId ? ( <FormSettings site={ siteSettings } siteId={ siteId }/> ) : ( <FormSettings siteId={ siteId }/> )
             }
 
           </div>

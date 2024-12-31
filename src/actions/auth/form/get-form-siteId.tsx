@@ -5,14 +5,13 @@ import prisma from '@/lib/prisma';
 interface PaginationOptions {
   page?: number;
   take?: number;
+  siteId: string;
 }
 
 
-export const getFormSiteId = async ( { page = 1, take = 3 }: PaginationOptions ) => {
-
+export const getFormSiteId = async ( { page = 1, take = 3, siteId }: PaginationOptions ) => {
 
   try {
-    const siteId = process.env.SITE_ID;
     const forms = await prisma.registrationForm.findMany( {
       where: {
         siteId: siteId,
@@ -21,7 +20,7 @@ export const getFormSiteId = async ( { page = 1, take = 3 }: PaginationOptions )
 
     const totalCount = await prisma.registrationForm.count( {
       where: {
-        siteId,
+        siteId: siteId,
       },
     } );
 

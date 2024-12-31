@@ -7,10 +7,7 @@ import siteId from '@/utils/getSiteId';
 
 export default async function HeroPage() {
 
-  const session = await auth();
-
-  const hero = await getHero(session?.user.siteId!);
-
+  const hero = await getHero(siteId);
 
   return (
     <Wrapper>
@@ -19,7 +16,7 @@ export default async function HeroPage() {
           <div className="flex justify-between items-center">
 
             {
-              hero && session?.user ? ( <FormHero hero={ hero } siteId={ siteId } /> ) : ( <FormHero siteId={ siteId }/> )
+              hero && siteId ? ( <FormHero hero={ hero } siteId={ siteId } /> ) : ( <FormHero siteId={ siteId }/> )
             }
 
           </div>

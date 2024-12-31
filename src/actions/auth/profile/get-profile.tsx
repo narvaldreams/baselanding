@@ -1,12 +1,11 @@
 import prisma from '@/lib/prisma';
 
 
-export const getProfile = async () => {
+export const getProfile = async (siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
     const siteAbout = await prisma.user.findFirst( {
       where: {
-        siteId,
+        siteId: siteId,
       },
     } );
     return siteAbout;

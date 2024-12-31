@@ -23,9 +23,10 @@ interface Footer {
 
 interface Props {
   footer?: Footer;
+  siteId: string;
 }
 
-export const FormFooter = ( { footer }: Props ) => {
+export const FormFooter = ( { footer, siteId }: Props ) => {
 
   const [ loaded, setLoaded ] = useState( false );
 
@@ -46,7 +47,7 @@ export const FormFooter = ( { footer }: Props ) => {
     formData.append( "email", email );
     formData.append( "phoneNumber", phoneNumber );
 
-    const { message, ok } = await createUpdateFooter( formData );
+    const { message, ok } = await createUpdateFooter( formData, siteId );
 
     if ( ok ) {
       setMessage( message );

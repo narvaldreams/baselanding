@@ -22,9 +22,10 @@ interface Profile {
 
 interface Props {
   profile: Profile;
+  siteId: string,
 }
 
-export const FormProfile = ( { profile }: Props ) => {
+export const FormProfile = ( { profile, siteId }: Props ) => {
 
   const [ loaded, setLoaded ] = useState( false );
 
@@ -52,7 +53,7 @@ export const FormProfile = ( { profile }: Props ) => {
     formData.append( "email", email );
     formData.append( "password", password );
 
-    const { message, ok } = await updateProfile( formData );
+    const { message, ok } = await updateProfile( formData, siteId );
 
     if ( ok ) {
       setMessage( message );

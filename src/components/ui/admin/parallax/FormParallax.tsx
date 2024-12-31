@@ -24,9 +24,10 @@ interface Parallax {
 
 interface Props {
   parallax?: Parallax;
+  siteId: string;
 }
 
-export const FormParallax = ( { parallax }: Props ) => {
+export const FormParallax = ( { parallax, siteId }: Props ) => {
 
   const [ loaded, setLoaded ] = useState( false );
 
@@ -75,7 +76,7 @@ export const FormParallax = ( { parallax }: Props ) => {
       formData.append( "imageUrl", imageUrl[ 0 ] );
     }
 
-    const { message, ok } = await createUpdateParallax( formData );
+    const { message, ok } = await createUpdateParallax( formData, siteId );
 
     if ( ok ) {
       setMessage( message );

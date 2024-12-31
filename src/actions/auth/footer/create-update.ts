@@ -4,9 +4,9 @@ import prisma from "@/lib/prisma";
 import { Footer } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
-export const createUpdateFooter = async (formData: FormData) => {
+export const createUpdateFooter = async (formData: FormData, siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
+
     const existingFooter = await prisma.footer.findFirst({
       where: {
         siteId: siteId,
@@ -18,7 +18,7 @@ export const createUpdateFooter = async (formData: FormData) => {
 
     if (existingFooter) {
       footer = await prisma.footer.update({
-        where: { id: existingFooter.id },
+        where: { id: existingFooter.id, siteId: siteId, },
         data: {
           address: formData.get("address")!.toString(),
           email: formData.get("email")!.toString(),

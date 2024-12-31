@@ -2,6 +2,7 @@ import { getFormSiteId } from '@/actions/auth/form/get-form-siteId';
 import { Wrapper } from '@/components';
 import { Paginacion } from '../services/ui/Paginacion';
 import { TableFormulario } from '@/components/ui/admin/form/ui/TableFormulario';
+import siteId from '@/utils/getSiteId';
 
 interface Props {
   searchParams: Promise<{ page?: string; }>;
@@ -13,7 +14,7 @@ export default async function FormPage( { searchParams }: Props ) {
 
   const page = pageSearchParams ? parseInt( pageSearchParams ) : 1;
 
-  const { forms, totalPages } = await getFormSiteId( { page } );
+  const { forms, totalPages } = await getFormSiteId( { page, siteId: siteId } );
 
   return (
     <Wrapper>
