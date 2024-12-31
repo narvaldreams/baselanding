@@ -4,10 +4,8 @@ import { SiteSettings } from "@prisma/client";
 import { uploadImage } from "../image/upload";
 import { revalidatePath } from "next/cache";
 
-export const createUpdateSettings = async (formData: FormData) => {
+export const createUpdateSettings = async (formData: FormData, siteId: string) => {
   try {
-
-    const siteId = process.env.SITE_ID;
 
     if (!siteId || siteId === "") {
       return {

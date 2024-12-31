@@ -3,14 +3,14 @@ import "../app/assets/scss/tailwind.scss";
 import './assets/css/material.css';
 import { alex, eb_garamond, kaushan, nunito, work_sans } from '@/config/font';
 import { getSiteSettings } from '@/actions/auth/settigns/getSiteSettings';
+import siteId from "@/utils/getSiteId";
 
 export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-
-
+  
   // fetch site settings
-  const siteSettings = await getSiteSettings();
+  const siteSettings = await getSiteSettings(siteId);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ejemplo.com';
 

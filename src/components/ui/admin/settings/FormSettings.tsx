@@ -49,9 +49,10 @@ interface SiteSettings {
 
 interface Props {
   site?: SiteSettings;
+  siteId: string;
 }
 
-export const FormSettings = ( { site }: Props ) => {
+export const FormSettings = ( { site, siteId }: Props ) => {
 
   const [ loaded, setLoaded ] = useState( false );
   const { control, register, handleSubmit, setValue, formState: { errors, isValid } } = useForm<FormInputs>();
@@ -103,7 +104,7 @@ export const FormSettings = ( { site }: Props ) => {
       formData.append( "imageUrl", siteLogoUrl[ 0 ] );
     }
 
-    const { message, ok } = await createUpdateSettings( formData );
+    const { message, ok } = await createUpdateSettings( formData, siteId );
 
     if ( ok ) {
       setMessage( message );

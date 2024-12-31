@@ -27,6 +27,8 @@ model User {
   password_change_required Boolean   @default(true)
   role                     Role      @default(user)
   image                    String?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
   siteId                   String // ID del sitio
 }
 

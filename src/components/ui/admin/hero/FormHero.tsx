@@ -27,9 +27,10 @@ interface Hero {
 
 interface Props {
   hero?: Hero;
+  siteId: string;
 }
 
-export const FormHero = ( { hero }: Props ) => {
+export const FormHero = ( { hero, siteId }: Props ) => {
 
   const [ loaded, setLoaded ] = useState( false );
 
@@ -81,7 +82,7 @@ export const FormHero = ( { hero }: Props ) => {
       formData.append( "imageUrl", imageUrl[ 0 ] );
     }
 
-    const { message, ok } = await createUpdateHero( formData );
+    const { message, ok } = await createUpdateHero( formData, siteId );
 
     if ( ok ) {
       setMessage( message );

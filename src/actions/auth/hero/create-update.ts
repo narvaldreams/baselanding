@@ -4,9 +4,14 @@ import { Hero } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { uploadImage } from "../image/upload";
 
-export const createUpdateHero = async (formData: FormData) => {
+export const createUpdateHero = async (formData: FormData, siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
+    if (!siteId) {
+      return {
+        ok: false,
+        message: 'No se encontró el id del sitio'
+      }
+    }
     const existingHero = await prisma.hero.findFirst({
       where: {
         siteId,

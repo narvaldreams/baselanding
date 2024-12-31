@@ -1,9 +1,8 @@
 'use server';
 import prisma from '@/lib/prisma';
 
-export const getSiteSettings = async () => {
+export const getSiteSettings = async (siteId: string) => {
   try {
-    const siteId = process.env.SITE_ID!;
     const siteSettings = await prisma.siteSettings.findFirst({
       where: {
         siteId,
