@@ -1,16 +1,9 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import siteId from "@/utils/getSiteId";
 
 export const getDataPage = async () => {
-  /* const siteSettings = await prisma.siteSettings.findFirst();
-  const hero = await prisma.hero.findFirst();
-  const aboutUs = await prisma.aboutUs.findFirst();
-  const serviceSettings  = await prisma.serviceModule.findFirst();
-  const services = await prisma.service.findMany();
-  const parallax = await prisma.parallax.findFirst();
-  const footer = await prisma.footer.findFirst(); */
-
   const [
     siteSettings,
     hero,
@@ -20,13 +13,41 @@ export const getDataPage = async () => {
     parallax,
     footer,
   ] = await Promise.all([
-    prisma.siteSettings.findFirst(),
-    prisma.hero.findFirst(),
-    prisma.aboutUs.findFirst(),
-    prisma.serviceModule.findFirst(),
-    prisma.service.findMany(),
-    prisma.parallax.findFirst(),
-    prisma.footer.findFirst(),
+    prisma.siteSettings.findFirst({
+      where: {
+        siteId: siteId,
+      }
+    }),
+    prisma.hero.findFirst({
+      where: {
+        siteId: siteId,
+      }
+    }),
+    prisma.aboutUs.findFirst({
+      where: {
+        siteId: siteId,
+      }
+    }),
+    prisma.serviceModule.findFirst({
+      where: {
+        siteId: siteId,
+      }
+    }),
+    prisma.service.findMany({
+      where: {
+        siteId: siteId,
+      }
+    }),
+    prisma.parallax.findFirst({
+      where: {
+        siteId: siteId,
+      }
+    }),
+    prisma.footer.findFirst({
+      where: {
+        siteId: siteId,
+      }
+    }),
   ]);
 
   return {

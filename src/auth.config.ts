@@ -3,7 +3,6 @@ import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import prisma from "./lib/prisma";
 import bcryptjs from "bcryptjs";
-import async from "./app/admin/layout";
 import siteId from "./utils/getSiteId";
 
 export const authConfig: NextAuthConfig = {
