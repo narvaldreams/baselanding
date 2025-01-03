@@ -12,9 +12,9 @@ export const createUpdateHero = async (formData: FormData, siteId: string) => {
         message: 'No se encontró el id del sitio'
       }
     }
-    const existingHero = await prisma.hero.findFirst({
+    const existingHero = await prisma.hero.findUnique({
       where: {
-        siteId,
+        siteId: siteId,
       },
     });
 
@@ -25,6 +25,7 @@ export const createUpdateHero = async (formData: FormData, siteId: string) => {
       about = await prisma.hero.update({
         where: {
           id: existingHero.id,
+          siteId: siteId,
         },
         data: {
           title: formData.get("title")!.toString(),
@@ -41,7 +42,7 @@ export const createUpdateHero = async (formData: FormData, siteId: string) => {
           content: formData.get("content")!.toString(),
           /* heroUrl: formData.get("heroUrl")!.toString(), */
           textButton: formData.get("textButton")!.toString(),
-          siteId,
+          siteId: siteId,
         },
       });
       message = "Se creó correctamente";
@@ -54,6 +55,7 @@ export const createUpdateHero = async (formData: FormData, siteId: string) => {
       await prisma.hero.update({
         where: {
           id: about.id,
+          siteId: siteId,
         },
         data: {
           imageUrl: uploadedImage!,

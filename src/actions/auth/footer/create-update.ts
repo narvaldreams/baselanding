@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 export const createUpdateFooter = async (formData: FormData, siteId: string) => {
   try {
 
-    const existingFooter = await prisma.footer.findFirst({
+    const existingFooter = await prisma.footer.findUnique({
       where: {
         siteId: siteId,
       },

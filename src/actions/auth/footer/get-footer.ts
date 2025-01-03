@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 export const getFooter = async (siteId: string) => {
   try {
 
-    const siteAbout = await prisma.footer.findFirst({
+    const siteAbout = await prisma.footer.findUnique({
       where: {
         siteId: siteId,
       },

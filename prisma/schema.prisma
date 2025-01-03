@@ -29,7 +29,7 @@ model User {
   image                    String?
   createdAt                DateTime  @default(now())
   updatedAt                DateTime  @updatedAt
-  siteId                   String // ID del sitio
+  siteId                   String    @unique
 }
 
 model SiteSettings {
@@ -51,7 +51,7 @@ model SiteSettings {
   smtp_gmail_key     String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
-  siteId             String // ID del sitio
+  siteId             String   @unique
 }
 
 model Hero {
@@ -63,7 +63,7 @@ model Hero {
   textButton String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  siteId     String // ID del sitio
+  siteId     String   @unique
 }
 
 model AboutUs {
@@ -73,7 +73,7 @@ model AboutUs {
   imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  siteId      String // ID del sitio
+  siteId      String   @unique
 }
 
 model ServiceModule {
@@ -83,7 +83,7 @@ model ServiceModule {
   generalImageUrl    String? // URL de la imagen general
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
-  siteId             String // ID del sitio
+  siteId             String   @unique
 }
 
 model Service {
@@ -105,7 +105,7 @@ model Parallax {
   imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  siteId      String // ID del sitio
+  siteId      String   @unique
 }
 
 model RegistrationForm {
@@ -126,5 +126,5 @@ model Footer {
   phoneNumber String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  siteId      String // ID del sitio
+  siteId      String   @unique
 }

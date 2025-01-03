@@ -7,7 +7,7 @@ import { uploadImage } from "../image/upload";
 export const createUpdateAbout = async (formData: FormData, siteId: string) => {
   try {
 
-    const existingAbout = await prisma.aboutUs.findFirst({
+    const existingAbout = await prisma.aboutUs.findUnique({
       where: {
         siteId: siteId,
       },
@@ -20,6 +20,7 @@ export const createUpdateAbout = async (formData: FormData, siteId: string) => {
       about = await prisma.aboutUs.update({
         where: {
           id: existingAbout.id,
+          siteId: siteId,
         },
         data: {
           title: formData.get("title")!.toString(),

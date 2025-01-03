@@ -13,22 +13,22 @@ export const getDataPage = async () => {
     parallax,
     footer,
   ] = await Promise.all([
-    prisma.siteSettings.findFirst({
+    prisma.siteSettings.findUnique({
       where: {
         siteId: siteId,
       }
     }),
-    prisma.hero.findFirst({
+    prisma.hero.findUnique({
       where: {
         siteId: siteId,
       }
     }),
-    prisma.aboutUs.findFirst({
+    prisma.aboutUs.findUnique({
       where: {
         siteId: siteId,
       }
     }),
-    prisma.serviceModule.findFirst({
+    prisma.serviceModule.findUnique({
       where: {
         siteId: siteId,
       }
@@ -38,12 +38,12 @@ export const getDataPage = async () => {
         siteId: siteId,
       }
     }),
-    prisma.parallax.findFirst({
+    prisma.parallax.findUnique({
       where: {
         siteId: siteId,
       }
     }),
-    prisma.footer.findFirst({
+    prisma.footer.findUnique({
       where: {
         siteId: siteId,
       }

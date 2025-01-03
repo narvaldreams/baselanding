@@ -7,7 +7,7 @@ import { uploadImage } from "../image/upload";
 export const createUpdateParallax = async (formData: FormData, siteId: string) => {
   try {
 
-    const existingParallax = await prisma.parallax.findFirst({
+    const existingParallax = await prisma.parallax.findUnique({
       where: {
         siteId: siteId,
       },

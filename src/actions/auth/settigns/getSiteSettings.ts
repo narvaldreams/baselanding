@@ -3,9 +3,9 @@ import prisma from '@/lib/prisma';
 
 export const getSiteSettings = async (siteId: string) => {
   try {
-    const siteSettings = await prisma.siteSettings.findFirst({
+    const siteSettings = await prisma.siteSettings.findUnique({
       where: {
-        siteId,
+        siteId: siteId,
       }
     });
     return siteSettings;

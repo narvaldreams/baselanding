@@ -36,7 +36,7 @@ export const authConfig: NextAuthConfig = {
         const user = await prisma.user.findUnique({
           where: {
             email: email.toLowerCase(),
-            siteId,
+            siteId: siteId,
           },
         });
 

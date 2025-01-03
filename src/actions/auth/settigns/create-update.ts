@@ -14,7 +14,7 @@ export const createUpdateSettings = async (formData: FormData, siteId: string) =
       };
     }
     
-    const existingSiteSettings = await prisma.siteSettings.findFirst({
+    const existingSiteSettings = await prisma.siteSettings.findUnique({
       where: {
         siteId,
       },
