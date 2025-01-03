@@ -54,6 +54,35 @@ export const authConfig: NextAuthConfig = {
       },
     }),
   ], // Add your providers here
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token.${siteId}`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: false,
+      }
+    },
+    callbackUrl: {
+      name: `next-auth.callback-url.${siteId}`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: false,
+      }
+    },
+    csrfToken: {
+      name: `next-auth.csrf-token.${siteId}`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: false,
+      }
+    }
+  },
 };
 
 export const { auth, signIn, signOut, handlers } = NextAuth(authConfig);

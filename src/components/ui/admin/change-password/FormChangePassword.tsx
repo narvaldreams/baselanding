@@ -17,6 +17,7 @@ interface Props {
 }
 
 export const FormChangePassword = ({ idUser }: Props) => {
+  
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
